@@ -10,7 +10,7 @@
 ## Members
 * Vidyut Venkatesan (s3925040)
 * Abhijeet Kumar (sXXXXX)
-* Ibrahim Al-Ashhab (sXXXXX)
+* Ibrahim Al-Ashhab (s3953973)
 * Rashik Raj (sXXXXX)
 * Udit Pradeep Malshe (sXXXXX)
 
