@@ -11,7 +11,7 @@
 * Vidyut Venkatesan (s3925040)
 * Abhijeet Kumar (sXXXXX)
 * Ibrahim Al-Ashhab (s3953973)
-* Rashik Raj (sXXXXX)
+* Rashik Raj (s3931830)
 * Udit Pradeep Malshe (sXXXXX)
 
 ## Records
