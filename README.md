@@ -5,13 +5,14 @@
 
 # Group Information
 
-## Group-PX-XX
+## Group-P02-07
 
 ## Members
-* Student Name 1 (sXXXXX)
-* Student Name 2 (sXXXXX)
-* Student Name 3 (sXXXXX)
-* Student Name 4 (sXXXXX)
+* Vidyut Venkatesan (s3925040)
+* Abhijeet Kumar (sXXXXX)
+* Ibrahim Al-Ashhab (sXXXXX)
+* Rashik Raj (sXXXXX)
+* Udit Pradeep Malshe (sXXXXX)
 
 ## Records
 
