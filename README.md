@@ -12,7 +12,7 @@
 * Abhijeet Kumar (sXXXXX)
 * Ibrahim Al-Ashhab (s3953973)
 * Rashik Raj (s3931830)
-* Udit Pradeep Malshe (sXXXXX)
+* Udit Pradeep Malshe (s3933905)
 
 ## Records
 
