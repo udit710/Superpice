@@ -16,8 +16,8 @@
 
 ## Records
 
-* Github repository: https://github.com/xxx
-* Github Project Board : https://xxxx
+* Github repository: [github.com | team-project-group-p02-07](https://github.com/cosc2299-sept-2023/team-project-group-p02-07)
+* Github Project Board : [github.com | SEPT Feature Project](https://github.com/orgs/cosc2299-sept-2023/projects/143/views/1)
 
 	
 ## Code documentation - Release 0.1.0 - date
