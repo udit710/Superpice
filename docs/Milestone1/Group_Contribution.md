@@ -1,17 +1,34 @@
 Abhijeet Kumar(s) - 20%
+- 3 User stories
+- 2 Wireframe Diagrams
+- 2 Test Cases
+- Architecture Diagram
+- Data Model
 
 Vidyut Venkatesan(s3925040) - 20%
-- 2 User stories
+- 3 User stories
 - 2 Wireframe Diagrams
 - First week meeting minutes
-- Some test cases
+- 3 test cases
+- Data Model
 
 Udit Pradeep Malshe(s) - 20%
+- 3 User stories
+- 2 Wireframe Diagrams
+- 3 Test Cases
+- Architecture Diagram
+- Data Model
 
 Rashik Raj(s) - 20%
+- 3 User stories
+- 2 Wireframe Diagrams
+- 2 Test Cases
+- Meeting minutes
+- Architecture Diagram
 
 Ibrahim Al-Ashhab(s3953973) - 20%
-- user stories
-- wireframe designs
+- 3 User stories
+- 2 Wireframe designs
 - functional requirements
 - non-functional requirements
+- Architecture Diagram
