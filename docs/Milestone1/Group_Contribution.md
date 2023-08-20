@@ -21,7 +21,7 @@ Udit Pradeep Malshe(s3933905) - 20%
 
 Rashik Raj(s3931830) - 20%
 - 3 User stories
-- 2 Wireframe Diagrams
+- 1 Wireframe Diagram
 - 2 Test Cases
 - Meeting minutes
 - Architecture Diagram
