@@ -1,4 +1,4 @@
-Abhijeet Kumar(s) - 20%
+Abhijeet Kumar(s3905291) - 20%
 - 3 User stories
 - 2 Wireframe Diagrams
 - 2 Test Cases
@@ -12,14 +12,14 @@ Vidyut Venkatesan(s3925040) - 20%
 - 3 test cases
 - Data Model
 
-Udit Pradeep Malshe(s) - 20%
+Udit Pradeep Malshe(s3933905) - 20%
 - 3 User stories
 - 2 Wireframe Diagrams
 - 3 Test Cases
 - Architecture Diagram
 - Data Model
 
-Rashik Raj(s) - 20%
+Rashik Raj(s3931830) - 20%
 - 3 User stories
 - 2 Wireframe Diagrams
 - 2 Test Cases
