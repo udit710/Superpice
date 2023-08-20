@@ -19,6 +19,7 @@
 * Github repository: [github.com | team-project-group-p02-07](https://github.com/cosc2299-sept-2023/team-project-group-p02-07)
 * Github Project Board : [github.com | SEPT Feature Project](https://github.com/orgs/cosc2299-sept-2023/projects/143/views/1)
 * Microsoft Teams Link: [MS Teams Group 07](https://teams.microsoft.com/l/team/19%3aaS2iQd5DZbipNu4gNK8p9S6Sy6-Kj2rkewpV8f8ZAqA1%40thread.tacv2/conversations?groupId=eea8373d-4f5f-4c1c-a1a7-36843caccb9c&tenantId=d1323671-cdbe-4417-b4d4-bdb24b51316b)
+* Contribution video link : https://youtu.be/GzdNoQ0QKAQ
 
 	
 ## Code documentation - Release 0.1.0 - date
