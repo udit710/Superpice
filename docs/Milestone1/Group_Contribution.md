@@ -10,4 +10,8 @@ Udit Pradeep Malshe(s) - 20%
 
 Rashik Raj(s) - 20%
 
-Ibrahim Al-Ashhab(s) - 20%
+Ibrahim Al-Ashhab(s3953973) - 20%
+- user stories
+- wireframe designs
+- functional requirements
+- non-functional requirements
