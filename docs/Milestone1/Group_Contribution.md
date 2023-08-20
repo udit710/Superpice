@@ -6,9 +6,9 @@ Abhijeet Kumar(s3905291) - 20%
 - Data Model
 
 Vidyut Venkatesan(s3925040) - 20%
-- 3 User stories
+- 2 User stories
 - 2 Wireframe Diagrams
-- 3 test cases
+- 2 test cases
 - Meeting minutes
 - Data Model
 
