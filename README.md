@@ -55,7 +55,7 @@ Other tools will be required to complete the project (e.g., Docker)
 ## Frontend
 - cd into frontend/
 - Install dependencies "npm install"
-- Run the app with "npm run dev"
+- Run the app with "npm start"
 
 
 
