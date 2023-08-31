@@ -1,0 +1,13 @@
+.notif-dropdown {
+    width: 30rem;
+    text-align: center;
+}
+
+.type-groups {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#order-notifs, #account-notifs {
+    display: none;
+}
