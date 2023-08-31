@@ -1,0 +1,11 @@
+.nav-content {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.nav-item {
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    align-items: center;
+}
