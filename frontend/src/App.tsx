@@ -6,11 +6,14 @@ import 'bootstrap/dist/js/bootstrap';
 import './App.css';
 import Navbar from './components/navbar/navbar';
 
+import SearchResults from './pages/searchResults';
+
 
 function App() {
   return (
     <div className="App">
       <Navbar/>
+      <SearchResults/>
     </div>
   );
 }
