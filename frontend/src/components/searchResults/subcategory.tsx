@@ -28,9 +28,10 @@ export default class Subcategory extends Component {
 
 		const subcategories: ReactElement[] = [];
 
-		for (let i:number = 0; i < 10; i++) {
+		const numCat = 10;
+		for (let i:number = 0; i < numCat; i++) {
 			subcategories.push(
-				<div className='subcategories'>
+				<div className='subcategories' id={'subcaregory-' + i} onClick={() => {alert("dummy index " + i)}}>
 					<img src={logo} alt='logo' height='160' width='160' />
 					<p>Dummy Item</p>
 				</div>

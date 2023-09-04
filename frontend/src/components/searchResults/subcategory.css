@@ -1,17 +1,29 @@
 .Subcategory {
     display: flex;
+    justify-content: space-between;
     overflow-x: auto;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
-::-webkit-scrollbar {
+.Subcategory::-webkit-scrollbar {
     height: 4px;
 }
 
-::-webkit-scrollbar-thumb {
+.Subcategory::-webkit-scrollbar-thumb {
     background: rgb(61, 61, 61); 
-  }
+}
 
-::-webkit-scrollbar-track {
+.Subcategory::-webkit-scrollbar-track {
     background: rgb(179, 179, 179);
+}
+
+.subcategories {
+    border: solid 1px black;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    border-radius: 16px;
+    box-shadow: 5px 5px 10px 5px rgba(0,0,0,.1);
+
 }
 
