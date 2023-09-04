@@ -1,6 +1,6 @@
 import React, { Component, ReactElement } from 'react';
 import './subcategory.css';
-import logo from '../../../logo.svg'; // Dummy image
+import logo from '../../logo.svg'; // Dummy image
 
 export default class Subcategory extends Component {
 	// props accepts subcategoryData as string to pass json data as string once apis are in place

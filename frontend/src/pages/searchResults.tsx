@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Subcategory from '../components/navbar/searchResults/subcategory'
+import Subcategory from '../components/searchResults/subcategory'
 
 export default class SearchResults extends Component {
   render() {
