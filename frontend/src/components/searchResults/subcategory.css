@@ -1,3 +1,17 @@
 .Subcategory {
     display: flex;
+    overflow-x: auto;
 }
+
+::-webkit-scrollbar {
+    height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(61, 61, 61); 
+  }
+
+::-webkit-scrollbar-track {
+    background: rgb(179, 179, 179);
+}
+

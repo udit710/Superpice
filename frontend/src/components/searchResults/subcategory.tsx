@@ -15,10 +15,10 @@ export default class Subcategory extends Component {
 	// }
 
   render() {
-		const subcategories = this.dataToElements(null); // Pass subcategoryData if using that
+	const subcategories = this.dataToElements(null); // Pass subcategoryData if using that
     return (
       <div className='Subcategory'>
-				{subcategories}
+		{subcategories}
       </div>
     );
   }
@@ -28,7 +28,7 @@ export default class Subcategory extends Component {
 
 		const subcategories: ReactElement[] = [];
 
-		for (let i:number = 0; i < 3; i++) {
+		for (let i:number = 0; i < 10; i++) {
 			subcategories.push(
 				<div className='subcategories'>
 					<img src={logo} alt='logo' height='160' width='160' />
