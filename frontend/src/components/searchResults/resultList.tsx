@@ -16,12 +16,12 @@ export default class ResultList extends Component {
   dataToElements(data: string | null): ReactElement[] {
 		// TODO: Do something to get the data from string once apis are implemented
 
-		const subcategories: ReactElement[] = [];
+		const items: ReactElement[] = [];
 
 		const num = 10;
 		for (let i:number = 0; i < num; i++) {
-      subcategories.push(<hr className='item-divider' />)
-			subcategories.push(
+      items.push(<hr className='item-divider' />)
+			items.push(
 				<div className='item' id={'item-' + i} onClick={() => {alert("dummy item index " + i)}}>
 					<img src={logo} alt='logo' height='160' width='160' />
           <div>
@@ -32,6 +32,6 @@ export default class ResultList extends Component {
 			);
 		}
 
-		return subcategories;
+		return items;
 	}
 }
