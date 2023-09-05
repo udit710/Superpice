@@ -33,7 +33,7 @@ export default class Subcategory extends Component {
 			subcategories.push(
 				<div className='subcategories' id={'subcaregory-' + i} onClick={() => {alert("dummy index " + i)}}>
 					<img src={logo} alt='logo' height='160' width='160' />
-					<p>Dummy Item</p>
+					<p>Dummy Item {i}</p>
 				</div>
 			);
 		}

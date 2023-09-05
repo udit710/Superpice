@@ -7,6 +7,7 @@ import './App.css';
 import Navbar from './components/navbar/navbar';
 
 import SearchResults from './pages/searchResults';
+import ResultList from './components/searchResults/resultList';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <Navbar/>
       <SearchResults/>
+      <ResultList/>
     </div>
   );
 }
