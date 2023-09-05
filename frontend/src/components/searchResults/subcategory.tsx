@@ -31,7 +31,7 @@ export default class Subcategory extends Component {
 		const numCat = 10;
 		for (let i:number = 0; i < numCat; i++) {
 			subcategories.push(
-				<div className='subcategories' id={'subcaregory-' + i} onClick={() => {alert("dummy index " + i)}}>
+				<div className='subcategories' id={'subcaregory-' + i} onClick={() => {alert("dummy subcategory index " + i)}}>
 					<img src={logo} alt='logo' height='160' width='160' />
 					<p>Dummy Item {i}</p>
 				</div>
