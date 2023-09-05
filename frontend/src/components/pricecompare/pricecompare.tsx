@@ -9,53 +9,53 @@ export default class PriceCompare extends Component {
     render() {
         return (
             <div className="PriceCompare">
-                <h1 className="productname">Milk Whole 4L - Meijer</h1>
                 <div className="container">
-                    <table className="table table-hover">
-                        <thead>
-                            <th className="available">Available at</th>
-                        </thead>
+                    <h1 className="productname">Milk Whole 4L - Meijer</h1>
+                        <table className="table table-hover">
+                            <thead>
+                                <th className="available">Available at</th>
+                            </thead>
 
-                        <tbody>
-                            <tr>
-                                <th scope="row"><img className="imgs" src={Logo_Coles} alt="Coles" /></th>
-                                <td className="storename"><a href = "https://www.coles.com.au/" target="_blank" rel="noopener noreferrer">Coles - Melbourne Central &rarr;</a></td>
-                                <td className="cost">$3.45</td>
-                                <td><button className="plus">+</button></td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th scope="row"><img className="imgs" src={Logo_Coles} alt="Coles" /></th>
+                                    <td className="storename"><a href = "https://www.coles.com.au/" target="_blank" rel="noopener noreferrer">Coles - Melbourne Central &rarr;</a></td>
+                                    <td className="cost">$3.45</td>
+                                    <td><button className="plus">+</button></td>
+                                </tr>
 
-                            <tr>
-                                <th scope="row"><img className="imgs" src={Logo_Coles} alt="Coles" /></th>
-                                <td className="storename"><a href = "https://www.coles.com.au/" target="_blank" rel="noopener noreferrer">Coles - QV &rarr;</a></td>
-                                <td className="cost">$3.45</td>
-                                <td><div className="plus">+</div></td>
-                            </tr>
+                                <tr>
+                                    <th scope="row"><img className="imgs" src={Logo_Coles} alt="Coles" /></th>
+                                    <td className="storename"><a href = "https://www.coles.com.au/" target="_blank" rel="noopener noreferrer">Coles - QV &rarr;</a></td>
+                                    <td className="cost">$3.45</td>
+                                    <td><div className="plus">+</div></td>
+                                </tr>
 
-                            <tr>
-                                <th scope="row"><img className="imgs" src={Logo_Woolies} alt="Woolworths" /></th>
-                                <td className="storename"><a href = "https://www.woolworths.com.au/" target="_blank" rel="noopener noreferrer">Woolworths - QV &rarr;</a></td>
-                                <td className="cost">$3.55</td>
-                                <td><div className="plus">+</div></td>
-                            </tr>
+                                <tr>
+                                    <th scope="row"><img className="imgs" src={Logo_Woolies} alt="Woolworths" /></th>
+                                    <td className="storename"><a href = "https://www.woolworths.com.au/" target="_blank" rel="noopener noreferrer">Woolworths - QV &rarr;</a></td>
+                                    <td className="cost">$3.55</td>
+                                    <td><div className="plus">+</div></td>
+                                </tr>
 
-                            <tr>
-                                <th scope="row"><img className="imgs" src={Logo_Coles} alt="Coles" /></th>
-                                <td className="storename"><a href = "https://www.coles.com.au/" target="_blank" rel="noopener noreferrer">Coles - Flinders St &rarr;</a></td>
-                                <td className="cost">$3.95</td>
-                                <td><div className="plus">+</div></td>
-                            </tr>
+                                <tr>
+                                    <th scope="row"><img className="imgs" src={Logo_Coles} alt="Coles" /></th>
+                                    <td className="storename"><a href = "https://www.coles.com.au/" target="_blank" rel="noopener noreferrer">Coles - Flinders St &rarr;</a></td>
+                                    <td className="cost">$3.95</td>
+                                    <td><div className="plus">+</div></td>
+                                </tr>
 
-                            <tr>
-                                <th scope="row"><img className="imgs" src={Logo_Woolies} alt="Woolworths" /></th>
-                                <td className="storename"><a href = "https://www.woolworths.com.au/" target="_blank" rel="noopener noreferrer">Woolworths - Flinders St &rarr;</a></td>
-                                <td className="cost">$3.95</td>
-                                <td><div className="plus">+</div></td>
-                            </tr>
+                                <tr>
+                                    <th scope="row"><img className="imgs" src={Logo_Woolies} alt="Woolworths" /></th>
+                                    <td className="storename"><a href = "https://www.woolworths.com.au/" target="_blank" rel="noopener noreferrer">Woolworths - Flinders St &rarr;</a></td>
+                                    <td className="cost">$3.95</td>
+                                    <td><div className="plus">+</div></td>
+                                </tr>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    <footer><div className="morelocations"><a href="about:blank" target="_blank" rel="noopener noreferrer">More locations...</a></div></footer>
                 </div>
-                <footer><div className="morelocations"><a href="about:blank" target="_blank" rel="noopener noreferrer">More locations...</a></div></footer>
             </div>
         )
     }
