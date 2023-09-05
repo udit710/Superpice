@@ -9,6 +9,7 @@
 
 .subcategories:hover {
     background-color: rgba(232, 230, 230, 0.748);
+    cursor: pointer;
 }
 
 .Subcategory::-webkit-scrollbar {
