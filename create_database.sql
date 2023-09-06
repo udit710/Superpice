@@ -19,8 +19,6 @@ CREATE TABLE PRODUCT (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
     description TEXT,
-    price DECIMAL(10, 2) NOT NULL,
-    availability BOOLEAN NOT NULL,
     allergens TEXT,
     last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -77,7 +75,6 @@ CREATE TABLE TRANSACTION (
     total_amount DECIMAL(10, 2) NOT NULL,
     order_address_id INT,
     FOREIGN KEY (user_id) REFERENCES USER(user_id),
-    FOREIGN KEY (store_id) REFERENCES STORE(store_id),
     FOREIGN KEY (order_address_id) REFERENCES ADDRESS(address_id)
 );
 
@@ -127,6 +124,7 @@ CREATE TABLE PRODUCT_STORE (
     product_id INT,
     store_id INT,
     price DECIMAL(10, 2) NOT NULL,
+    available INT NOT NULL,
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
     FOREIGN KEY (store_id) REFERENCES STORE(store_id)
 );
