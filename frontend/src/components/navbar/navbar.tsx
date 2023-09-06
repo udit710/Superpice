@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Notifications from './notifications';
-
+import { Link } from 'react-router-dom';
 import './navbar.css';
 import { BsBell } from 'react-icons/bs';
 
@@ -24,7 +24,8 @@ export default class Navbar extends Component {
                       </a>
                       <ul className="dropdown-menu">
                         <li><a className="dropdown-item" href="/#">Action</a></li>
-                        <li><a className="dropdown-item" href="/#">Another action</a></li>
+                        {/**WARNING: REMOVE LINK FROM HERE ---Added By Rashik */}
+                        <li><Link to="/ProductDetail/fake_id"><a className="dropdown-item" href="/#">Temp_ProductDetailPage</a> </Link></li>
                         <li><hr className="dropdown-divider"/></li>
                         <li><a className="dropdown-item" href="/#">Something else here</a></li>
                       </ul>

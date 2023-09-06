@@ -1,0 +1,16 @@
+.product_detail_body{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 5vh;
+    text-align: left;
+    align-items: baseline;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.product_detail_paragraph{
+    flex: 1;
+}
+.product_detail_reviews{
+    flex: 1;
+}
