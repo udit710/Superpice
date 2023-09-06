@@ -48,9 +48,9 @@ VALUES (1, 'https://source.unsplash.com/random?milk'),
        (5, 'https://source.unsplash.com/random?bread');
 
 -- Populating USER table
-INSERT INTO USER (username, password, email, address_id)
-VALUES ('john_doe', 'password123', 'john.doe@example.com', 2),
-       ('jane_smith', 'securepass456', 'jane.smith@example.com', 5);
+INSERT INTO USER (username, password, email, first_name, last_name, phone, address_id)
+VALUES ('john_doe', 'password123', 'john.doe@example.com', 'John', 'Doe', '+1234567890', 2),
+       ('jane_smith', 'securepass456', 'jane.smith@example.com', 'Jane', 'Smith', '+0987654321', 5);
 
 -- Populating REVIEW table
 INSERT INTO REVIEW (user_id, product_id, rating, comment)
