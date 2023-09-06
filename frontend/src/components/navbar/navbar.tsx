@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Notifications from './notifications';
-import { Link } from 'react-router-dom';
+import { Link, Form } from 'react-router-dom';
 import './navbar.css';
 import { BsBell } from 'react-icons/bs';
 
@@ -36,10 +36,11 @@ export default class Navbar extends Component {
                     </li>
                     
                 </ul>
-                <form className="d-flex" role="search">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                {/**use 'Form' instead of 'form' to allow data to pass through routers */}
+                <Form className="d-flex" role="search" method="get" action="/search">
+                    <input name="item" className="form-control me-2" type="search" placeholder="Search" aria-label="Search" required />
                     <button className="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                </Form>
 
                 <a className='nav-link post-nav-items' href='/#'>Saved</a>
 

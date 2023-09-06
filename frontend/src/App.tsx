@@ -9,8 +9,8 @@ import './App.css';
 import Navbar from './components/navbar/navbar';
 import ProductDetail from './pages/product_detail/ProductDetail';
 
-import SearchResults from './pages/searchResults';
-import ResultList from './components/searchResults/resultList';
+import SearchResults from './pages/searchResults/searchResults';
+// import ResultList from './components/searchResults/resultList';
 
 
 function App() {
@@ -20,8 +20,12 @@ function App() {
       <div className='space'></div>
       
       {/**IDK how to do next.js routing so i did this for the time being */}
+
+      {/**IMPORTANT: Also need to add path to index.tsx */}
+      {/**See index.tsx for mor info */}
       <Routes>
         <Route path='/ProductDetail/:id' element={<ProductDetail/>}/>
+        <Route path='/search' element={<SearchResults searchItem=''/>} />
       </Routes>
       
     </div>
