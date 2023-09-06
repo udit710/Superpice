@@ -1,51 +1,44 @@
 package au.edu.rmit.sept.superprice.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
 
+import java.util.List;
 
-@Entity
 @Data
-@AllArgsConstructor
+@Entity
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "PRODUCT")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id")
     private Long id;
+
+    @Column(name = "product_name")
     private String productName;
+
+    @Column(name = "description")
     private String description;
-    private Double price;
-    private Boolean availability;
-    private String imageURL;
+
+    @Column(name = "allergens")
+    private String allergens;
+
+    @Column(name = "last_updated")
     private String lastUpdated;
 
-    // Constructors, getters, setters, etc.
-    public Product() {
-    }
-
-    public Product(String productName, String description, Double price, Boolean availability, String imageURL, String lastUpdated) {
-        this.productName = productName;
-        this.description = description;
-        this.price = price;
-        this.availability = availability;
-        this.imageURL = imageURL;
-        this.lastUpdated = lastUpdated;
-    }
-
-    public Product(Long id, String productName, String description, Double price, Boolean availability, String imageURL, String lastUpdated) {
-        this.id = id;
-        this.productName = productName;
-        this.description = description;
-        this.price = price;
-        this.availability = availability;
-        this.imageURL = imageURL;
-        this.lastUpdated = lastUpdated;
-    }
-
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ProductImage> images;
 }
