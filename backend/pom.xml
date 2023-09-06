@@ -8,7 +8,7 @@
 		<version>3.1.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>rmit.sept</groupId>
+	<groupId>au.edu.rmit.sept</groupId>
 	<artifactId>superprice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SuperPrice</name>
