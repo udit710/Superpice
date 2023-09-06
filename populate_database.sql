@@ -1,56 +1,69 @@
 USE superprice;
 
--- Inserting data into PRODUCT table
-INSERT INTO PRODUCT (ProductName, Description, Price, Availability, ImageURL) VALUES 
-('Apple', 'Fresh red apples', 0.50, TRUE, 'apple.jpg'),
-('Banana', 'Yellow ripe bananas', 0.30, TRUE, 'banana.jpg');
+-- Populating ADDRESS table
+INSERT INTO ADDRESS (address_line1, city, state, postal_code, country, address_type)
+VALUES ('123 Main St', 'Melbourne', 'VIC', '3000', 'Australia', 'STORE'),
+       ('456 Elm St', 'Sydney', 'NSW', '2000', 'Australia', 'USER'),
+       ('789 Maple St', 'Brisbane', 'QLD', '4000', 'Australia', 'ORDER');
 
--- Inserting data into CATEGORY table
-INSERT INTO CATEGORY (CategoryName) VALUES 
-('Fruits'),
-('Vegetables');
+-- Populating PRODUCT table
+INSERT INTO PRODUCT (product_name, description, price, availability, allergens, last_updated)
+VALUES ('Skim Milk', 'Low fat milk', 1.50, TRUE, 'Lactose', CURRENT_TIMESTAMP),
+       ('Full Cream Milk', 'Rich and creamy milk', 2.00, TRUE, 'Lactose', CURRENT_TIMESTAMP);
 
--- Inserting data into STORE table
-INSERT INTO STORE (StoreName, StoreLocation, ContactDetails) VALUES 
-('SuperMart', '123 Main St', '123-456-7890'),
-('FreshGrocery', '456 Elm St', '987-654-3210');
+-- Populating PRODUCT_IMAGE table
+INSERT INTO PRODUCT_IMAGE (product_id, image_url)
+VALUES (1, 'https://source.unsplash.com/random?milk'),
+       (2, 'https://source.unsplash.com/random?milk');
 
--- Inserting data into USER table
-INSERT INTO USER (Username, Password, Email, Address) VALUES 
-('johnDoe', 'password123', 'john@example.com', '789 Oak St'),
-('janeSmith', 'password456', 'jane@example.com', '101 Pine St');
+-- Populating CATEGORY table
+INSERT INTO CATEGORY (category_name)
+VALUES ('Dairy'),
+       ('Beverages');
 
--- Inserting data into REVIEW table
-INSERT INTO REVIEW (UserID, ProductID, Rating, Comment) VALUES 
-(1, 1, 5, 'Great apples!'),
-(2, 2, 4, 'Good bananas, but not the best.');
+-- Populating STORE table
+INSERT INTO STORE (store_name, address_id)
+VALUES ('Coles', 1),
+       ('Woolworths', 1),
+       ('Aldi', 1);
 
--- Inserting data into TRANSACTION table
-INSERT INTO TRANSACTION (UserID, TotalAmount) VALUES 
-(1, 5.00),
-(2, 3.00);
+-- Populating USER table
+INSERT INTO USER (username, password, email, address_id)
+VALUES ('john_doe', 'password123', 'john.doe@example.com', 2);
 
--- Inserting data into TRANSACTION_ITEM table
-INSERT INTO TRANSACTION_ITEM (TransactionID, ProductID, Quantity, SubTotal) VALUES 
-(1, 1, 5, 2.50),
-(2, 2, 4, 1.20);
+-- Populating REVIEW table
+INSERT INTO REVIEW (user_id, product_id, rating, comment)
+VALUES (1, 1, 5, 'Great milk!'),
+       (1, 2, 4, 'Tastes good.');
 
--- Inserting data into NOTIFICATION table
-INSERT INTO NOTIFICATION (UserID, Message) VALUES 
-(1, 'Your order has been shipped!'),
-(2, 'Your order is ready for pickup!');
+-- Populating TRANSACTION table
+INSERT INTO TRANSACTION (user_id, total_amount, order_address_id)
+VALUES (1, 3.50, 3);
 
--- Inserting data into CART_ITEM table
-INSERT INTO CART_ITEM (UserID, ProductID, Quantity) VALUES 
-(1, 2, 3),
-(2, 1, 2);
+-- Populating TRANSACTION_ITEM table
+INSERT INTO TRANSACTION_ITEM (transaction_id, product_id, quantity, sub_total)
+VALUES (1, 1, 2, 3.00),
+       (1, 2, 1, 2.00);
 
--- Inserting data into PRODUCT_CATEGORY association table
-INSERT INTO PRODUCT_CATEGORY (ProductID, CategoryID) VALUES 
-(1, 1),
-(2, 1);
+-- Populating NOTIFICATION table
+INSERT INTO NOTIFICATION (user_id, message, type, date_sent)
+VALUES (1, 'Your order has been shipped!', 'INFO', CURRENT_TIMESTAMP);
 
--- Inserting data into PRODUCT_STORE association table
-INSERT INTO PRODUCT_STORE (ProductID, StoreID) VALUES 
-(1, 1),
-(2, 2);
+-- Populating CART_ITEM table
+INSERT INTO CART_ITEM (user_id, product_id, quantity)
+VALUES (1, 1, 2),
+       (1, 2, 1);
+
+-- Populating PRODUCT_CATEGORY association table
+INSERT INTO PRODUCT_CATEGORY (product_id, category_id)
+VALUES (1, 1),
+       (2, 1);
+
+-- Populating PRODUCT_STORE association table
+INSERT INTO PRODUCT_STORE (product_id, store_id, price)
+VALUES (1, 1, 1.50),
+       (1, 2, 1.55),
+       (1, 3, 1.45),
+       (2, 1, 2.00),
+       (2, 2, 2.05),
+       (2, 3, 1.95);
