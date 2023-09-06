@@ -1,0 +1,36 @@
+.Subcategory {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: auto;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 20px;
+}
+
+.subcategories:hover {
+    background-color: rgba(232, 230, 230, 0.748);
+    cursor: pointer;
+}
+
+.Subcategory::-webkit-scrollbar {
+    height: 4px;
+}
+
+.Subcategory::-webkit-scrollbar-thumb {
+    background: rgb(61, 61, 61); 
+}
+
+.Subcategory::-webkit-scrollbar-track {
+    background: rgb(179, 179, 179);
+}
+
+.subcategories {
+    border: solid 1px black;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    border-radius: 16px;
+    box-shadow: 5px 5px 10px 5px rgba(0,0,0,.1);
+    transition: all .1s ease-in;
+
+}
+

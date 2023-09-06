@@ -1,0 +1,17 @@
+.item {
+    display: flex;
+    align-items: center;
+    transition: all .1s ease-in;
+}
+
+.item:hover {
+    background-color: rgba(232, 230, 230, 0.748);
+    cursor: pointer;
+}
+
+.item-divider {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 2%;
+    margin-right: 2%;
+}

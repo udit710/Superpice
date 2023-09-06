@@ -9,6 +9,9 @@ import './App.css';
 import Navbar from './components/navbar/navbar';
 import ProductDetail from './pages/product_detail/ProductDetail';
 
+import SearchResults from './pages/searchResults';
+import ResultList from './components/searchResults/resultList';
+
 
 function App() {
   return (
