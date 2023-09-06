@@ -6,6 +6,7 @@ import 'bootstrap/dist/js/bootstrap';
 import './App.css';
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
+import Homepage from './pages/homepage';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <div className="App">
       <Navbar/>
       <Footer/>
+      <Homepage/>
     </div>
   );
 }
