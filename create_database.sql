@@ -2,104 +2,131 @@
 CREATE DATABASE superprice;
 USE superprice;
 
+-- ADDRESS table
+CREATE TABLE ADDRESS (
+    address_id INT AUTO_INCREMENT PRIMARY KEY,
+    address_line1 TEXT NOT NULL,
+    address_line2 TEXT,
+    city VARCHAR(255) NOT NULL,
+    state VARCHAR(255) NOT NULL,
+    postal_code VARCHAR(10) NOT NULL,
+    country VARCHAR(255) NOT NULL,
+    address_type ENUM('USER', 'STORE', 'ORDER') NOT NULL
+);
+
 -- PRODUCT table
 CREATE TABLE PRODUCT (
-    ProductID INT AUTO_INCREMENT PRIMARY KEY,
-    ProductName VARCHAR(255) NOT NULL,
-    Description TEXT,
-    Price DECIMAL(10, 2) NOT NULL,
-    Availability BOOLEAN NOT NULL,
-    ImageURL VARCHAR(255),
-    LastUpdated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2) NOT NULL,
+    availability BOOLEAN NOT NULL,
+    allergens TEXT,
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- PRODUCT_IMAGE table
+CREATE TABLE PRODUCT_IMAGE (
+    image_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    image_url VARCHAR(255) NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
 );
 
 -- CATEGORY table
 CREATE TABLE CATEGORY (
-    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
-    CategoryName VARCHAR(255) NOT NULL UNIQUE
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(255) NOT NULL UNIQUE
 );
 
 -- STORE table
 CREATE TABLE STORE (
-    StoreID INT AUTO_INCREMENT PRIMARY KEY,
-    StoreName VARCHAR(255) NOT NULL,
-    StoreLocation VARCHAR(255) NOT NULL,
-    ContactDetails VARCHAR(255)
+    store_id INT AUTO_INCREMENT PRIMARY KEY,
+    store_name VARCHAR(255) NOT NULL,
+    address_id INT,
+    contact_details VARCHAR(255),
+    FOREIGN KEY (address_id) REFERENCES ADDRESS(address_id)
 );
 
 -- USER table
 CREATE TABLE USER (
-    UserID INT AUTO_INCREMENT PRIMARY KEY,
-    Username VARCHAR(255) NOT NULL UNIQUE,
-    Password VARCHAR(255) NOT NULL,
-    Email VARCHAR(255) NOT NULL UNIQUE,
-    Address VARCHAR(255)
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    address_id INT,
+    FOREIGN KEY (address_id) REFERENCES ADDRESS(address_id)
 );
 
 -- REVIEW table
 CREATE TABLE REVIEW (
-    ReviewID INT AUTO_INCREMENT PRIMARY KEY,
-    UserID INT,
-    ProductID INT,
-    Rating INT NOT NULL,
-    Comment TEXT,
-    FOREIGN KEY (UserID) REFERENCES USER(UserID),
-    FOREIGN KEY (ProductID) REFERENCES PRODUCT(ProductID)
+    review_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    product_id INT,
+    rating INT NOT NULL,
+    comment TEXT,
+    FOREIGN KEY (user_id) REFERENCES USER(user_id),
+    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
 );
 
 -- TRANSACTION table
 CREATE TABLE TRANSACTION (
-    TransactionID INT AUTO_INCREMENT PRIMARY KEY,
-    UserID INT,
-    TransactionDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    TotalAmount DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (UserID) REFERENCES USER(UserID)
+    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    order_address_id INT,
+    FOREIGN KEY (user_id) REFERENCES USER(user_id),
+    FOREIGN KEY (store_id) REFERENCES STORE(store_id),
+    FOREIGN KEY (order_address_id) REFERENCES ADDRESS(address_id)
 );
 
 -- TRANSACTION_ITEM table
 CREATE TABLE TRANSACTION_ITEM (
-    TransactionItemID INT AUTO_INCREMENT PRIMARY KEY,
-    TransactionID INT,
-    ProductID INT,
-    Quantity INT NOT NULL,
-    SubTotal DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (TransactionID) REFERENCES TRANSACTION(TransactionID),
-    FOREIGN KEY (ProductID) REFERENCES PRODUCT(ProductID)
+    transaction_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    transaction_id INT,
+    product_id INT,
+    quantity INT NOT NULL,
+    sub_total DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (transaction_id) REFERENCES TRANSACTION(transaction_id),
+    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
 );
 
 -- NOTIFICATION table
 CREATE TABLE NOTIFICATION (
-    NotificationID INT AUTO_INCREMENT PRIMARY KEY,
-    UserID INT,
-    Message TEXT NOT NULL,
-    DateSent TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (UserID) REFERENCES USER(UserID)
+    notification_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    message TEXT NOT NULL,
+    type ENUM('INFO', 'WARNING', 'ERROR'),
+    date_sent TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES USER(user_id)
 );
 
 -- CART_ITEM table
 CREATE TABLE CART_ITEM (
-    CartItemID INT AUTO_INCREMENT PRIMARY KEY,
-    UserID INT,
-    ProductID INT,
-    Quantity INT NOT NULL,
-    FOREIGN KEY (UserID) REFERENCES USER(UserID),
-    FOREIGN KEY (ProductID) REFERENCES PRODUCT(ProductID)
+    cart_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    product_id INT,
+    quantity INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES USER(user_id),
+    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
 );
 
 -- PRODUCT_CATEGORY association table
 CREATE TABLE PRODUCT_CATEGORY (
-    ProductCategoryID INT AUTO_INCREMENT PRIMARY KEY,
-    ProductID INT,
-    CategoryID INT,
-    FOREIGN KEY (ProductID) REFERENCES PRODUCT(ProductID),
-    FOREIGN KEY (CategoryID) REFERENCES CATEGORY(CategoryID)
+    product_category_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    category_id INT,
+    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
+    FOREIGN KEY (category_id) REFERENCES CATEGORY(category_id)
 );
 
 -- PRODUCT_STORE association table
 CREATE TABLE PRODUCT_STORE (
-    ProductStoreID INT AUTO_INCREMENT PRIMARY KEY,
-    ProductID INT,
-    StoreID INT,
-    FOREIGN KEY (ProductID) REFERENCES PRODUCT(ProductID),
-    FOREIGN KEY (StoreID) REFERENCES STORE(StoreID)
+    product_store_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    store_id INT,
+    price DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
+    FOREIGN KEY (store_id) REFERENCES STORE(store_id)
 );
