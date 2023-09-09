@@ -15,4 +15,4 @@ jobs:
           distribution: 'temurin'
       - name: Build with Maven
         working-directory: backend
-        run: ./mvnw --batch-mode --update-snapshots package
+        run: chmod +x mvnw && ./mvnw --batch-mode --update-snapshots package
