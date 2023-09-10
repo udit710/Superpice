@@ -1,0 +1,18 @@
+.offer-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.offer-box {
+    width: 200px;
+    height: 150px;
+    background-color: yellow;
+    border: 2px solid red;
+    border-radius: 10px;
+    padding: 20px;
+    color: black;
+    font-size: 18px;
+    text-align: center;
+    margin: 10px;
+}

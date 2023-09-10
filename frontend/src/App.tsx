@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router';
 import './App.css';
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
+import Homepage from './pages/homepage';
 
 import ProductDetail from './pages/product_detail/ProductDetail';
 import SearchResults from './pages/searchResults/searchResults';
