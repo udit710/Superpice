@@ -30,7 +30,11 @@ public class ReviewService {
         reviewRepository.deleteById(id);
     }
 
-    public Review findByUserId(Long userId) {
-        return reviewRepository.findByUserId(userId).orElse(null);
+    public List<Review> findByProductId(Long productId) {
+        return reviewRepository.findByProductId(productId);
     }
+
+    // public Review findByUserId(Long userId) {
+    //     return reviewRepository.findByUserId(userId).orElse(null);
+    // }
 }
