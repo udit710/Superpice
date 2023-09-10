@@ -1,0 +1,38 @@
+.footer-content {
+    padding-left: 5%;
+    padding-right: 5%;
+    color: #000000; 
+    padding: 20px 0;
+}
+
+.footer-content h3 {
+    margin: 0;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.footer-icons a {
+    margin-left: 20px; 
+    color: black; 
+    font-size: 24px;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.footer-icons a:first-child {
+    margin-left: 0; 
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0px -10px 10px rgba(0, 0, 0, 0.1);
+}

@@ -7,8 +7,9 @@ import { Route, Routes } from 'react-router';
 
 import './App.css';
 import Navbar from './components/navbar/navbar';
-import ProductDetail from './pages/product_detail/ProductDetail';
+import Footer from './components/footer/footer';
 
+import ProductDetail from './pages/product_detail/ProductDetail';
 import SearchResults from './pages/searchResults/searchResults';
 // import ResultList from './components/searchResults/resultList';
 
@@ -28,6 +29,7 @@ function App() {
         <Route path='/search' element={<SearchResults searchItem=''/>} />
       </Routes>
       
+      <Footer/>      
     </div>
   );
 }
