@@ -1,0 +1,18 @@
+name: Team Group-P2-07 CI tasks
+on:
+  push:
+     branches:
+      - main
+jobs:
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Build with Maven
+        working-directory: backend
+        run: chmod +x mvnw && ./mvnw --batch-mode --update-snapshots package

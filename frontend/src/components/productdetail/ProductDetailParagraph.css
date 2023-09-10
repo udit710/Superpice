@@ -1,0 +1,6 @@
+.product_detail_paragraph_container{
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    justify-content: space-between;
+}
