@@ -28,6 +28,7 @@ function App() {
       <Routes>
         <Route path='/ProductDetail/:id' element={<ProductDetail/>}/>
         <Route path='/search' element={<SearchResults searchItem=''/>} />
+        <Route path='' element={<Homepage/>} />
       </Routes>
       
       <Footer/>      
