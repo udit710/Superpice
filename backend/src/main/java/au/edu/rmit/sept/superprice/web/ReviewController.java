@@ -14,9 +14,13 @@ import au.edu.rmit.sept.superprice.service.ReviewService;
 @RestController
 @RequestMapping("/api/reviews")
 public class ReviewController {
-    
-    @Autowired
+
     private ReviewService reviewService;
+
+    @Autowired
+    public ReviewController(ReviewService reviewService) {
+        this.reviewService = reviewService;
+    }
 
     @GetMapping
     public List<Review> getReviews(@RequestParam(value = "product", defaultValue = "-1") Long productId) {

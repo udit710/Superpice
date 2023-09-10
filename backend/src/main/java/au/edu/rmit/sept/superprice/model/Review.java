@@ -21,6 +21,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "REVIEW")
 public class Review {
+
+    public Review(long reviewId, int userId, int productId, int rating, String comment){}
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
