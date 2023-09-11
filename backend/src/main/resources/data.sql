@@ -55,7 +55,8 @@ INSERT INTO REVIEW (user_id, product_id, rating, comment)
 VALUES (1, 1, 5, 'Great milk!'),
        (1, 2, 4, 'Tastes good.'),
        (2, 3, 5, 'Refreshing!'),
-       (2, 4, 4, 'Crisp apples.');
+       (2, 4, 4, 'Crisp apples.'),
+       (2, 1, 5, 'Really tasty milk!');
 
 -- Populating TRANSACTION table
 INSERT INTO TRANSACTION (user_id, total_amount, order_address_id)
