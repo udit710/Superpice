@@ -31,7 +31,8 @@
 .footer {
     display: flex;
     justify-content: center;
-    position: fixed;
+    position: sticky;
+    top: 100%;
     bottom: 0;
     width: 100%;
     box-shadow: 0px -10px 10px rgba(0, 0, 0, 0.1);
