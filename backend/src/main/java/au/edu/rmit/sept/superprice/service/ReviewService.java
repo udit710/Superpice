@@ -2,39 +2,17 @@ package au.edu.rmit.sept.superprice.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import au.edu.rmit.sept.superprice.model.Review;
-import au.edu.rmit.sept.superprice.repository.ReviewRepository;
 
-@Service
-public class ReviewService {
-    
-    @Autowired
-    private ReviewRepository reviewRepository;
-    
-    public List<Review> getAll() {
-        return reviewRepository.findAll();
-    }
+public interface ReviewService {
 
-    public Review getById(Long id) {
-        return reviewRepository.findById(id).orElse(null);
-    }
+    public List<Review> getAll();
 
-    public Review save(Review review) {
-        return reviewRepository.save(review);
-    }
+    public Review getById(Long id);
 
-    public void deleteById(Long id) {
-        reviewRepository.deleteById(id);
-    }
+    public Review save(Review review);
 
-    public List<Review> findByProductId(Long productId) {
-        return reviewRepository.findByProductId(productId);
-    }
+    public void deleteById(Long id);
 
-    // public Review findByUserId(Long userId) {
-    //     return reviewRepository.findByUserId(userId).orElse(null);
-    // }
+    public List<Review> findByProductId(Long productId);
 }
