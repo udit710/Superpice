@@ -49,4 +49,9 @@ public class OrderController {
     public List<Order> getOrdersByStatus(@PathVariable Order.OrderStatus orderStatus) {
         return orderService.getOrdersByStatus(orderStatus);
     }
+
+    @GetMapping("/paymentMethod/{paymentMethod}")
+    public List<Order> getOrdersByPaymentMethod(@PathVariable Order.PaymentMethod paymentMethod) {
+        return orderService.getOrdersByPaymentMethod(paymentMethod);
+    }
 }

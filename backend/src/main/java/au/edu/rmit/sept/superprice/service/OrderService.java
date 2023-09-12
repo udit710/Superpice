@@ -37,4 +37,8 @@ public class OrderService {
         return orderRepository.findByStatus(orderStatus);
     }
 
+    public List<Order> getOrdersByPaymentMethod(Order.PaymentMethod paymentMethod) {
+        return orderRepository.findByPaymentMethod(paymentMethod);
+    }
+
 }
