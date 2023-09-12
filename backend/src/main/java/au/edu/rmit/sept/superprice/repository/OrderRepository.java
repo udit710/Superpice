@@ -15,4 +15,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("SELECT o FROM Order o WHERE o.orderStatus = ?1")
     List<Order> findByStatus(Order.OrderStatus orderStatus);
+
+    @Query("SELECT o FROM Order o WHERE o.paymentMethod = ?1")
+    List<Order> findByPaymentMethod(Order.PaymentMethod paymentMethod);
 }
