@@ -44,7 +44,7 @@ public class Order {
     @Column(name = "total_amount")
     private Double totalAmount;
 
-     @Column(name = "order_address_id")
+    @Column(name = "order_address_id")
     private Long orderAddressId;
 
     @Column(name = "payment_method")
