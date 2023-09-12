@@ -7,7 +7,7 @@ export default class ResultList extends Component {
   render() {
     const items = this.dataToElements(null);
     return (
-      <div className='ResultList'>
+      <div className='ResultList' data-testId='resultlist'>
         {items}
       </div>
     );

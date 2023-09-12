@@ -17,7 +17,7 @@ export default class Subcategory extends Component {
   render() {
 	const subcategories = this.dataToElements(null); // Pass subcategoryData if using that
     return (
-      <div className='Subcategory'>
+      <div className='Subcategory' data-testId='subcategory'>
 		{subcategories}
       </div>
     );
