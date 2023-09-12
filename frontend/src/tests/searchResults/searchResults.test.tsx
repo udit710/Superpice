@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import SearchResults from '../pages/searchResults/searchResults';
+import SearchResults from '../../pages/searchResults/searchResults';
 
 describe('Search Results page tests', () => {
     const view = render(<SearchResults searchItem=''/>);
