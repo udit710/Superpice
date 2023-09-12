@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
 @Entity
@@ -25,6 +26,7 @@ public class ProductDetails {
     @Column(name = "product_details_id")
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product product;
