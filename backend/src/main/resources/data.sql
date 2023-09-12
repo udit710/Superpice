@@ -91,14 +91,14 @@ VALUES (1, 1),
        (5, 5);
 
 -- Populating PRODUCT_STORE association table
-INSERT INTO PRODUCT_STORE (product_id, store_id, price, available)
-VALUES (1, 1, 1.50, 10),
-       (1, 2, 1.60, 5),
-       (1, 3, 1.55, 8),
-       (2, 1, 2.00, 2),
-       (2, 2, 2.10, 4),
-       (2, 3, 2.05, 8),
-       (3, 1, 3.10, 3),
-       (3, 2, 3.20, 6),
-       (4, 1, 0.55, 8),
-       (4, 2, 0.60, 4);
+INSERT INTO PRODUCT_DETAILS (product_id, store_id, price, discount, available)
+VALUES (1, 1, 1.50, 0.30, 10),
+       (1, 2, 1.60, 0.45, 5),
+       (1, 3, 1.55, 0.20, 8),
+       (2, 1, 2.00, 0.65, 2),
+       (2, 2, 2.10, 0.00, 4),
+       (2, 3, 2.05, 0.00, 8),
+       (3, 1, 3.10, 0.00, 3),
+       (3, 2, 3.20, 0.00, 6),
+       (4, 1, 0.55, 0.90, 8),
+       (4, 2, 0.60, 0.85, 4);

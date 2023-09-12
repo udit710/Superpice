@@ -122,12 +122,14 @@ CREATE TABLE IF NOT EXISTS PRODUCT_CATEGORY (
 );
 
 -- PRODUCT_STORE association table
-CREATE TABLE IF NOT EXISTS PRODUCT_STORE (
+CREATE TABLE IF NOT EXISTS PRODUCT_DETAILS (
     product_store_id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
     store_id INT,
     price DECIMAL(10, 2) NOT NULL,
+    discount DECIMAL(3, 2) NOT NULL,
     available INT NOT NULL,
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
     FOREIGN KEY (store_id) REFERENCES STORE(store_id)
+    CHECK (discount>=0.00 AND discount<=1.00)
 );
