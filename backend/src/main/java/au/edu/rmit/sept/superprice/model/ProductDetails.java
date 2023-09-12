@@ -17,8 +17,8 @@ import lombok.Data;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "PRODUCT_STORE")
-public class ProductStore {
+@Table(name = "PRODUCT_DETAILS")
+public class ProductDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +35,9 @@ public class ProductStore {
 
     @Column(name = "price")
     private Double price;
+
+    @Column(name = "discount")
+    private Double discount;
 
     @Column(name = "available")
     private Integer available;
