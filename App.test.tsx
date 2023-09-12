@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest'
 import { render, screen } from '@testing-library/react';
-import App from '../App';
+import App from './frontend/src/App';
 
 test('renders learn react link', () => {
   // render(<App />);

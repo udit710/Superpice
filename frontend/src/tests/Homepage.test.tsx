@@ -9,7 +9,11 @@ describe('Home page', () => {
     // screen.debug();
 
     // Use @testing-library/react's screen utility to query the DOM
-    const h1 = screen.getByText('SUPERPRICE');
-    expect(h1).toBeInTheDocument();
+    // const h1 = screen.getByText('SUPERPRICE');
+    // expect(h1).toBeInTheDocument();
+
+    // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
+    const h1 = view.container.querySelector('h1');
+    expect(h1?.textContent).toBe('SUPERPRICE');
   })
 });
