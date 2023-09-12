@@ -12,19 +12,21 @@ import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "PRODUCT_STORE")
-public class ProductStore {
+@Table(name = "PRODUCT_DETAILS")
+public class ProductDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_store_id")
+    @Column(name = "product_details_id")
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product product;
@@ -35,6 +37,9 @@ public class ProductStore {
 
     @Column(name = "price")
     private Double price;
+
+    @Column(name = "discount")
+    private Double discount;
 
     @Column(name = "available")
     private Integer available;
