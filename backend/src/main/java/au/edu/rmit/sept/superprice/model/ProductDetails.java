@@ -22,7 +22,7 @@ public class ProductDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_store_id")
+    @Column(name = "product_details_id")
     private Long id;
 
     @ManyToOne
