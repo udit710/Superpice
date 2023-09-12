@@ -57,13 +57,14 @@ VALUES (1, 1, 5, 'Great milk!'),
        (2, 3, 5, 'Refreshing!'),
        (2, 4, 4, 'Crisp apples.');
 
--- Populating TRANSACTION table
-INSERT INTO TRANSACTION (user_id, total_amount, order_address_id)
-VALUES (1, 7.00, 3),
-       (2, 6.00, 3);
+-- Populating ORDERS table
+INSERT INTO ORDERS (user_id,order_status,total_amount,order_address_id,payment_method)
+VALUES (1,'PENDING',7.00,3,'CREDIT_CARD'),
+       (2,'SHIPPED',6.00,3,'CREDIT_CARD');
 
--- Populating TRANSACTION_ITEM table
-INSERT INTO TRANSACTION_ITEM (transaction_id, product_id, quantity, sub_total)
+
+-- Populating ORDERS_ITEM table
+INSERT INTO ORDERS_ITEM (order_id, product_id, quantity, sub_total)
 VALUES (1, 1, 2, 3.00),
        (1, 2, 2, 4.00),
        (2, 3, 1, 3.00),
@@ -102,3 +103,20 @@ VALUES (1, 1, 1.50, 10),
        (3, 2, 3.20, 6),
        (4, 1, 0.55, 8),
        (4, 2, 0.60, 4);
+
+-- -- Populating ORDER table
+-- INSERT INTO ORDERS (user_id, total_amount, order_address_id)
+-- VALUES (1, 7.00, 3),
+--        (2, 6.00, 3);
+
+-- Populating ORDER table
+-- INSERT INTO ORDERS (user_id, transaction_id)
+-- VALUES (1, 1),
+--        (2, 2);
+
+-- -- Populating ORDER_ITEM table
+-- INSERT INTO ORDER_ITEM (order_id, product_store_id, quantity, sub_total)
+-- VALUES (1, 1, 2, 3.00),
+--        (1, 2, 2, 4.00),
+--        (2, 3, 1, 3.00),
+--        (2, 4, 3, 1.50);
