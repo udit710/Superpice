@@ -70,25 +70,27 @@ CREATE TABLE IF NOT EXISTS REVIEW (
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
 );
 
--- TRANSACTION table
-CREATE TABLE IF NOT EXISTS TRANSACTION (
-    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+-- ORDERS table
+CREATE TABLE IF NOT EXISTS ORDERS (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
-    transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    order_status ENUM('PENDING','SHIPPED','IN_PROGRESS','CANCELLED','DELIVERED'),
     total_amount DECIMAL(10, 2) NOT NULL,
     order_address_id INT,
+    payment_method ENUM('CREDIT_CARD','DEBIT_CARD','PAYPAL','WALLET'),
     FOREIGN KEY (user_id) REFERENCES APP_USER(user_id),
     FOREIGN KEY (order_address_id) REFERENCES ADDRESS(address_id)
 );
 
--- TRANSACTION_ITEM table
-CREATE TABLE IF NOT EXISTS TRANSACTION_ITEM (
-    transaction_item_id INT AUTO_INCREMENT PRIMARY KEY,
-    transaction_id INT,
+-- ORDERS_ITEM table
+CREATE TABLE IF NOT EXISTS ORDERS_ITEM (
+    order_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
     product_id INT,
     quantity INT NOT NULL,
     sub_total DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (transaction_id) REFERENCES TRANSACTION(transaction_id),
+    FOREIGN KEY (order_id) REFERENCES ORDERS(order_id),
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
 );
 
@@ -133,3 +135,27 @@ CREATE TABLE IF NOT EXISTS PRODUCT_DETAILS (
     FOREIGN KEY (store_id) REFERENCES STORE(store_id),
     CHECK (discount>=0.00 AND discount<=1.00)
 );
+
+-- -- ORDER table
+-- CREATE TABLE IF NOT EXISTS ORDERS (
+--     order_id INT AUTO_INCREMENT PRIMARY KEY,
+--     user_id INT,
+--     order_id INT NOT NULL,
+--     -- order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     -- total_amount DECIMAL(10, 2) NOT NULL,
+--     -- order_address_id INT,
+--     -- FOREIGN KEY (order_id) REFERENCES ORDERS(order_id),
+--     FOREIGN KEY (user_id) REFERENCES APP_USER(user_id)
+--     -- FOREIGN KEY (order_address_id) REFERENCES ADDRESS(address_id)
+-- );
+
+-- -- ORDER_ITEM table (to store product items in orders along with their quantity)
+-- CREATE TABLE IF NOT EXISTS ORDER_ITEM (
+--     order_item_id INT AUTO_INCREMENT PRIMARY KEY,
+--     order_id INT,
+--     product_store_id INT,
+--     quantity INT NOT NULL,
+--     sub_total DECIMAL(10, 2) NOT NULL,
+--     FOREIGN KEY (order_id) REFERENCES ORDERS(order_id),
+--     FOREIGN KEY (product_store_id) REFERENCES PRODUCT_STORE(product_store_id)
+-- );

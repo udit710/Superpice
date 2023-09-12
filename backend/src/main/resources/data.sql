@@ -55,15 +55,17 @@ INSERT INTO REVIEW (user_id, product_id, rating, comment)
 VALUES (1, 1, 5, 'Great milk!'),
        (1, 2, 4, 'Tastes good.'),
        (2, 3, 5, 'Refreshing!'),
-       (2, 4, 4, 'Crisp apples.');
+       (2, 4, 4, 'Crisp apples.'),
+       (2, 1, 5, 'Really tasty milk!');
 
--- Populating TRANSACTION table
-INSERT INTO TRANSACTION (user_id, total_amount, order_address_id)
-VALUES (1, 7.00, 3),
-       (2, 6.00, 3);
+-- Populating ORDERS table
+INSERT INTO ORDERS (user_id,order_status,total_amount,order_address_id,payment_method)
+VALUES (1,'PENDING',7.00,3,'CREDIT_CARD'),
+       (2,'SHIPPED',6.00,3,'CREDIT_CARD');
 
--- Populating TRANSACTION_ITEM table
-INSERT INTO TRANSACTION_ITEM (transaction_id, product_id, quantity, sub_total)
+
+-- Populating ORDERS_ITEM table
+INSERT INTO ORDERS_ITEM (order_id, product_id, quantity, sub_total)
 VALUES (1, 1, 2, 3.00),
        (1, 2, 2, 4.00),
        (2, 3, 1, 3.00),
