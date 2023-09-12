@@ -40,43 +40,13 @@ public class OrderController {
         orderService.deleteOrder(id);
     }
 
-    // @GetMapping("/customer/{customerId}")
-    // public List<Order> getOrdersByCustomerId(@PathVariable Long customerId) {
-    //     return orderService.getOrdersByCustomerId(customerId);
-    // }
+    @GetMapping("/userId/{userId}")
+    public List<Order> getOrdersByUserId(@PathVariable Long userId) {
+        return orderService.getOrdersByUserId(userId);
+    }
 
-    // @GetMapping("/status/{status}")
-    // public List<Order> getOrdersByStatus(@PathVariable Order.OrderStatus status) {
-    //     return orderService.getOrdersByStatus(status);
-    // }
-
-    // @GetMapping("/lastUpdated/{lastUpdated}")
-    // public List<Order> getOrdersByLastUpdated(@PathVariable String lastUpdated) {
-    //     return orderService.getOrdersByLastUpdated(lastUpdated);
-    // }
-
-    // @GetMapping("/customer/{customerId}/status/{status}")
-    // public List<Order> getOrdersByCustomerIdAndStatus(@PathVariable Long customerId, @PathVariable Order.OrderStatus status) {
-    //     return orderService.getOrdersByCustomerIdAndStatus(customerId, status);
-    // }
-
-    // @GetMapping("/customer/{customerId}/lastUpdated/{lastUpdated}")
-    // public List<Order> getOrdersByCustomerIdAndLastUpdated(@PathVariable Long customerId, @PathVariable String lastUpdated) {
-    //     return orderService.getOrdersByCustomerIdAndLastUpdated(customerId, lastUpdated);
-    // }
-
-    // @GetMapping("/status/{status}/lastUpdated/{lastUpdated}")
-    // public List<Order> getOrdersByStatusAndLastUpdated(@PathVariable Order.OrderStatus status, @PathVariable String lastUpdated) {
-    //     return orderService.getOrdersByStatusAndLastUpdated(status, lastUpdated);
-    // }
-
-    // @GetMapping("/customer/{customerId}/status/{status}/lastUpdated/{lastUpdated}")
-    // public List<Order> getOrdersByCustomerIdAndStatusAndLastUpdated(@PathVariable Long customerId, @PathVariable Order.OrderStatus status, @PathVariable String lastUpdated) {
-    //     return orderService.getOrdersByCustomerIdAndStatusAndLastUpdated(customerId, status, lastUpdated);
-    // }
-
-    // @GetMapping("/customer/{customerId}/address/{addressId}")
-    // public List<Order> getOrdersByCustomerIdAndAddressId(@PathVariable Long customerId, @PathVariable Long addressId) {
-    //     return orderService.getOrdersByCustomerIdAndAddressId(customerId, addressId);
-    // }
+    @GetMapping("/status/{orderStatus}")
+    public List<Order> getOrdersByStatus(@PathVariable Order.OrderStatus orderStatus) {
+        return orderService.getOrdersByStatus(orderStatus);
+    }
 }

@@ -29,35 +29,12 @@ public class OrderService {
         orderRepository.deleteById(id);
     }
 
-    // public List<Order> getOrdersByCustomerId(Long customerId) {
-    //     return orderRepository.findByCustomerId(customerId);
-    // }
+    public List<Order> getOrdersByUserId(Long userId) {
+        return orderRepository.findByUserId(userId);
+    }
 
-    // public List<Order> getOrdersByStatus(Order.OrderStatus status) {
-    //     return orderRepository.findByStatus(status);
-    // }
+    public List<Order> getOrdersByStatus(Order.OrderStatus orderStatus) {
+        return orderRepository.findByStatus(orderStatus);
+    }
 
-    // public List<Order> getOrdersByLastUpdated(String lastUpdated) {
-    //     return orderRepository.findByLastUpdated(lastUpdated);
-    // }
-
-    // public List<Order> getOrdersByCustomerIdAndStatus(Long customerId, Order.OrderStatus status) {
-    //     return orderRepository.findByCustomerIdAndStatus(customerId, status);
-    // }
-
-    // public List<Order> getOrdersByCustomerIdAndLastUpdated(Long customerId, String lastUpdated) {
-    //     return orderRepository.findByCustomerIdAndLastUpdated(customerId, lastUpdated);
-    // }
-
-    // public List<Order> getOrdersByStatusAndLastUpdated(Order.OrderStatus status, String lastUpdated) {
-    //     return orderRepository.findByStatusAndLastUpdated(status, lastUpdated);
-    // }
-
-    // public List<Order> getOrdersByCustomerIdAndStatusAndLastUpdated(Long customerId, Order.OrderStatus status, String lastUpdated) {
-    //     return orderRepository.findByCustomerIdAndStatusAndLastUpdated(customerId, status, lastUpdated);
-    // }
-
-    // public List<Order> getOrdersByCustomerIdAndAddressId(Long customerId, Long addressId) {
-    //     return orderRepository.findByCustomerIdAndAddressId(customerId, addressId);
-    // }
 }
