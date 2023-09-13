@@ -21,4 +21,16 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT u FROM User u WHERE u.email = ?1")
     List<User> findByEmail(String email);
+
+    @Query("SELECT u FROM User u WHERE u.firstName = ?1")
+    List<User> findByFirstName(String firstName);
+
+    @Query("SELECT u FROM User u WHERE u.lastName = ?1")
+    List<User> findByLastName(String lastName);
+
+    @Query("SELECT u FROM User u WHERE u.phone = ?1")
+    List<User> findByPhone(String phone);
+
+    @Query("SELECT u FROM User u WHERE u.addressId = ?1")
+    List<User> findByAddressId(Long addressId);
 }

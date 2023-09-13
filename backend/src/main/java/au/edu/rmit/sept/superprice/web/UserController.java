@@ -55,5 +55,24 @@ public class UserController {
         return userService.getUsersByEmail(email);
     }
 
+    @GetMapping("/firstName/{firstName}")
+    public List<User> getUsersByFirstName(@PathVariable String firstName) {
+        return userService.getUsersByFirstName(firstName);
+    }
+
+    @GetMapping("/lastName/{lastName}")
+    public List<User> getUsersByLastName(@PathVariable String lastName) {
+        return userService.getUsersByLastName(lastName);
+    }
+
+    @GetMapping("/phone/{phone}")
+    public List<User> getUsersByPhone(@PathVariable String phone) {
+        return userService.getUsersByPhone(phone);
+    }
+
+    @GetMapping("/addressId/{addressId}")
+    public List<User> getUsersByAddressId(@PathVariable Long addressId) {
+        return userService.getUsersByAddressId(addressId);
+    }
 
 }

@@ -38,4 +38,21 @@ public class UserService {
     public List<User> getUsersByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+    public List<User> getUsersByFirstName(String firstName) {
+        return userRepository.findByFirstName(firstName);
+    }
+
+    public List<User> getUsersByLastName(String lastName) {
+        return userRepository.findByLastName(lastName);
+    }
+
+    public List<User> getUsersByPhone(String phone) {
+        return userRepository.findByPhone(phone);
+    }
+
+    public List<User> getUsersByAddressId(Long addressId) {
+        return userRepository.findByAddressId(addressId);
+    }
+    
 }
