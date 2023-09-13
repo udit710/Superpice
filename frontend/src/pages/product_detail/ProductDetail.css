@@ -14,3 +14,13 @@
 .product_detail_reviews{
     flex: 1;
 }
+
+.carousel-container {
+    height: 33vh;
+    width: 100%;
+}
+
+.img-fluid {
+    max-height: 100%;
+    max-width: 100%;
+}
