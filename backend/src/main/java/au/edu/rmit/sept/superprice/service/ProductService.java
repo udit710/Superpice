@@ -21,6 +21,38 @@ public class ProductService {
         return productRepository.findById(id).orElse(null);
     }
 
+    public List<Product> getProductsByProductName(String productName) {
+        return productRepository.findByProductName(productName);
+    }
+
+    public List<Product> getProductsByDescription(String description) {
+        return productRepository.findByDescriptionContaining(description);
+    }
+
+    public List<Product> getProductsByLastUpdated(String lastUpdated) {
+        return productRepository.findByLastUpdated(lastUpdated);
+    }
+
+    public List<Product> getProductsByAvailability() {
+        return productRepository.findByAvailability();
+    }
+
+    public List<Product> getProductsByPriceBetween(Double minPrice, Double maxPrice) {
+        return productRepository.findByPriceBetween(minPrice, maxPrice);
+    }
+
+    public List<Product> getProductsByAllergens(String allergen) {
+        return productRepository.findByAllergensContaining(allergen);
+    }
+
+    public List<Product> getProductsByStoreName(String storeName) {
+        return productRepository.findByStoreName(storeName);
+    }
+
+    public List<Product> getProductsByStoreIds(List<Long> storeIds) {
+        return productRepository.findByStoreIds(storeIds);
+    }
+
     public Product saveOrUpdateProduct(Product product) {
         return productRepository.save(product);
     }
