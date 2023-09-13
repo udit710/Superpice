@@ -3,6 +3,7 @@ package au.edu.rmit.sept.superprice.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import au.edu.rmit.sept.superprice.model.Review;
 import au.edu.rmit.sept.superprice.service.ReviewService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/reviews")
 public class ReviewController {
 
@@ -31,7 +33,7 @@ public class ReviewController {
     public List<Review> getReviews(@RequestParam(value = "product", defaultValue = "-1") Long productId) {
         if (productId == -1)
             return reviewService.getAll();
-        
+
         return reviewService.findByProductId(productId);
     }
 
@@ -49,5 +51,5 @@ public class ReviewController {
     public void deleteReview(@PathVariable Long id) {
         reviewService.deleteById(id);
     }
-    
+
 }
