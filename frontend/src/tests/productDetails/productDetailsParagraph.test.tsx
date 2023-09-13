@@ -2,7 +2,7 @@ import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import ProductDetailParagraph from '../../components/productdetail/ProductDetailParagraph';
 
-describe('PriceCompare component tests', () => {
+describe('Product detail paragraph component tests', () => {
     const view = render(<ProductDetailParagraph/>);
     expect(view).toBeTruthy();
 

@@ -8,7 +8,7 @@ export default class PriceCompare extends Component {
     
     render() {
         return (
-            <div className="PriceCompare">
+            <div className="PriceCompare" data-testid="pricecompare">
                 <div className="container">
                     <h1 data-testid="product-name" className="productname">Milk Whole 4L - Meijer</h1>
                         <table className="table table-hover">

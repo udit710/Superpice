@@ -7,7 +7,7 @@ export default class ProductReview extends Component{
         
 
         return(
-            <div className='product_review_container'>
+            <div className='product_review_container' data-testid="productreview">
                 <div className="review_body">
                     <h4>Person Name</h4>
                     <p>Lorem ipsum dolor sit amet, cons commodo consequat. Duis 

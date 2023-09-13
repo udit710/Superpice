@@ -4,7 +4,7 @@ import "./ProductDetailParagraph.css"
 export default class ProductDetailParagraph extends Component{
     render(){
         return(
-            <div className='product_detail_paragraph_container'>
+            <div className='product_detail_paragraph_container' data-testid="pdp">
                 <div>
                     <h1><u>Product Detail</u></h1>
                     <p>Whole cream Milk is a 4L contianer</p>
