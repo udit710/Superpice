@@ -31,27 +31,11 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    // public List<User> getUsersByUsername(String username) {
-    //     return userRepository.findByUsername(username);
-    // }
+    public List<User> getUsersByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 
-    // public List<User> getUsersByEmail(String email) {
-    //     return userRepository.findByEmail(email);
-    // }
-
-    // public List<User> getUsersByPhone(String phone) {
-    //     return userRepository.findByPhone(phone);
-    // }
-
-    // public List<User> getUsersByAddressId(Long addressId) {
-    //     return userRepository.findByAddressId(addressId);
-    // }
-
-    // public List<User> getUsersByFirstName(String firstName) {
-    //     return userRepository.findByFirstName(firstName);
-    // }
-
-    // public List<User> getUsersByLastName(String lastName) {
-    //     return userRepository.findByLastName(lastName);
-    // }
+    public List<User> getUsersByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 }
