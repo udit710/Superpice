@@ -25,7 +25,16 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p JOIN FETCH p.details d WHERE d.available > 0")
     List<Product> findByAvailability();
 
-    // @Query("SELECT p FROM Product p WHERE p.price BETWEEN ?1 AND ?2")
-    // List<Product> findByPriceBetween(Double minPrice, Double maxPrice);
+    @Query("SELECT p FROM Product p JOIN FETCH p.details d WHERE d.price BETWEEN ?1 AND ?2")
+    List<Product> findByPriceBetween(Double minPrice, Double maxPrice);
+
+    @Query("SELECT p FROM Product p WHERE p.allergens LIKE %?1%")
+    List<Product> findByAllergensContaining(String allergen);
+
+    @Query("SELECT p FROM Product p JOIN FETCH p.details d WHERE d.store.storeName = ?1")
+    List<Product> findByStoreName(String storeName);
+
+    @Query("SELECT p FROM Product p JOIN FETCH p.details d WHERE d.store.id IN ?1")
+    List<Product> findByStoreIds(List<Long> storeIds);
 
 }
