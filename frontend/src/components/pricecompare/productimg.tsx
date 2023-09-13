@@ -7,7 +7,7 @@ export default function ProductImg() {
     return (
         <div className="ProductImg">
             <div className="container">
-                <img className="nutrition" src={productImage2} alt="nutrition facts" />
+                <img className="nutrition" src={productImage2} alt="nutrition-facts" />
                 <img className="imgx" src={productImage1} alt="product"/>
             </div>
         </div> 
