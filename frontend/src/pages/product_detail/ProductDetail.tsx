@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 // import PriceCompare from '../../components/pricecompare/pricecompare';
 // import ProductImg from '../../components/pricecompare/productimg';
 // import ProductDetailParagraph from '../../components/productdetail/ProductDetailParagraph';
