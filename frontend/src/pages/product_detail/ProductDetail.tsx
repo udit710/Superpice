@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-// import PriceCompare from '../../components/pricecompare/pricecompare';
-// import ProductImg from '../../components/pricecompare/productimg';
-// import ProductDetailParagraph from '../../components/productdetail/ProductDetailParagraph';
-// import ProductReview from '../../components/product_review/ProductReview';
 import axios from 'axios';
 import "./ProductDetail.css";
 
 interface Product {
     productName: string;
     description: string;
-    details: {store: {storeName: string}; price: number; available: number }[];
+    details: {store: {storeName: string}; price: number; available: number; discount: number }[];
     images: { imageUrl: string }[];
 }
 
@@ -52,8 +48,6 @@ export default class ProductDetail extends Component {
         const productName:string = product.productName;
         const description:string = product.description;
         const price:number = product.details[0]?.price || 0;
-        const imageURL:string = product.images[0]?.imageUrl || "#";
-        // const count:string = product.details.some(detail => detail.available > 0);
         const availability:boolean = product.details.some(detail => detail.available > 0);
 
 
@@ -106,6 +100,8 @@ export default class ProductDetail extends Component {
                                     </div>
                                 </div>
                             ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         );
