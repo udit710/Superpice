@@ -63,44 +63,41 @@ export default class ProductDetail extends Component {
                     <div className="col-md-6">
                         <img src={imageURL} alt={productName} className="img-fluid" />
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-8">
                         <h1>{productName}</h1>
                         <p>{description}</p>
                         <p className="lead">Price: ${price.toFixed(2)}</p>
                         <p>Availability: <span className={availability ? "text-success" : "text-danger"}>{availability ? "In Stock" : "Out of Stock"}</span></p>
-                    </div>
-                </div>
-                <div className="mt-5">
-                    <h2>Shop Prices</h2>
-                    <table className="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Shop</th>
-                                <th>Price</th>
-                                <th>Availability</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {product.details.map((detail, index) => (
-                                <tr key={index}>
-                                    <td>{detail.store.storeName}</td>
-                                    <td>${detail.price.toFixed(2)}</td>
-                                    <td>{detail.available}</td>
+                        <table className="table table-hover" data-testid="pricecompare">
+                            <thead>
+                                <tr>
+                                    <th>Shop</th>
+                                    <th>Discount</th>
+                                    <th>Price</th>
+                                    <th>Availability</th>
                                 </tr>
+                            </thead>
+                            <tbody>
+                                {product.details.map((detail, index) => (
+                                    <tr key={index}>
+                                        <td>{detail.store.storeName}</td>
+                                        <td>{detail.discount*100}%</td>
+                                        <td>${detail.price.toFixed(2)}</td>
+                                        <td>{detail.available}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <div className="mt-5 col-md-8 offset-md-2">
+                            <h2>Reviews & Ratings</h2>
+                            {reviews.map(review => (
+                                <div key={review.reviewId} className="card mb-3" data-testid="productreview">
+                                    <div className="card-body">
+                                        <h5 className="card-title">Rating: {review.rating}/5</h5>
+                                        <p className="card-text">{review.comment}</p>
+                                    </div>
+                                </div>
                             ))}
-                        </tbody>
-                    </table>
-                </div>
-                <div className="mt-5">
-                    <h2>Reviews & Ratings</h2>
-                    {reviews.map(review => (
-                        <div key={review.reviewId} className="card mb-3">
-                            <div className="card-body">
-                                <h5 className="card-title">Rating: {review.rating}/5</h5>
-                                <p className="card-text">{review.comment}</p>
-                            </div>
-                        </div>
-                    ))}
                 </div>
             </div>
         );
