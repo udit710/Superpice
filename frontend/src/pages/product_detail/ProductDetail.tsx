@@ -9,7 +9,7 @@ import "./ProductDetail.css";
 interface Product {
     productName: string;
     description: string;
-    details: { price: number; available: number }[];
+    details: {store: {storeName: string}; price: number; available: number }[];
     images: { imageUrl: string }[];
 }
 
