@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @Query("SELECT p FROM Product p WHERE p.productName = ?1")
+    @Query("SELECT p FROM Product p WHERE p.productName = %?1%")
     Optional<Product> findByProductName(String productName);
 
     @Query("SELECT p FROM Product p WHERE p.description LIKE %?1%")
