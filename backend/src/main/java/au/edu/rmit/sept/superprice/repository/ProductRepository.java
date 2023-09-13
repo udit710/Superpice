@@ -20,8 +20,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p WHERE p.lastUpdated = ?1")
     List<Product> findByLastUpdated(String lastUpdated);
 
-    // @Query("SELECT p FROM Product p WHERE p.availability = ?1")
-    // List<Product> findByAvailability(Boolean availability);
+    // Use of JOIN FETCH
+    // https://stackoverflow.com/a/72238549/13298307
+    @Query("SELECT p FROM Product p JOIN FETCH p.details d WHERE d.available > 0")
+    List<Product> findByAvailability();
 
     // @Query("SELECT p FROM Product p WHERE p.price BETWEEN ?1 AND ?2")
     // List<Product> findByPriceBetween(Double minPrice, Double maxPrice);
