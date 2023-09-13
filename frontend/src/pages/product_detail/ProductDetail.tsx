@@ -60,8 +60,16 @@ export default class ProductDetail extends Component {
         return (
             <div className="container mt-5">
                 <div className="row">
-                    <div className="col-md-6">
-                        <img src={imageURL} alt={productName} className="img-fluid" />
+                    <div className="col-md-4">
+                        <div id="productCarousel" className="carousel slide carousel-container" data-ride="carousel" data-testid="productimg">
+                            <div className="carousel-inner">
+                                {product.images.map((image, index) => (
+                                    <div className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                                        <img src={image.imageUrl} className="d-block w-100 carousel-image" alt={productName} />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                     <div className="col-md-8">
                         <h1>{productName}</h1>
