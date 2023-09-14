@@ -18,6 +18,12 @@ public class UserController {
         this.userService = userService;
     }
 
+    @CrossOrigin(origins = "*")
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
@@ -39,34 +45,34 @@ public class UserController {
         userService.deleteUser(id);
     }
 
-    // @GetMapping("/username/{username}")
-    // public List<User> getUsersByUsername(@PathVariable String username) {
-    //     return userService.getUsersByUsername(username);
-    // }
+    @GetMapping("/username/{username}")
+    public List<User> getUsersByUsername(@PathVariable String username) {
+        return userService.getUsersByUsername(username);
+    }
 
-    // @GetMapping("/email/{email}")
-    // public List<User> getUsersByEmail(@PathVariable String email) {
-    //     return userService.getUsersByEmail(email);
-    // }
+    @GetMapping("/email/{email}")
+    public List<User> getUsersByEmail(@PathVariable String email) {
+        return userService.getUsersByEmail(email);
+    }
 
-    // @GetMapping("/phone/{phone}")
-    // public List<User> getUsersByPhone(@PathVariable String phone) {
-    //     return userService.getUsersByPhone(phone);
-    // }
+    @GetMapping("/firstName/{firstName}")
+    public List<User> getUsersByFirstName(@PathVariable String firstName) {
+        return userService.getUsersByFirstName(firstName);
+    }
 
-    // @GetMapping("/addressId/{addressId}")
-    // public List<User> getUsersByAddressId(@PathVariable Long addressId) {
-    //     return userService.getUsersByAddressId(addressId);
-    // }
+    @GetMapping("/lastName/{lastName}")
+    public List<User> getUsersByLastName(@PathVariable String lastName) {
+        return userService.getUsersByLastName(lastName);
+    }
 
-    // @GetMapping("/firstName/{firstName}")
-    // public List<User> getUsersByFirstName(@PathVariable String firstName) {
-    //     return userService.getUsersByFirstName(firstName);
-    // }
+    @GetMapping("/phone/{phone}")
+    public List<User> getUsersByPhone(@PathVariable String phone) {
+        return userService.getUsersByPhone(phone);
+    }
 
-    // @GetMapping("/lastName/{lastName}")
-    // public List<User> getUsersByLastName(@PathVariable String lastName) {
-    //     return userService.getUsersByLastName(lastName);
-    // }
-    
+    @GetMapping("/addressId/{addressId}")
+    public List<User> getUsersByAddressId(@PathVariable Long addressId) {
+        return userService.getUsersByAddressId(addressId);
+    }
+
 }
