@@ -129,11 +129,12 @@ CREATE TABLE IF NOT EXISTS PRODUCT_DETAILS (
     product_id INT,
     store_id INT,
     price DECIMAL(10, 2) NOT NULL,
-    discount DECIMAL(3, 2) NOT NULL,
+    discount INT NOT NULL,
+    discounted_price DECIMAL(10, 2) NOT NULL,
     available INT NOT NULL,
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
     FOREIGN KEY (store_id) REFERENCES STORE(store_id),
-    CHECK (discount>=0.00 AND discount<=1.00)
+    CHECK (discount>=0 AND discount<=100)
 );
 
 -- -- ORDER table

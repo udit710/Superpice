@@ -39,7 +39,10 @@ public class ProductDetails {
     private Double price;
 
     @Column(name = "discount")
-    private Double discount;
+    private Integer discount;
+
+    @Column(name = "discounted_price")
+    private Double discounted_price;
 
     @Column(name = "available")
     private Integer available;
