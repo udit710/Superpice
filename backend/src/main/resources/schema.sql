@@ -128,12 +128,13 @@ CREATE TABLE IF NOT EXISTS PRODUCT_DETAILS (
     product_details_id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
     store_id INT,
+    original_price DECIMAL(10, 2) NOT NULL,
+    discount INT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    discount DECIMAL(3, 2) NOT NULL,
     available INT NOT NULL,
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
     FOREIGN KEY (store_id) REFERENCES STORE(store_id),
-    CHECK (discount>=0.00 AND discount<=1.00)
+    CHECK (discount>=0 AND discount<=100)
 );
 
 -- -- ORDER table
