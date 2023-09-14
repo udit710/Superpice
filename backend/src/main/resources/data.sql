@@ -93,7 +93,7 @@ VALUES (1, 1),
        (5, 5);
 
 -- Populating PRODUCT_STORE association table
-INSERT INTO PRODUCT_DETAILS (product_id, store_id, price, discount, discounted_price, available)
+INSERT INTO PRODUCT_DETAILS (product_id, store_id, original_price, discount, price, available)
 VALUES (1, 1, 1.50, 30, 1.05, 10),
        (1, 2, 1.60, 45, 0.88, 5),
        (1, 3, 1.55, 20, 1.24, 8),

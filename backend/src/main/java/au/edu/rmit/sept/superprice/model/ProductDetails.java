@@ -35,14 +35,14 @@ public class ProductDetails {
     @JoinColumn(name = "store_id", referencedColumnName = "store_id")
     private Store store;
 
-    @Column(name = "price")
-    private Double price;
+    @Column(name = "original_price")
+    private Double original_price;
 
     @Column(name = "discount")
     private Integer discount;
 
-    @Column(name = "discounted_price")
-    private Double discounted_price;
+    @Column(name = "price")
+    private Double price;
 
     @Column(name = "available")
     private Integer available;
