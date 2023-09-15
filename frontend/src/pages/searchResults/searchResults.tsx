@@ -3,6 +3,7 @@ import axios from 'axios';
 import Subcategory from '../../components/searchResults/subcategory';
 import ResultList from '../../components/searchResults/resultList';
 import { Product } from '../../interfaces/product.interface';
+// import { URLSearchParams } from 'url';
 
 export default class SearchResults extends Component<{searchItem: string}> {
   state = {
@@ -22,7 +23,10 @@ export default class SearchResults extends Component<{searchItem: string}> {
   }
 
   async componentDidMount() {
-    const searchTerm:string  = 'milk';
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+    const searchTerm = params.get('item');
+
     await axios.get(`http://localhost:8080/api/search?name=${searchTerm}`)
       .then(res => {
         this.setState({ products: res.data });
