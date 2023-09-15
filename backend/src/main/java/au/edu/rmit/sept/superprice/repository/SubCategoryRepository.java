@@ -9,4 +9,6 @@ public interface SubCategoryRepository extends JpaRepository<SubCategory, Long> 
 
     //Add query to get all the product_category  by category
 
+    //Add query to fetch sub-categoryName by sub-categoryId
+
 }

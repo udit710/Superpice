@@ -43,4 +43,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findAllBySubCategoryName(String subCategoryName);
 
     //Add query for fetching products with just category as well.
+
+    //Add queryfor fetching products with just categoryname as well.
 }

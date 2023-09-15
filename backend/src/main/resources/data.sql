@@ -14,6 +14,20 @@ VALUES ('Dairy'),
        ('Vegetables'),
        ('Bakery');
 
+-- Populating SUB_CATEGORY association table
+INSERT INTO SUB_CATEGORY (sub_category_name, category_id)
+VALUES ('Almond Milk', 1),
+       ('Oat Milk', 1),
+       ('Soy Milk', 1),
+       ('Full-Cream Milk', 1),
+       ('Lite Milk', 1),
+       ('Sugar Juice', 2),
+       ('No Sugar Juice', 2),
+       ('Packaged Fruits', 3),
+       ('Non-Packaged Fruits', 3),
+       ('Fresh Baker', 5),
+       ('Packaged Baker', 5);
+
 -- Populating STORE table
 INSERT INTO STORE (store_name, address_id)
 VALUES ('Coles', 1),
@@ -23,12 +37,12 @@ VALUES ('Coles', 1),
        ('Foodland', 4);
 
 -- Populating PRODUCT table
-INSERT INTO PRODUCT (product_name, description, allergens, sub_category_id)
-VALUES ('Skim Milk', 'Low fat milk', 'Lactose', 5),
-       ('Full Cream Milk', 'Rich and creamy milk', 'Lactose', 4),
-       ('Orange Juice', 'Freshly squeezed orange juice', NULL, 6),
-       ('Apples', 'Crisp and sweet', NULL, 9),
-       ('Bread', 'Freshly baked', 'Gluten', 10);
+INSERT INTO PRODUCT (product_name, description, allergens, sub_category_id, category_id)
+VALUES ('Skim Milk', 'Low fat milk', 'Lactose', 5, 1),
+       ('Full Cream Milk', 'Rich and creamy milk', 'Lactose', 4, 1),
+       ('Orange Juice', 'Freshly squeezed orange juice', NULL, 6, 2),
+       ('Apples', 'Crisp and sweet', NULL, 9, 3),
+       ('Bread', 'Freshly baked', 'Gluten', 10, 5);
 
 -- Populating PRODUCT_IMAGE table
 INSERT INTO PRODUCT_IMAGE (product_id, image_url)
@@ -83,20 +97,6 @@ VALUES (1, 1, 2),
        (2, 3, 1),
        (2, 4, 3),
        (2, 5, 1);
-
--- Populating SUB_CATEGORY association table
-INSERT INTO SUB_CATEGORY (sub_category_name, category_id)
-VALUES ('Almond Milk', 1),
-       ('Oat Milk', 1),
-       ('Soy Milk', 1),
-       ('Full-Cream Milk', 1),
-       ('Lite Milk', 1),
-       ('Sugar Juice', 2),
-       ('No Sugar Juice', 2),
-       ('Packaged Fruits', 3),
-       ('Non-Packaged Fruits', 3),
-       ('Fresh Baker', 4),
-       ('Packaged Baker', 4);
 
 -- Populating PRODUCT_STORE association table
 INSERT INTO PRODUCT_DETAILS (product_id, store_id, original_price, discount, price, available)
