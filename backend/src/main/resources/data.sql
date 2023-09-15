@@ -86,17 +86,17 @@ VALUES (1, 1, 2),
 
 -- Populating SUB_CATEGORY association table
 INSERT INTO SUB_CATEGORY (sub_category_name, category_id)
-VALUES ("Almond Milk", 1),
-       ("Oat Milk", 1),
-       ("Soy Milk", 1),
-       ("Full-Cream Milk", 1),
-       ("Lite Milk", 1),
-       ("Sugar Juice", 2),
-       ("No Sugar Juice", 2),
-       ("Packaged Fruits", 3),
-       ("Non-Packaged Fruits", 3),
-       ("Fresh Bakery", 4),
-       ("Packaged Bakery", 4);
+VALUES ('Almond Milk', 1),
+       ('Oat Milk', 1),
+       ('Soy Milk', 1),
+       ('Full-Cream Milk', 1),
+       ('Lite Milk', 1),
+       ('Sugar Juice', 2),
+       ('No Sugar Juice', 2),
+       ('Packaged Fruits', 3),
+       ('Non-Packaged Fruits', 3),
+       ('Fresh Baker', 4),
+       ('Packaged Baker', 4);
 
 -- Populating PRODUCT_STORE association table
 INSERT INTO PRODUCT_DETAILS (product_id, store_id, original_price, discount, price, available)

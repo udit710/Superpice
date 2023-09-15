@@ -21,8 +21,7 @@ CREATE TABLE IF NOT EXISTS PRODUCT (
     sub_category_id INT NOT NULL,
     description TEXT,
     allergens TEXT,
-    product_category_id INT,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- PRODUCT_IMAGE table
