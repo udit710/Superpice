@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import ResultList from '../../components/searchResults/resultList';
-import { Product } from '../../pages/searchResults/searchResults';
+import { Product } from '../../interfaces/product.interface';
 
 describe('ResultsList comonent tests', () => {
     const testProduct: Product = {
