@@ -60,4 +60,12 @@ public class ProductService {
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
+
+    public List<Product> getProductsByProductCategory(Long productCategory){
+        return productRepository.findAllByProductCategory(productCategory);
+    }
+
+    public List<Product> getProductsByProductCategoryName(String productCategoryName){
+        return productRepository.findAllByProductCategoryName(productCategoryName);
+    }
 }
