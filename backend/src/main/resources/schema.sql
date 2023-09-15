@@ -116,12 +116,12 @@ CREATE TABLE IF NOT EXISTS CART_ITEM (
 );
 
 -- PRODUCT_CATEGORY association table
-CREATE TABLE IF NOT EXISTS PRODUCT_CATEGORY (
-    product_category_id INT AUTO_INCREMENT PRIMARY KEY,
-    product_id INT,
-    product_category_name VARCHAR(255) NOT NULL UNIQUE,
+CREATE TABLE IF NOT EXISTS SUB_CATEGORY (
+    sub_category_id INT AUTO_INCREMENT PRIMARY KEY,
+--     product_id INT, ERROR: Ask if we need to add this or not
+    sub_category_name VARCHAR(255) NOT NULL UNIQUE,
     category_id INT,
-    FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
+--     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
     FOREIGN KEY (category_id) REFERENCES CATEGORY(category_id)
 );
 

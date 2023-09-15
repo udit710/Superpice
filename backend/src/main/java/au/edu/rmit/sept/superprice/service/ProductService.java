@@ -61,11 +61,11 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public List<Product> getProductsByProductCategory(Long productCategory){
-        return productRepository.findAllByProductCategory(productCategory);
+    public List<Product> getProductsBySubCategoryId(Long subCategory){
+        return productRepository.findAllBySubCategoryId(subCategory);
     }
 
-    public List<Product> getProductsByProductCategoryName(String productCategoryName){
-        return productRepository.findAllByProductCategoryName(productCategoryName);
+    public List<Product> getProductsBySubCategoryName(String subCategoryName){
+        return productRepository.findAllBySubCategoryName(subCategoryName);
     }
 }

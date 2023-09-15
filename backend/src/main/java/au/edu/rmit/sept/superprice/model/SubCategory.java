@@ -1,6 +1,5 @@
 package au.edu.rmit.sept.superprice.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,17 +11,17 @@ import java.util.Collection;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="PRODUCT_CATEGORY")
-public class ProductCategory {
+@Table(name="SUB_CATEGORY")
+public class SubCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="product_category_id")
-    private Long productCategoryId;
+    @Column(name="sub_category_id")
+    private Long subCategoryId;
 
-    @Column(name="product_category_name")
-    private String productCategoryName;
+    @Column(name="sub_category_name")
+    private String subCategoryName;
 
-    @OneToMany(mappedBy= "productCategory", cascade=CascadeType.ALL,  fetch = FetchType.LAZY)
+    @OneToMany(mappedBy= "subCategory", cascade=CascadeType.ALL,  fetch = FetchType.LAZY)
     private Collection<Product> productIds;
 
     //Add relationship with Category Entity here
