@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS ADDRESS (
 CREATE TABLE IF NOT EXISTS PRODUCT (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
-    sub_category_id INT NOT NULL,
+    sub_category_id INT,
     description TEXT,
     allergens TEXT,
     last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP

@@ -36,8 +36,8 @@ public class Product {
 //    @JoinColumn(name="category_id")
 //    private Category category;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "sub_category_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "sub_category_id", nullable = true)
     private SubCategory subCategory;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
