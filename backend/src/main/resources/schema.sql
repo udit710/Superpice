@@ -18,10 +18,11 @@ CREATE TABLE IF NOT EXISTS ADDRESS (
 CREATE TABLE IF NOT EXISTS PRODUCT (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
+    sub_category_id INT NOT NULL,
     description TEXT,
     allergens TEXT,
     product_category_id INT,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 );
 
 -- PRODUCT_IMAGE table
@@ -115,7 +116,7 @@ CREATE TABLE IF NOT EXISTS CART_ITEM (
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
 );
 
--- PRODUCT_CATEGORY association table
+-- SUB_CATEGORY association table
 CREATE TABLE IF NOT EXISTS SUB_CATEGORY (
     sub_category_id INT AUTO_INCREMENT PRIMARY KEY,
 --     product_id INT, ERROR: Ask if we need to add this or not
