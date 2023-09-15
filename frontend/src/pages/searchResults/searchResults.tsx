@@ -34,7 +34,7 @@ export default class SearchResults extends Component<{searchItem: string}> {
     const searchTerm:string  = 'milk';
     await axios.get(`http://localhost:8080/api/search?name=${searchTerm}`)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         this.setState({ products: res.data });
       })
       .catch(err => {

@@ -4,8 +4,9 @@ import logo from '../../logo.svg'; // Dummy image
 import { Product } from '../../pages/searchResults/searchResults';
 
 export default class ResultList extends Component<{products: Product[]}> {
+
   render() {
-    const items = this.dataToElements(null);
+    const items = this.dataToElements(null)
     return (
       <div className='ResultList' data-testid='resultlist'>
         {items}
@@ -13,8 +14,11 @@ export default class ResultList extends Component<{products: Product[]}> {
     );
   }
 
-  dataToElements(data: string | null): ReactElement[] {
+  dataToElements(data: string | null): ReactElement[] | ReactElement {
 		// TODO: Do something to get the data from string once apis are implemented
+    // console.log(this.props.products);
+    
+    if (this.props.products.length === 0) return <h2>No Results Found</h2>;
 
     const products: Product[] = this.props.products;
 
