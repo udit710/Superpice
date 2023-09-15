@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS PRODUCT (
     product_name VARCHAR(255) NOT NULL,
     description TEXT,
     allergens TEXT,
+    product_category_id INT,
     last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -118,6 +119,7 @@ CREATE TABLE IF NOT EXISTS CART_ITEM (
 CREATE TABLE IF NOT EXISTS PRODUCT_CATEGORY (
     product_category_id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
+    product_category_name VARCHAR(255) NOT NULL UNIQUE,
     category_id INT,
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
     FOREIGN KEY (category_id) REFERENCES CATEGORY(category_id)

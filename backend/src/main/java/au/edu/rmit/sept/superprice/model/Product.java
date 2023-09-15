@@ -1,14 +1,6 @@
 package au.edu.rmit.sept.superprice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.FetchType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
@@ -38,6 +30,15 @@ public class Product {
 
     @Column(name = "last_updated")
     private String lastUpdated;
+
+    //Add Category to the schema
+//    @ManyToOne
+//    @JoinColumn(name="category_id")
+//    private Category category;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "product_category_id", nullable = false)
+    private ProductCategory productCategory;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ProductImage> images;
