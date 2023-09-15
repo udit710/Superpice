@@ -23,11 +23,11 @@ export default class ResultList extends Component<{products: Product[]}> {
     for (let i in products) {
       items.push(<hr className='item-divider' />);
       items.push(
-        <a href={'/ProductDetail/' + products[i].id} >
+        <a href={'/ProductDetail/' + products[i].id} className='item-link' >
           <div className='item'>
             <img src={products[i].images[0].imageUrl} alt='product' height='160' width='160' />
-            <div>
-              <p data-testid='product_name'>{products[i].productName}</p>
+            <div className='details'>
+              <h3 data-testid='product_name'>{products[i].productName}</h3>
               <p data-testid='price'>$ {products[i].details[0].price}</p>
             </div>
           </div>
