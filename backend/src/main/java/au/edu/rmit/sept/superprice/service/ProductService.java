@@ -68,4 +68,12 @@ public class ProductService {
     public List<Product> getProductsBySubCategoryName(String subCategoryName){
         return productRepository.findAllBySubCategoryName(subCategoryName);
     }
+
+    public List<Product> getProductsByCategoryId(Long categoryId){
+        return productRepository.findAllByCategoryId(categoryId);
+    }
+
+    public List<Product> getProductsByCategoryName(String categoryName){
+        return productRepository.findByProductName(categoryName);
+    }
 }
