@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import "./ProductDetail.css";
+import ProductReview from '../../components/product_review/ProductReview';
 
 interface Product {
     productName: string;
@@ -93,12 +94,9 @@ export default class ProductDetail extends Component {
                         <div className="mt-5 col-md-8 offset-md-2">
                             <h2>Reviews & Ratings</h2>
                             {reviews.map(review => (
-                                <div key={review.reviewId} className="card mb-3" data-testid="productreview">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Rating: {review.rating}/5</h5>
-                                        <p className="card-text">{review.comment}</p>
-                                    </div>
-                                </div>
+                                <ProductReview id = {review.reviewId} 
+                                rating = {review.rating} 
+                                body = {review.comment}/>
                             ))}
                         </div>
                     </div>
