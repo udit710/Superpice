@@ -5,6 +5,7 @@ import { Product } from '../../pages/searchResults/searchResults';
 
 describe('ResultsList comonent tests', () => {
     const testProduct: Product = {
+        id: 1,
         productName: 'test',
         description: 'test',
         details: [{

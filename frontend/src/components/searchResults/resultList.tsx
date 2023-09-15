@@ -2,6 +2,8 @@ import React, { Component, ReactElement } from 'react';
 import './resultList.css';
 import logo from '../../logo.svg'; // Dummy image
 import { Product } from '../../pages/searchResults/searchResults';
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default class ResultList extends Component<{products: Product[]}> {
 
@@ -41,16 +43,19 @@ export default class ResultList extends Component<{products: Product[]}> {
     for (let i in products) {
       items.push(<hr className='item-divider' />);
       items.push(
-        <div className='item' onClick={() => {alert("dummy item index ")}} >
-          <img src={products[i].images[0].imageUrl} alt='product' height='160' width='160' />
-          <div>
-            <p data-testid='product_name'>{products[i].productName}</p>
-            <p data-testid='price'>$ {products[i].details[0].price}</p>
+        <a href={'/ProductDetail/' + products[i].id} >
+          <div className='item'>
+            <img src={products[i].images[0].imageUrl} alt='product' height='160' width='160' />
+            <div>
+              <p data-testid='product_name'>{products[i].productName}</p>
+              <p data-testid='price'>$ {products[i].details[0].price}</p>
+            </div>
           </div>
-        </div>
+        </a>
       )
     }
 
 		return items;
 	}
+
 }
