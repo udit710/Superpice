@@ -23,4 +23,14 @@ import au.edu.rmit.sept.superprice.web.NotificationController;
 
 @SpringBootTest
 public class OrderControllerTest {
+
+    NotificationController notificationController;
+    NotificationService notificationService;
+
+    @BeforeEach
+    void initializeObjects() {
+        this.notificationService = mock(notificationService.class);
+        this.notificationController = new notificationController(this.notificationService);
+    }
+
 }
