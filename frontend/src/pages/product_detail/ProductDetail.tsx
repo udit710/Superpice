@@ -26,12 +26,14 @@ export default class ProductDetail extends Component {
     componentDidMount() {
         const urlList = window.location.href.split("/");
         const productId = urlList[urlList.length - 1];
+        console.log("ProductID: " + productId);
+        //productId is 1
         axios.get(`http://localhost:8080/api/products/${productId}`)
             .then(response => {
                 this.setState({ product: response.data });
             })
             .catch(error => console.error('Error fetching product data:', error));
-
+        console.log("Value of product: " + this.state.product);
         axios.get(`http://localhost:8080/api/reviews?product=${productId}`)
             .then(response => {
                 this.setState({ reviews: response.data });
