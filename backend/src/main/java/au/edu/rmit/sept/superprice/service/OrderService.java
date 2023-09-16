@@ -9,9 +9,13 @@ import java.util.List;
 
 @Service
 public class OrderService {
-    
-    @Autowired
+
     private OrderRepository orderRepository;
+
+    @Autowired
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;    
+    }
 
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
