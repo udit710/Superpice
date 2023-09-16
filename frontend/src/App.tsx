@@ -12,6 +12,7 @@ import Homepage from './pages/homepage';
 
 import ProductDetail from './pages/product_detail/ProductDetail';
 import SearchResults from './pages/searchResults/searchResults';
+import OfferList from './components/offerList/offerList';
 // import ResultList from './components/searchResults/resultList';
 
 
@@ -30,7 +31,9 @@ function App() {
         <Routes>
           <Route path='/ProductDetail/:id' element={<ProductDetail/>}/>
           <Route path='/search' element={<SearchResults searchItem=''/>} />
-          <Route path='' element={<Homepage/>} />
+          <Route path='/' element={<Homepage/>}>
+            <Route path=":discount" element={<OfferList/>}/>
+          </Route>
         </Routes>
       </div>
 
