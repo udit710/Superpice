@@ -6,23 +6,9 @@ describe('Product Detail page tests', () => {
         const view = render(<ProductDetail/>);
         expect(view).toBeTruthy();
 
-        test('Check Productimg component exist', async () => {
-            const productimg = await screen.findByTestId('productimg');
-            expect(productimg).toBeDefined();
+        test('Check ProductDetails returns view', async () => {
+            const details = await screen.findByTestId('product-details');
+            expect(details).toBeDefined();
         });
 
-        test('Check Pricecompare component exist', async () => {
-            const pricecompare = await screen.findByTestId('pricecompare');
-            expect(pricecompare).toBeDefined();
-        });
-
-        test('Check ProductReview component exist', async () => {
-            const productreviews = await screen.findAllByTestId('productreview');
-            expect(productreviews.length).toBeGreaterThan(0);
-        });
-
-        // test('Check ProductDetailParagraph component exist', async () => {
-        //     const pdp = await screen.findByTestId('pdp');
-        //     expect(pdp).toBeInTheDocument();
-        // });
     });

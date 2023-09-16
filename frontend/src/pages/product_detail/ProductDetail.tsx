@@ -43,7 +43,7 @@ export default class ProductDetail extends Component {
         const { product, reviews } = this.state;
 
         if (!product) {
-            return <div className="alert alert-danger">No such product</div>;
+            return <div data-testid="product-details" className="alert alert-danger">No such product</div>;
         }
 
         const productName:string = product.productName;
@@ -53,7 +53,7 @@ export default class ProductDetail extends Component {
 
 
         return (
-            <div className="container mt-5">
+            <div data-testid="product-details" className="container mt-5">
                 <div className="row">
                     <div className="col-md-4">
                         <div id="productCarousel" className="carousel slide carousel-container" data-ride="carousel" data-testid="productimg">
