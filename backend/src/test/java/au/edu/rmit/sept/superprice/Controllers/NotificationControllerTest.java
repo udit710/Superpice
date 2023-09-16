@@ -33,4 +33,12 @@ public class NotificationControllerTest {
         this.notificationController = new notificationController(this.notificationService);
     }
 
+    @Test
+    void should_return_all_notifications() {
+        Notification notification_list = new Notification(1, 1, "Test message", type.OFFERS, Date.valueOf("2023-09-12"));
+        when(this.notificationService.getAllNotifications())
+            .thenReturn(List.of(notification_list));
+
+        assertEquals(1, this.notificationController.getAllNotifications().size());
+    }
 }
