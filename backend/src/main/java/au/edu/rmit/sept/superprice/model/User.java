@@ -8,8 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Getter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

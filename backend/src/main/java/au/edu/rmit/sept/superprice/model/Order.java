@@ -10,10 +10,12 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.EnumType;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 
+@Getter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

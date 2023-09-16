@@ -8,10 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.EnumType;
-
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
+@Getter
 @Entity
 @NoArgsConstructor
 @Table(name = "ADDRESS")

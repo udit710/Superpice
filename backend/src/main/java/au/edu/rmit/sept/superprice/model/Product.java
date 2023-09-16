@@ -2,11 +2,12 @@ package au.edu.rmit.sept.superprice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Getter
 @Entity
 @NoArgsConstructor
 @Table(name = "PRODUCT")
