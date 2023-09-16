@@ -32,10 +32,11 @@ public class Product {
     @Column(name = "last_updated")
     private String lastUpdated;
 
-    //Add Category to the schema
-//    @ManyToOne
-//    @JoinColumn(name="category_id")
-//    private Category category;
+    @JsonIgnore
+    @ManyToOne(fetch=FetchType.LAZY, optional = true)
+    @JoinColumn(name="category_id", nullable = true)
+    private Category category;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "sub_category_id", nullable = true)

@@ -42,5 +42,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p WHERE lower(p.subCategory.subCategoryName) LIKE lower('%'||?1||'%')")
     List<Product> findAllBySubCategoryName(String subCategoryName);
 
-    //Add query for fetching products with just category as well.
+    @Query("SELECT p FROM Product p WHERE p.category.categoryId = ?1")
+    List<Product> findAllByCategoryId(Long categoryId);
+
+    @Query("SELECT p FROM Product p WHERE lower(p.category.categoryName) LIKE lower('%'||?1||'%')")
+    List<Product> findAllByCategoryName(String categoryName);
 }

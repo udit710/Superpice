@@ -14,14 +14,34 @@ CREATE TABLE IF NOT EXISTS ADDRESS (
     address_type ENUM('USER', 'STORE', 'ORDER') NOT NULL
 );
 
+-- CATEGORY table
+CREATE TABLE IF NOT EXISTS CATEGORY (
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(255) NOT NULL UNIQUE
+    );
+
+-- SUB_CATEGORY association table
+CREATE TABLE IF NOT EXISTS SUB_CATEGORY (
+    sub_category_id INT AUTO_INCREMENT PRIMARY KEY,
+--     product_id INT, ERROR: Ask if we need to add this or not
+    sub_category_name VARCHAR(255) NOT NULL UNIQUE,
+    category_id INT,
+--     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
+    FOREIGN KEY (category_id) REFERENCES CATEGORY(category_id)
+    );
+
 -- PRODUCT table
 CREATE TABLE IF NOT EXISTS PRODUCT (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
     sub_category_id INT,
+    category_id INT,
     description TEXT,
     allergens TEXT,
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sub_category_id) REFERENCES SUB_CATEGORY(sub_category_id),
+--     Edit Product. java for this
+    FOREIGN KEY (category_id) REFERENCES CATEGORY(category_id)
 );
 
 -- PRODUCT_IMAGE table
@@ -30,12 +50,6 @@ CREATE TABLE IF NOT EXISTS PRODUCT_IMAGE (
     product_id INT,
     image_url VARCHAR(255) NOT NULL,
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
-);
-
--- CATEGORY table
-CREATE TABLE IF NOT EXISTS CATEGORY (
-    category_id INT AUTO_INCREMENT PRIMARY KEY,
-    category_name VARCHAR(255) NOT NULL UNIQUE
 );
 
 -- STORE table
@@ -113,16 +127,6 @@ CREATE TABLE IF NOT EXISTS CART_ITEM (
     quantity INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES APP_USER(user_id),
     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
-);
-
--- SUB_CATEGORY association table
-CREATE TABLE IF NOT EXISTS SUB_CATEGORY (
-    sub_category_id INT AUTO_INCREMENT PRIMARY KEY,
---     product_id INT, ERROR: Ask if we need to add this or not
-    sub_category_name VARCHAR(255) NOT NULL UNIQUE,
-    category_id INT,
---     FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id),
-    FOREIGN KEY (category_id) REFERENCES CATEGORY(category_id)
 );
 
 -- PRODUCT_DETAILS association table

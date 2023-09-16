@@ -41,14 +41,24 @@ public class ProductController {
         productService.deleteProduct(id);
     }
 
+    //Add optionals below this
     @GetMapping("/sub-category/id/{id}")
     public List<Product> getProductsByProductCategoryId(@PathVariable Long subCategoryId){
         return productService.getProductsBySubCategoryId(subCategoryId);
     }
 
-    //Add optional here
     @GetMapping("/sub-category/name/{name}")
     public List<Product> getProductsByProductCategoryName(@PathVariable String subCategoryName){
         return productService.getProductsBySubCategoryName(subCategoryName);
+    }
+
+    @GetMapping("/category/id/{id}")
+    public List<Product> getProductsByCategoryId(@PathVariable Long categoryId){
+        return productService.getProductsByCategoryId(categoryId);
+    }
+
+    @GetMapping("/category/name/{name}")
+    public List<Product> getProductsByCategoryName(@PathVariable String categoryName){
+        return productService.getProductsByCategoryName(categoryName);
     }
 }
