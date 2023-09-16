@@ -21,4 +21,13 @@ public class NotificationService {
         return notificationRepository.findByNotificationId(Id);
     }
 
+
+    public Notification saveNotification(Notification notification) {
+        return notificationRepository.save(notification);
+    }
+
+
+    public void deleteNotification(Integer id) {
+        notificationRepository.deleteById(id);
+    }
 }
