@@ -73,8 +73,8 @@ VALUES (1, 1, 2, 3.00),
 
 -- Populating NOTIFICATION table
 INSERT INTO NOTIFICATION (user_id, message, type)
-VALUES (1, 'Your order has been shipped!', 'INFO'),
-       (2, 'Your order is on its way!', 'INFO');
+VALUES (1, 'Your order has been shipped!', 'ORDER'),
+       (2, 'No Items Available!', 'ERROR');
 
 -- Populating CART_ITEM table
 INSERT INTO CART_ITEM (user_id, product_id, quantity)
