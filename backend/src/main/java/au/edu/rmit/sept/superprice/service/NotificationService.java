@@ -26,6 +26,9 @@ public class NotificationService {
         return notificationRepository.save(notification);
     }
 
+    public Notification updateNotification(Integer id) {
+        return notificationRepository.notificationSeen(id);
+    }
 
     public void deleteNotification(Integer id) {
         notificationRepository.deleteById(id);
