@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -78,6 +79,30 @@ public class SearchControllerTest {
     @Test
     void should_return_empty_list_when_no_filters() {
         assertEquals(0, this.searchController.getAllProducts(null, null, null, null, null, null, "test").size());
+    }
+
+    @Test
+    void should_return_empty_list_when_min_without_max() {
+        when(this.productService.getProductsByPriceBetween(1.0, 10.0))
+            .thenReturn(List.of(new Product()));
+        
+        assertEquals(0, this.searchController.getAllProducts(null, null, null, null, 1.0, null, null).size());
+    }
+
+    @Test
+    void should_return_empty_list_when_max_without_min() {
+        when(this.productService.getProductsByPriceBetween(1.0, 10.0))
+            .thenReturn(List.of(new Product()));
+        
+        assertEquals(0, this.searchController.getAllProducts(null, null, null, null, null, 10.0, null).size());
+    }
+
+    @Test
+    void should_return_empty_list_when_storeIds_is_empty() {
+        when(this.productService.getProductsByStoreIds(List.of(1l, 2l)))
+            .thenReturn(List.of(new Product()));
+        
+        assertEquals(0, this.searchController.getAllProducts(null, null, null, new ArrayList<Long>(), null, null, null).size());
     }
 
 }
