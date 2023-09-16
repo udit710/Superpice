@@ -18,3 +18,8 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
     @Query("SELECT n FROM Notification n WHERE n.notification_id = :notificationId")
     Notification findByNotificationId(@Param("notificationId") Integer notificationId);
 
+
+    @Modifying
+    @Query("UPDATE Notification n SET n.seen = TRUE WHERE n.notification_id = :notificationId")
+    Notification notificationSeen(@Param("notificationId") Integer id);
+}
