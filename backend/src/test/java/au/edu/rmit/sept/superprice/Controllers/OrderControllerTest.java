@@ -104,5 +104,46 @@ public class OrderControllerTest {
 
         assertEquals(0, this.orderController.getOrdersByPaymentMethod(PaymentMethod.DEBIT_CARD).size());
     }
+
+    @Test
+    void should_call_delete_order_method() {
+        this.orderController.deleteOrder(1l);
+        verify(this.orderService, times(1))
+            .deleteOrder(1l);
+    }
+
+    @Test
+    void should_call_saveOrUpdateOrder_method_when_updating() {
+        Order order = new Order();
+        this.orderController.updateOrder(1l, order);
+        verify(this.orderService, times(1))
+            .saveOrUpdateOrder(order);
+    }
+
+    @Test
+    void should_return_same_object_when_create_new_order() {
+        Order order = new Order();
+
+        when(this.orderService.saveOrUpdateOrder(order))
+            .then(returnsFirstArg());
+        
+        assertEquals(order, this.orderController.createOrder(order));
+    }
+
+    @Test
+    void should_return_order_by_id() {
+        when(this.orderService.getOrderById(1l))
+            .thenReturn(new Order(1l, 1l, new Date(0), null, 1.0, 1l, PaymentMethod.CREDIT_CARD));
+        
+        assertNotNull(this.orderController.getOrderById(1l));
+    }
+
+    @Test
+    void should_return_null_when_id_does_not_exist_in_order_by_id() {
+        when(this.orderService.getOrderById(11l))
+            .thenReturn(null);
+        
+        assertNull(this.orderController.getOrderById(11l));
+    }
     
 }

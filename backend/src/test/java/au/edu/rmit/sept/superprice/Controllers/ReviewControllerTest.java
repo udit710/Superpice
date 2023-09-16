@@ -70,10 +70,10 @@ public class ReviewControllerTest {
     @Test
     void should_create_review() {
         Review testReview = new Review();
-        testReview.setUserId(1l);
-        testReview.setProductId(new Product());
-        testReview.setRating(5);
-        testReview.setComment("test review");
+        // testReview.setUserId(1l);
+        // testReview.setProductId(new Product());
+        // testReview.setRating(5);
+        // testReview.setComment("test review");
 
         when(this.reviewService.save(testReview)).then(returnsFirstArg());
 
@@ -98,7 +98,7 @@ public class ReviewControllerTest {
 
     @Test
     void should_delete_review() {
-        this.reviewService.deleteById(1l);
+        this.reviewController.deleteReview(1l);
 
         verify(this.reviewService, times(1))
             .deleteById(1l);
