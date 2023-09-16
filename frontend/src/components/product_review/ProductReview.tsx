@@ -15,8 +15,8 @@ export default class ProductReview extends Component<ProductReviewProps>{
         return (
             <div key={id} className="card mb-3" data-testid="productreview">
                 <div className="card-body">
-                    <h5 className="card-title">Rating: {rating}/5</h5>
-                    <p className="card-text">{body}</p>
+                    <h5 className="card-title" data-testid="rating" >Rating: {rating}/5</h5>
+                    <p className="card-text" data-testid="comment" >{body}</p>
                 </div>
             </div>
         )
