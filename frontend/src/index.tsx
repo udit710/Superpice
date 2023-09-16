@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, createBrowserRouter, RouterProvider, createRoutesFromElements, Route } from 'react-router-dom';
+import ProductDetailWrapper from './components/Wrappers/ProductDetailWrapper';
 // import SearchResults from './pages/searchResults/searchResults';
 
 
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
         // element: <SearchResults searchItem='' />
       },
       {
-        path: 'ProductDetail/:id',
+        path: 'ProductDetail/:id'
       },
       {
         path: '',

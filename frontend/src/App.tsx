@@ -10,7 +10,7 @@ import Navbar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
 import Homepage from './pages/homepage';
 
-import ProductDetail from './pages/product_detail/ProductDetail';
+import ProductDetailWrapper from './components/Wrappers/ProductDetailWrapper';
 import SearchResults from './pages/searchResults/searchResults';
 // import ResultList from './components/searchResults/resultList';
 
@@ -28,7 +28,7 @@ function App() {
       {/**See index.tsx for mor info */}
 
         <Routes>
-          <Route path='/ProductDetail/:id' element={<ProductDetail/>}/>
+          <Route path='/ProductDetail/:id' element={<ProductDetailWrapper/>}/>
           <Route path='/search' element={<SearchResults searchItem=''/>} />
           <Route path='' element={<Homepage/>} />
         </Routes>
