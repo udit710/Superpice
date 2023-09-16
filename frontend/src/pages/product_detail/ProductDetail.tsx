@@ -24,9 +24,8 @@ export default class ProductDetail extends Component {
     };
 
     componentDidMount() {
-        // const urlList = window.location.href.split("/");
-        // const productId = urlList[urlList.length - 1];
-        const productId = 1;
+        const urlList = window.location.href.split("/");
+        const productId = urlList[urlList.length - 1];
         axios.get(`http://localhost:8080/api/products/${productId}`)
             .then(response => {
                 this.setState({ product: response.data });
