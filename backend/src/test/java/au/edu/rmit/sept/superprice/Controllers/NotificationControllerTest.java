@@ -50,4 +50,11 @@ public class NotificationControllerTest {
         assertEquals(1, this.notificationController.getNotificationById(1).user_id());
     }
 
+    @Test
+    void should_return_notification_with_seen_true() {
+        Notification notif = new Notification(1, 1, "Test message", type.OFFERS, Date.valueOf("2023-09-12"));
+        when(this.notificationService.updateNotification(1)).thenReturn(new Notification());
+
+        assertEquals(false, this.notificationController.getNotificationById(1).seen());
+    }
 }
