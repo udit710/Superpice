@@ -9,14 +9,10 @@ import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.Data;
 
-@Data
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "STORE")
 public class Store {
 

@@ -1,18 +1,12 @@
 package au.edu.rmit.sept.superprice.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+
 import lombok.NoArgsConstructor;
-import org.hibernate.sql.ast.tree.expression.Collation;
-import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-import java.util.List;
 
-@Data
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name="CATEGORY")
 public class Category{

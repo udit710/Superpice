@@ -9,15 +9,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Data
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "PRODUCT_DETAILS")
 public class ProductDetails {
 

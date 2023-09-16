@@ -2,16 +2,13 @@ package au.edu.rmit.sept.superprice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+
 import lombok.NoArgsConstructor;
 
 import java.util.Collection;
 
-@Data
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name="SUB_CATEGORY")
 public class SubCategory {
     @Id

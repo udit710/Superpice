@@ -11,11 +11,9 @@ import jakarta.persistence.EnumType;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.Data;
 
 import java.sql.Date;
 
-@Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

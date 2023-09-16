@@ -9,14 +9,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.EnumType;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.Data;
 
-@Data
+
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "ADDRESS")
 public class Address {
 
