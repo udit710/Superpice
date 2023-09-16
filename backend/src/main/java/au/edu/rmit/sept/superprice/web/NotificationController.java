@@ -1,4 +1,6 @@
 package au.edu.rmit.sept.superprice.web;
+import au.edu.rmit.sept.superprice.model.Notification;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
