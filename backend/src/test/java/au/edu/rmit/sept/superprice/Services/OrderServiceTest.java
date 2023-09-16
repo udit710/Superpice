@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import au.edu.rmit.sept.superprice.model.Order;
-import au.edu.rmit.sept.superprice.model.Review;
 import au.edu.rmit.sept.superprice.model.Order.OrderStatus;
 import au.edu.rmit.sept.superprice.model.Order.PaymentMethod;
 import au.edu.rmit.sept.superprice.repository.OrderRepository;
