@@ -22,7 +22,7 @@ import au.edu.rmit.sept.superprice.service.NotificationService;
 import au.edu.rmit.sept.superprice.web.NotificationController;
 
 @SpringBootTest
-public class OrderControllerTest {
+public class NotificationControllerTest {
 
     NotificationController notificationController;
     NotificationService notificationService;
