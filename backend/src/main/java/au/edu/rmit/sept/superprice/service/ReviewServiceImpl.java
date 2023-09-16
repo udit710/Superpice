@@ -11,8 +11,12 @@ import au.edu.rmit.sept.superprice.repository.ReviewRepository;
 @Service
 public class ReviewServiceImpl implements ReviewService{
     
-    @Autowired
     private ReviewRepository reviewRepository;
+
+    @Autowired
+    public ReviewServiceImpl(ReviewRepository reviewRepository) {
+        this.reviewRepository = reviewRepository;
+    }
     
     @Override
     public List<Review> getAll() {
