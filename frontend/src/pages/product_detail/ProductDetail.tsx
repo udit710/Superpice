@@ -3,7 +3,6 @@ import axios from 'axios';
 import "./ProductDetail.css";
 import ProductReview from '../../components/product_review/ProductReview';
 
-
 interface Product {
     productName: string;
     description: string;
@@ -18,19 +17,16 @@ interface Review {
     comment: string;
 }
 
-interface ProductDetailProps{
-    id: any;
-}
-
-export default class ProductDetail extends Component<ProductDetailProps> {
+export default class ProductDetail extends Component {
     state = {
         product: null as Product | null,
         reviews: [] as Review[]
     };
 
     componentDidMount() {
-        const {id} = this.props;
-        const productId = id;
+        // const urlList = window.location.href.split("/");
+        // const productId = urlList[urlList.length - 1];
+        const productId = 1;
         axios.get(`http://localhost:8080/api/products/${productId}`)
             .then(response => {
                 this.setState({ product: response.data });

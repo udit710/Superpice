@@ -1,9 +1,9 @@
 import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import ProductDetailWrapper from '../../components/Wrappers/ProductDetailWrapper';
+import ProductDetail from '../../pages/product_detail/ProductDetail';
 
 describe('Product Detail page tests', () => {
-        const view = render(<ProductDetailWrapper/>);
+        const view = render(<ProductDetail/>);
         expect(view).toBeTruthy();
 
         test('Check Productimg component exist', async () => {
