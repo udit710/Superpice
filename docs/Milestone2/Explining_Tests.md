@@ -15,3 +15,15 @@ We have full test coverage as seen by using jacoco
 ## Frontend
 
 Tests are made for each component and test for the rendering of different parts and components in the site.
+
+
+## Test screenshots
+
+Backend
+
+![Alt text](images/mvn-test.png)
+
+
+Frontend
+
+![Alt text](images/npm-test.png)
