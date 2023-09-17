@@ -20,6 +20,9 @@ Ibrahim Al-Ashhab - 20%
 - Previous bug fixes
 
 Rashik Raj - 20%
+- Sub Category Model Database & Backend [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/121]
+- Category Model Database & Backend [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/125]
+- Routing Product Detail Page [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/127]
 
 Udit Pradeep Malshe - 20%
 - Frontend for Product Details & Comparision page [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/41]
