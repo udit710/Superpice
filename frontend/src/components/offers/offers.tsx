@@ -23,7 +23,7 @@ export default class Offers extends Component {
                             <Card style={{ width: '18rem' }}>
                                 <Card.Body>
                                     <Card.Title><h2>Offer: {discount}%</h2></Card.Title>
-                                    <Link to={`/${discount}`}><Button variant="primary">Show Offer</Button></Link>
+                                    <Link to={`/#`}><Button variant="primary">Show Offer</Button></Link>
                                 </Card.Body>
                             </Card>
                         ))
