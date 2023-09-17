@@ -30,8 +30,19 @@
 
 # Run Instructions
 
-Up to date instructions on how to run your project.
-
+Run the backend with
+```bash
+cd backend
+./mvnw package && java -jar target/superprice-0.0.1-SNAPSHOT.jar
+```
+and frontend with
+```bash
+cd frontend
+npm install
+npm start
+```
+Then visit `localhost:3000` to access the site.
+The frontend will make requests to the backend to get data from the database.
 
 # Initial Setup
 
