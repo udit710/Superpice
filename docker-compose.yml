@@ -1,0 +1,16 @@
+version: '3.4'
+services:
+  api:
+    platform: "linux/amd64"
+    build: backend/
+    ports:
+      - "8080:8080"
+  web:
+    platform: "linux/amd64"
+    build: frontend/
+    ports:
+      - "3000:3000"
+    environment:
+      API_URL: "http://api:8080"
+    depends_on:
+      - api
