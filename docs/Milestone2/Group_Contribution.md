@@ -14,11 +14,17 @@ Vidyut Venkatesan - 20%
 - Tests for backend [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/141]
 
 Ibrahim Al-Ashhab - 20%
-- Notification API tests 
-- Notification API implementation
-- Footer
+- Notification API tests [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/114]
+- Notification API implementation [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/98]
+- Footer [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/85]
 - Previous bug fixes
 
 Rashik Raj - 20%
 
 Udit Pradeep Malshe - 20%
+- Frontend for Product Details & Comparision page [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/41]
+- User API implementation [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/70]
+- User API tests [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/113]
+- Orders API implementation [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/68]
+- Orders API tests [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/90]
+- Fixes for SQL queries [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/165]
