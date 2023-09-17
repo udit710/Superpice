@@ -14,7 +14,7 @@ public class UserTest {
     User user;
 
     @BeforeEach
-    void createReview() {
+    void createUser() {
         this.user = new User(1l, "test", "test", "test", "test", "test", "test", 1l);
     }
 

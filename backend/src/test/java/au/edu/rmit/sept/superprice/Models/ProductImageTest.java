@@ -16,7 +16,7 @@ public class ProductImageTest {
     ProductImage productImage;
 
     @BeforeEach
-    void createReview() {
+    void createProductImange() {
         this.productImage = new ProductImage(1l, new Product(), "test");
     }
 

@@ -44,4 +44,5 @@ public class ReviewTest {
     void should_return_comment() {
         assertEquals("test review", this.review.getComment());
     }
+    
 }

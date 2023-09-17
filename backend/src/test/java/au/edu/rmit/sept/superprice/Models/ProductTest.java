@@ -20,7 +20,7 @@ public class ProductTest {
     Product product;
 
     @BeforeEach
-    void createReview() {
+    void createProduct() {
         this.product = new Product(1l, "test", "test", "test", "test", new Category(), new SubCategory(), List.of(new ProductImage()), List.of(new ProductDetails()));
     }
 

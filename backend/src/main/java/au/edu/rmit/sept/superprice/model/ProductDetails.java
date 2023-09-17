@@ -8,13 +8,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Getter
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "PRODUCT_DETAILS")
 public class ProductDetails {
 
