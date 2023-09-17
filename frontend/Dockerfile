@@ -1,39 +1,44 @@
+# Define the base image with a specific version of node for consistency
 FROM node:20-alpine AS base
 
-FROM base AS deps
+# Set the working directory
+WORKDIR /app
+
+# Install system dependencies
 RUN apk add --no-cache libc6-compat
-WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN  npm install --production
+# Install production dependencies
+FROM base AS deps
+COPY package*.json ./
+RUN npm ci --production
 
-
+# Build the application
 FROM base AS builder
-WORKDIR /app
+
+# Create a non-root user for security in the builder stage
+RUN addgroup -S nodejs && adduser -S reactjs -G nodejs
+
+# Change ownership of the /app directory in the builder stage
+RUN chown -R reactjs:nodejs /app
+
+# Switch to the non-root user for the builder stage
+USER reactjs
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-
-ENV NEXT_TELEMETRY_DISABLED 1
-
 RUN npm run build
 
-FROM base AS runner
-WORKDIR /app
+# Prepare the runner image using Nginx
+FROM nginx:alpine AS runner
 
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
+# Set the working directory
+WORKDIR /usr/share/nginx/html
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# Remove default nginx static assets
+RUN rm -rf ./*
 
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+# Copy static assets from builder stage
+COPY --from=builder /app/build .
 
-USER nextjs
-
-EXPOSE 3000
-
-ENV PORT 3000
-
-CMD ["npm", "start"]
+# Containers run nginx with global directives and daemon off
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
