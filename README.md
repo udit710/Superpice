@@ -58,5 +58,10 @@ Other tools will be required to complete the project (e.g., Docker)
 - Run the app with "npm start"
 
 
-
+## Individual contribution videos for Milestone 2
+- Udit Pradeep Malshe - https://rmiteduau-my.sharepoint.com/:v:/r/personal/s3933905_student_rmit_edu_au/Documents/Udit%20Pradeep%20Malshe%20-%20s3933905%20-%20COSC2299-23s2%20PTC1.mp4?csf=1&web=1&e=1EhdyK&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19
+- Abhijeet Kumar - 
+- Vidyut Venkatesan - 
+- Rashik Raj -
+- Ibrahim Al-Ashhab -
 
