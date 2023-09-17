@@ -9,17 +9,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
-
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Data
+@Getter
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "PRODUCT_IMAGE")
 public class ProductImage {
 

@@ -1,7 +1,6 @@
 package au.edu.rmit.sept.superprice.Controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -51,12 +50,11 @@ public class UserControllerTest{
     
         @Test
         void should_return_user_for_a_single_user_id() {
+            User user = new User(1l, "test", "test", "test", "test", "test", "test", 2l);
             when(this.userService.getUserById(1l))
-                .thenReturn(
-                    new User(1l, "test", "test", "test", "test", "test", "test", 2l)
-                );
+                .thenReturn(user);
             
-            assertEquals(new User(1l, "test", "test", "test", "test", "test", "test", 2l), this.userController.getUserById(1l));
+            assertEquals(user, this.userController.getUserById(1l));
         }
 
         @Test
