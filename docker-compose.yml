@@ -3,11 +3,15 @@ services:
   api:
     platform: "linux/amd64"
     build: backend/
+    container_name: backend
+    image: rmitsept/backend:latest
     ports:
       - "8080:8080"
   web:
     platform: "linux/amd64"
     build: frontend/
+    container_name: frontend
+    image: rmitsept/frontend:latest
     ports:
       - "3000:3000"
     environment:
