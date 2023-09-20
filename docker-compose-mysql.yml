@@ -3,10 +3,12 @@ services:
   api:
     platform: "linux/amd64"
     build: backend/
+    container_name: backend
+    image: rmitsept/backend:latest
     ports:
       - "8080:8080"
     environment:
-      spring.datasource.url: jdbc:mysql://database:3306/superpricedatabase?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+      spring.datasource.url: jdbc:mysql://database:3306/superprice?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
       spring.datasource.driverClassName: com.mysql.cj.jdbc.Driver
       spring.datasource.username: root
       spring.datasource.password: ${DB_PASSWORD}
@@ -16,6 +18,8 @@ services:
   web:
     platform: "linux/amd64"
     build: frontend/
+    container_name: frontend
+    image: rmitsept/frontend:latest
     ports:
       - "3000:3000"
     environment:
@@ -25,10 +29,11 @@ services:
 
   database:
     platform: "linux/amd64"
+    container_name: database
     image: mysql:8.0-oracle
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: superpricedatabase
+      MYSQL_DATABASE: superprice
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3306:3306"
@@ -38,6 +43,7 @@ services:
   adminer:
     platform: "linux/amd64"
     image: adminer
+    container_name: adminer
     restart: always
     ports:
       - 9000:8080
