@@ -20,22 +20,26 @@ WORKDIR /app
 
 ENV NODE_ENV production
 
+RUN npm install -g serve
+
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 reactjs
 USER reactjs
 
-# for hosting dev server
-COPY --from=builder --chown=reactjs:nodejs /app .
+# for hosting dev server (using npm start)
+# COPY --from=builder --chown=reactjs:nodejs /app .
 
-# for hosting build folder
-# COPY --from=builder /app/package.json ./package.json
-# COPY --from=builder --chown=reactjs:nodejs /app/build .
-# RUN npm install -g serve
-# RUN serve -s .
+# for hosting build folder (using serve -s)
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder --chown=reactjs:nodejs /app/build .
 
 
 EXPOSE 3000
 
 ENV PORT 3000
 
-CMD ["npm", "start"]
+# for hosting dev server (using npm start)
+# CMD ["npm", "start"]
+
+# for hosting build folder (using serve -s)
+CMD ["serve", "-s"]
