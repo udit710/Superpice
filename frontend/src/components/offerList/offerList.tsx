@@ -14,7 +14,7 @@ export default class OfferList extends Component {
         const urlList = window.location.href.split("/");
         const discount = urlList[urlList.length - 1];
         //Change Endpoint to get all the products with a particular discount
-        axios.get(`http://localhost:8080/api/products/${discount}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/api/products/${discount}`)
             .then(response => {
                 this.setState({ product: response.data });
             })

@@ -28,13 +28,13 @@ export default class ProductDetail extends Component {
         const productId = urlList[urlList.length - 1];
         console.log("ProductID: " + productId);
         //productId is 1
-        axios.get(`http://localhost:8080/api/products/${productId}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/api/products/${productId}`)
             .then(response => {
                 this.setState({ product: response.data });
             })
             .catch(error => console.error('Error fetching product data:', error));
         console.log("Value of product: " + this.state.product);
-        axios.get(`http://localhost:8080/api/reviews?product=${productId}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/api/reviews?product=${productId}`)
             .then(response => {
                 this.setState({ reviews: response.data });
             })
@@ -96,8 +96,8 @@ export default class ProductDetail extends Component {
                         <div className="mt-5 col-md-8 offset-md-2">
                             <h2>Reviews & Ratings</h2>
                             {reviews.map(review => (
-                                <ProductReview id = {review.reviewId} 
-                                rating = {review.rating} 
+                                <ProductReview id = {review.reviewId}
+                                rating = {review.rating}
                                 body = {review.comment}/>
                             ))}
                         </div>
