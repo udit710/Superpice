@@ -8,6 +8,7 @@ describe('ResultsList comonent tests', () => {
         id: 1,
         productName: 'test',
         description: 'test',
+        subCategoryId: 1,
         details: [{
             store: {storeName: ''},
             price: 1,

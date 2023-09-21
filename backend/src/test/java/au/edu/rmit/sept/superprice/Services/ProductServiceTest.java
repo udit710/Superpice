@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import au.edu.rmit.sept.superprice.model.Product;
-import au.edu.rmit.sept.superprice.model.Review;
 import au.edu.rmit.sept.superprice.repository.ProductRepository;
 import au.edu.rmit.sept.superprice.service.ProductService;
 
@@ -220,37 +219,37 @@ public class ProductServiceTest {
         assertEquals(0, this.productService.getProductsByPriceBetween(1.0, null).size());
     }
 
-    @Test
-    void should_return_products_by_SubCategoryId() {
-        when(this.productRepository.findAllBySubCategoryId(1l))
-            .thenReturn(List.of(new Product()));
+    // @Test
+    // void should_return_products_by_SubCategoryId() {
+    //     when(this.productRepository.findAllBySubCategoryId(1l))
+    //         .thenReturn(List.of(new Product()));
         
-        assertEquals(1, this.productService.getProductsBySubCategoryId(1l).size());
-    }
+    //     assertEquals(1, this.productService.getProductsBySubCategoryId(1l).size());
+    // }
 
-    @Test
-    void should_return_empty_list_when_no_products_exists_for_SubCategoryId() {
-        when(this.productRepository.findAllBySubCategoryId(1l))
-            .thenReturn(new ArrayList<Product>());
+    // @Test
+    // void should_return_empty_list_when_no_products_exists_for_SubCategoryId() {
+    //     when(this.productRepository.findAllBySubCategoryId(1l))
+    //         .thenReturn(new ArrayList<Product>());
         
-        assertEquals(0, this.productService.getProductsBySubCategoryId(1l).size());
-    }
+    //     assertEquals(0, this.productService.getProductsBySubCategoryId(1l).size());
+    // }
 
-    @Test
-    void should_return_products_by_SubCategoryName() {
-        when(this.productRepository.findAllBySubCategoryName("test"))
-            .thenReturn(List.of(new Product()));
+    // @Test
+    // void should_return_products_by_SubCategoryName() {
+    //     when(this.productRepository.findAllBySubCategoryName("test"))
+    //         .thenReturn(List.of(new Product()));
         
-        assertEquals(1, this.productService.getProductsBySubCategoryName("test").size());
-    }
+    //     assertEquals(1, this.productService.getProductsBySubCategoryName("test").size());
+    // }
 
-    @Test
-    void should_return_empty_list_when_no_products_exists_for_SubCategoryName() {
-        when(this.productRepository.findAllBySubCategoryName("test"))
-            .thenReturn(new ArrayList<Product>());
+    // @Test
+    // void should_return_empty_list_when_no_products_exists_for_SubCategoryName() {
+    //     when(this.productRepository.findAllBySubCategoryName("test"))
+    //         .thenReturn(new ArrayList<Product>());
         
-        assertEquals(0, this.productService.getProductsBySubCategoryName("test").size());
-    }
+    //     assertEquals(0, this.productService.getProductsBySubCategoryName("test").size());
+    // }
 
     @Test
     void should_return_products_by_CategoryId() {

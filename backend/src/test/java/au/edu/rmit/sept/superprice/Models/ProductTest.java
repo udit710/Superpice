@@ -13,7 +13,6 @@ import au.edu.rmit.sept.superprice.model.Category;
 import au.edu.rmit.sept.superprice.model.Product;
 import au.edu.rmit.sept.superprice.model.ProductDetails;
 import au.edu.rmit.sept.superprice.model.ProductImage;
-import au.edu.rmit.sept.superprice.model.SubCategory;
 
 @SpringBootTest
 public class ProductTest {
@@ -21,7 +20,7 @@ public class ProductTest {
 
     @BeforeEach
     void createProduct() {
-        this.product = new Product(1l, "test", "test", "test", "test", new Category(), new SubCategory(), List.of(new ProductImage()), List.of(new ProductDetails()));
+        this.product = new Product(1l, "test", "test", "test", "test", new Category(), 1l, List.of(new ProductImage()), List.of(new ProductDetails()));
     }
 
     @Test
@@ -56,7 +55,7 @@ public class ProductTest {
 
     @Test
     void should_return_subcategory() {
-        assertNotNull(this.product.getSubCategory());
+        assertEquals(1l, this.product.getSubCategoryId());
     }
 
     @Test

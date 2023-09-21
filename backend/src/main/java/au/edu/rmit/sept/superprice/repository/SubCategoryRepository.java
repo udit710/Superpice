@@ -1,6 +1,5 @@
 package au.edu.rmit.sept.superprice.repository;
 
-import au.edu.rmit.sept.superprice.model.Product;
 import au.edu.rmit.sept.superprice.model.SubCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

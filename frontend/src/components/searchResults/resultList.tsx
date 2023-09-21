@@ -14,6 +14,10 @@ export default class ResultList extends Component<{products: Product[]}> {
   }
 
   dataToElements(data: string | null): ReactElement[] | ReactElement {    
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+		const subcat = params.get('subcategory');
+
     if (this.props.products.length === 0) return <h2>No Results Found</h2>;
 
     const products: Product[] = this.props.products;
@@ -21,6 +25,7 @@ export default class ResultList extends Component<{products: Product[]}> {
 		const items: ReactElement[] = [];
 
     for (let i in products) {
+      if (subcat !== null && subcat !== '' && products[i].subCategoryId !== +subcat) continue;
       items.push(<hr className='item-divider' />);
       items.push(
         <a href={'/ProductDetail/' + products[i].id} className='item-link' >
