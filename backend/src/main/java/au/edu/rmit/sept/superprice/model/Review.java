@@ -28,7 +28,6 @@ public class Review {
     @Column(name = "review_id")
     private Long reviewId;
 
-    // TODO: Change once user model exists
     @Column(name = "user_id")
     private Long userId;
 

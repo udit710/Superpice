@@ -46,15 +46,15 @@ public class ProductController {
     }
 
     //Add optionals below this
-    @GetMapping("/sub-category/id/{id}")
-    public List<Product> getProductsByProductCategoryId(@PathVariable Long id){
-        return productService.getProductsBySubCategoryId(id);
-    }
+    // @GetMapping("/sub-category/id/{id}")
+    // public List<Product> getProductsByProductCategoryId(@PathVariable Long id){
+    //     return productService.getProductsBySubCategoryId(id);
+    // }
 
-    @GetMapping("/sub-category/name/{name}")
-    public List<Product> getProductsByProductCategoryName(@PathVariable String name){
-        return productService.getProductsBySubCategoryName(name);
-    }
+    // @GetMapping("/sub-category/name/{name}")
+    // public List<Product> getProductsByProductCategoryName(@PathVariable String name){
+    //     return productService.getProductsBySubCategoryName(name);
+    // }
 
     @GetMapping("/category/id/{id}")
     public List<Product> getProductsByCategoryId(@PathVariable Long id){

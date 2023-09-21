@@ -23,7 +23,7 @@ public class SubcategoryController {
     }
 
     @GetMapping("/{id}")
-    public SubCategory getReviewById(@PathVariable Long id) {
+    public SubCategory getSubcategoryById(@PathVariable Long id) {
         return subCategoryService.getById(id);
     }
 }

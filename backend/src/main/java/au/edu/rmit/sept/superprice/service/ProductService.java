@@ -65,13 +65,13 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public List<Product> getProductsBySubCategoryId(Long subCategory){
-        return productRepository.findAllBySubCategoryId(subCategory);
-    }
+    // public List<Product> getProductsBySubCategoryId(Long subCategory){
+    //     return productRepository.findAllBySubCategoryId(subCategory);
+    // }
 
-    public List<Product> getProductsBySubCategoryName(String subCategoryName){
-        return productRepository.findAllBySubCategoryName(subCategoryName);
-    }
+    // public List<Product> getProductsBySubCategoryName(String subCategoryName){
+    //     return productRepository.findAllBySubCategoryName(subCategoryName);
+    // }
 
     public List<Product> getProductsByCategoryId(Long categoryId){
         return productRepository.findAllByCategoryId(categoryId);
