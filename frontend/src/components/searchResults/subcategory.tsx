@@ -9,21 +9,34 @@ export default class Subcategory extends Component<{subcategories: SubCategory[]
 	const subcategories = this.dataToElements();
     return (
       <div className='Subcategory' data-testid='subcategory'>
-		{subcategories}
+				{subcategories}
       </div>
     );
   }
 
-	dataToElements(): ReactElement[] | null {
+	dataToElements(): ReactElement[] {
+		const search = window.location.search;
+    const params = new URLSearchParams(search);
+    const item = params.get('item');
+
 		const subcategories: ReactElement[] = [];
 
-		if (this.props.subcategories.length === 0) return null;
+		subcategories.push(
+			<a href={`/search?item=${item}`} className='item-link' >
+					<div className='subcategories' >
+						<img src={logo} alt='logo' height='160' width='160' />
+						<p data-testid='subcategory-names'>All</p>
+					</div>
+			</a>
+		)
+
+		if (this.props.subcategories.length === 0) return subcategories;
 
 		const subs: SubCategory[] = this.props.subcategories;
 
 		for (let i in subs) {
 			subcategories.push(
-				<a href="/#" className='item-link' >
+				<a href={`/search?item=${item}&subcategory=${subs[i].subCategoryId}`} className='item-link' >
 					<div className='subcategories' >
 						<img src={logo} alt='logo' height='160' width='160' />
 						<p data-testid='subcategory-names'>{subs[i].subCategoryName}</p>
