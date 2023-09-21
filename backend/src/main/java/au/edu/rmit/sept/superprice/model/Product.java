@@ -37,10 +37,13 @@ public class Product {
     @JoinColumn(name="category_id", nullable = true)
     private Category category;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "sub_category_id", nullable = true)
-    private SubCategory subCategory;
+    // @JsonIgnore
+    // @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    // @JoinColumn(name = "sub_category_id", nullable = true)
+    // private SubCategory subCategory;
+
+    @Column(name = "sub_category_id")
+    private Long subCategoryId;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ProductImage> images;

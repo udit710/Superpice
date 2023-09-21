@@ -28,7 +28,7 @@ public class SubCategory {
     @JoinColumn(name="category_id", nullable = true)
     private Category category;
 
-    @OneToMany(mappedBy= "subCategory", cascade=CascadeType.ALL,  fetch = FetchType.LAZY)
-    private Collection<Product> productIds;
+    // @OneToMany(mappedBy= "subCategory", cascade=CascadeType.ALL,  fetch = FetchType.LAZY)
+    // private Collection<Product> productIds;
 
 }
