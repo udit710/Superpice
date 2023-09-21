@@ -1,21 +1,12 @@
 import React, { Component, ReactElement } from 'react';
 import './subcategory.css';
+import { SubCategory } from '../../interfaces/subcategory.interface';
 import logo from '../../logo.svg'; // Dummy image
 
-export default class Subcategory extends Component {
-	// props accepts subcategoryData as string to pass json data as string once apis are in place
-	// May change later 
-
-	// note: to use props in typescript react, pass the props key to the Component class like
-	// "class Subcategory extends Component<{subcategoryData: string}>"
-
-	// constructor(props: {subcategoryData: string}) {
-	// 	super(props);
-	//
-	// }
+export default class Subcategory extends Component<{subcategories: SubCategory[]}> {
 
   render() {
-	const subcategories = this.dataToElements(null); // Pass subcategoryData if using that
+	const subcategories = this.dataToElements();
     return (
       <div className='Subcategory' data-testid='subcategory'>
 		{subcategories}
@@ -23,19 +14,22 @@ export default class Subcategory extends Component {
     );
   }
 
-	dataToElements(data: string | null): ReactElement[] {
-		// TODO: Do something to get the data from string once apis are implemented
-
+	dataToElements(): ReactElement[] | null {
 		const subcategories: ReactElement[] = [];
 
-		const numCat = 10;
-		for (let i:number = 0; i < numCat; i++) {
+		if (this.props.subcategories.length === 0) return null;
+
+		const subs: SubCategory[] = this.props.subcategories;
+
+		for (let i in subs) {
 			subcategories.push(
-				<div className='subcategories' id={'subcaregory-' + i} onClick={() => {alert("dummy subcategory index " + i)}}>
-					<img src={logo} alt='logo' height='160' width='160' />
-					<p data-testid='subcategory-names'>Dummy Item {i}</p>
-				</div>
-			);
+				<a href="/#" className='item-link' >
+					<div className='subcategories' >
+						<img src={logo} alt='logo' height='160' width='160' />
+						<p data-testid='subcategory-names'>{subs[i].subCategoryName}</p>
+					</div>
+				</a>
+			)
 		}
 
 		return subcategories;

@@ -1,9 +1,14 @@
 import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { SubCategory } from '../../interfaces/subcategory.interface';
 import Subcategory from '../../components/searchResults/subcategory';
 
 describe('Subcategory component tests', () => {
-    const view = render(<Subcategory/>);
+    const testSub: SubCategory = {
+        subCategoryId: 1,
+        subCategoryName: "test",
+    };
+    const view = render(<Subcategory subcategories={[testSub]}/>);
     expect(view).toBeTruthy();
 
     test('Check image exists', () => {
