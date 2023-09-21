@@ -4,8 +4,8 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN  npm ci
+COPY package*.json ./
+RUN npm ci
 
 
 FROM base AS builder
@@ -19,19 +19,27 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
+
+RUN npm install -g serve
 
 RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-USER nextjs
+RUN adduser --system --uid 1001 reactjs
+USER reactjs
 
-COPY --from=builder /app/node_modules ./node_modules
+# for hosting dev server (using npm start)
+# COPY --from=builder --chown=reactjs:nodejs /app .
+
+# for hosting build folder (using serve -s)
 COPY --from=builder /app/package.json ./package.json
-COPY --from=builder . .
+COPY --from=builder --chown=reactjs:nodejs /app/build .
 
 
 EXPOSE 3000
 
 ENV PORT 3000
 
-CMD ["npm", "start"]
+# for hosting dev server (using npm start)
+# CMD ["npm", "start"]
+
+# for hosting build folder (using serve -s)
+CMD ["serve", "-s"]

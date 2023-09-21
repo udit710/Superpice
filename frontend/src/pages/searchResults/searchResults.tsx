@@ -7,7 +7,7 @@ import { Product } from '../../interfaces/product.interface';
 
 export default class SearchResults extends Component<{searchItem: string}> {
   state = {
-    products: [] as Product[],  
+    products: [] as Product[],
   }
 
   render() {
@@ -17,7 +17,7 @@ export default class SearchResults extends Component<{searchItem: string}> {
         <br/>
         <Subcategory/>
         <ResultList products={this.state.products}/>
-        
+
       </div>
     )
   }
@@ -27,7 +27,7 @@ export default class SearchResults extends Component<{searchItem: string}> {
     const params = new URLSearchParams(search);
     const searchTerm = params.get('item');
 
-    await axios.get(`http://localhost:8080/api/search?name=${searchTerm}`)
+    await axios.get(`${process.env.REACT_APP_API_URL}/api/search?name=${searchTerm}`)
       .then(res => {
         this.setState({ products: res.data });
       })

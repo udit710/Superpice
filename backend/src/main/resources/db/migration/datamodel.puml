@@ -1,0 +1,152 @@
+@startuml
+
+class ADDRESS {
+    - address_id: INT
+    - address_line1: TEXT
+    - address_line2: TEXT
+    - city: VARCHAR(255)
+    - state: VARCHAR(255)
+    - postal_code: VARCHAR(10)
+    - country: VARCHAR(255)
+    - address_type: ENUM
+}
+
+
+
+class CATEGORY {
+    - category_id: INT
+    - category_name: VARCHAR(255)
+}
+
+
+
+class SUB_CATEGORY {
+    - sub_category_id: INT
+    - sub_category_name: VARCHAR(255)
+    - category_id: INT
+}
+
+
+
+class PRODUCT {
+    - product_id: INT
+    - product_name: VARCHAR(255)
+    - sub_category_id: INT
+    - category_id: INT
+    - description: TEXT
+    - allergens: TEXT
+    - last_updated: TIMESTAMP
+}
+
+
+
+class PRODUCT_IMAGE {
+    - image_id: INT
+    - product_id: INT
+    - image_url: VARCHAR(255)
+}
+
+
+
+class STORE {
+    - store_id: INT
+    - store_name: VARCHAR(255)
+    - address_id: INT
+    - contact_details: VARCHAR(255)
+}
+
+
+
+class APP_USER {
+    - user_id: INT
+    - username: VARCHAR(255)
+    - password: VARCHAR(255)
+    - email: VARCHAR(255)
+    - first_name: VARCHAR(255)
+    - last_name: VARCHAR(255)
+    - phone: VARCHAR(15)
+    - address_id: INT
+}
+
+
+
+class REVIEW {
+    - review_id: INT
+    - user_id: INT
+    - product_id: INT
+    - rating: INT
+    - comment: TEXT
+}
+
+
+
+class ORDERS {
+    - order_id: INT
+    - user_id: INT
+    - order_date: TIMESTAMP
+    - order_status: ENUM
+    - total_amount: DECIMAL
+    - order_address_id: INT
+    - payment_method: ENUM
+}
+
+
+
+class ORDERS_ITEM {
+    - order_item_id: INT
+    - order_id: INT
+    - product_id: INT
+    - quantity: INT
+    - sub_total: DECIMAL
+}
+
+
+
+class NOTIFICATION {
+    - notification_id: INT
+    - user_id: INT
+    - message: TEXT
+    - type: ENUM
+    - date_sent: TIMESTAMP
+}
+
+
+
+class CART_ITEM {
+    - cart_item_id: INT
+    - user_id: INT
+    - product_id: INT
+    - quantity: INT
+}
+
+
+
+class PRODUCT_DETAILS {
+    - product_details_id: INT
+    - product_id: INT
+    - store_id: INT
+    - original_price: DECIMAL
+    - discount: INT
+    - price: DECIMAL
+    - available: INT
+}
+
+
+
+CATEGORY "1" -- "0..*" SUB_CATEGORY: contains
+SUB_CATEGORY "1" -- "0..*" PRODUCT: categorizes
+PRODUCT "1" -- "0..*" PRODUCT_IMAGE: has
+STORE "1" -- "1" ADDRESS
+APP_USER "1" -- "1" ADDRESS
+APP_USER "1" -- "0..*" REVIEW: writes
+PRODUCT "1" -- "0..*" REVIEW: receives
+APP_USER "1" -- "0..*" ORDERS: places
+ORDERS "1" -- "0..*" ORDERS_ITEM: contains
+PRODUCT "1" -- "0..*" ORDERS_ITEM: is part of
+APP_USER "1" -- "0..*" NOTIFICATION: receives
+APP_USER "1" -- "0..*" CART_ITEM: adds
+PRODUCT "1" -- "0..*" CART_ITEM: is added to
+PRODUCT "1" -- "0..*" PRODUCT_DETAILS: is available at
+STORE "1" -- "0..*" PRODUCT_DETAILS: offer
+
+@enduml
