@@ -8,11 +8,11 @@ COPY mvnw pom.xml ./
 RUN sed -i -e 's/\r$//' ./mvnw
 RUN ./mvnw dependency:go-offline
 COPY ./src ./src
-RUN ./mvnw clean install
+RUN ./mvnw package
 
 # Now run it
 FROM base AS runner
 WORKDIR /opt/app
 EXPOSE 8080
-COPY --from=builder /opt/app/target/*.jar /opt/app/*.jar
-ENTRYPOINT ["java", "-jar", "/opt/app/*.jar" ]
+COPY --from=builder /opt/app/target/*.jar /opt/app/superprice.jar
+ENTRYPOINT ["java", "-jar", "/opt/app/superprice.jar" ]
