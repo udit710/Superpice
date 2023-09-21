@@ -23,7 +23,7 @@ export default class Subcategory extends Component<{subcategories: SubCategory[]
 		subcategories.push(
 			<a href={`/search?item=${item}`} className='item-link' >
 					<div className='subcategories' >
-						<img src={`https://source.unsplash.com/random?groceries`} alt='logo' height='160' width='160' />
+						<img src={`https://source.unsplash.com/random?groceries`} alt='logo' height='130' width='130' />
 						<p data-testid='subcategory-names'>All</p>
 					</div>
 			</a>
@@ -37,7 +37,7 @@ export default class Subcategory extends Component<{subcategories: SubCategory[]
 			subcategories.push(
 				<a href={`/search?item=${item}&subcategory=${subs[i].subCategoryId}`} className='item-link' >
 					<div className='subcategories' >
-						<img src={`https://source.unsplash.com/random?${subs[i].subCategoryName}`} alt='logo' height='160' width='160' />
+						<img src={`https://source.unsplash.com/random?${subs[i].subCategoryName}`} alt='logo' height='130' width='130' />
 						<p data-testid='subcategory-names'>{subs[i].subCategoryName}</p>
 					</div>
 				</a>

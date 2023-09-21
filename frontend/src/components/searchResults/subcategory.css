@@ -1,6 +1,6 @@
 .Subcategory {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     overflow-x: auto;
     margin-left: 2%;
     margin-right: 2%;
@@ -31,6 +31,10 @@
     border-radius: 16px;
     box-shadow: 5px 5px 10px 5px rgba(0,0,0,.1);
     transition: all .1s ease-in;
+    padding: 20px;
 
 }
 
+.subcategories > img {
+    border-radius: 16px;
+}
