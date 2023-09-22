@@ -15,6 +15,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Entity
@@ -28,18 +29,22 @@ public class Review {
     @Column(name = "review_id")
     private Long reviewId;
 
+    @Setter
     @Column(name = "user_id")
     private Long userId;
 
     // @Column(name = "product_id")
+    @Setter
     @JsonIgnore
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product productId;
 
+    @Setter
     @Column(name = "rating")
     private Integer rating;
 
+    @Setter
     @Column(name = "comment")
     private String comment;
 
