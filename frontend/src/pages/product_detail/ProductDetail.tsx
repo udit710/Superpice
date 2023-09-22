@@ -98,20 +98,41 @@ export default class ProductDetail extends Component {
                         </table>
                         <div className="mt-5 col-md-8 offset-md-2">
                             <h2>Reviews & Ratings</h2>
-                            <button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#review">Add Review</button>
+                            <button type="button" id='review-button' className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#review">Add Review</button>
                             <div className="modal fade" id="review" tabIndex={-1} aria-labelledby="reviewLabel" aria-hidden="true">
                                 <div className="modal-dialog modal-dialog-centered">
                                     <div className="modal-content">
                                     <div className="modal-header">
-                                        <h1 className="modal-title fs-5" id="exampleModalLabel">Add Review for {this.state.product?.productName}</h1>
+                                        <h1 className="modal-title fs-5" id="review-modal-title">Add Review for {this.state.product?.productName}</h1>
                                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div className="modal-body">
                                         <form id='review-form' onSubmit={this.postReview}>
-                                            <label htmlFor="rating">Rating</label>
-                                            <input type="number" id="rating" name="rating" min="1" max="5" onChange={this.handleChangeNum} required />
-                                            <label htmlFor='review-text'>Review</label>
-                                            <input type='text' name='comment' id='review-text' onChange={this.handleChangeText} required />
+                                            <p className="form-label">Rating</p>
+                                            <div className="form-check form-check-inline">
+                                                <input className="form-check-input" type="radio" name="rating" value={1} onChange={this.handleChangeNum} />
+                                                <label className="form-check-label" htmlFor="inlineRadio1">1</label>
+                                            </div>
+                                            <div className="form-check form-check-inline">
+                                                <input className="form-check-input" type="radio" name="rating" value={2} onChange={this.handleChangeNum} />
+                                                <label className="form-check-label" htmlFor="inlineRadio2">2</label>
+                                            </div>
+                                            <div className="form-check form-check-inline">
+                                                <input className="form-check-input" type="radio" name="rating" value={3} onChange={this.handleChangeNum} />
+                                                <label className="form-check-label" htmlFor="inlineRadio3">3</label>
+                                            </div>
+                                            <div className="form-check form-check-inline">
+                                                <input className="form-check-input" type="radio" name="rating" value={4} onChange={this.handleChangeNum} />
+                                                <label className="form-check-label" htmlFor="inlineRadio3">4</label>
+                                            </div>
+                                            <div className="form-check form-check-inline">
+                                                <input className="form-check-input" type="radio" name="rating" value={5} onChange={this.handleChangeNum} />
+                                                <label className="form-check-label" htmlFor="inlineRadio3">5</label>
+                                            </div>
+                                            
+                                            <br/>
+                                            <label id='review-lable' className="form-label" htmlFor='review-text'>Review</label>
+                                            <input className="form-control" type='text' name='comment' id='review-text' onChange={this.handleChangeText} placeholder='Review' required />
                                         </form>
                                     </div>
                                     <div className="modal-footer">

@@ -24,3 +24,11 @@
     max-height: 100%;
     max-width: 100%;
 }
+
+#review-lable {
+    margin-top: 20px;
+}
+
+#review-button {
+    margin-bottom: 20px;
+}
