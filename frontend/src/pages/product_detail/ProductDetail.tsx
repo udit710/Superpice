@@ -98,17 +98,29 @@ export default class ProductDetail extends Component {
                         </table>
                         <div className="mt-5 col-md-8 offset-md-2">
                             <h2>Reviews & Ratings</h2>
-                            <button type='button' className='btn btn-secondary' onClick={this.openDialog}>Add Review</button>
-                            <dialog id='addreview'>
-                                <form onSubmit={this.postReview}>
-                                    <label htmlFor="rating">Rating</label>
-                                    <input type="number" id="rating" name="rating" min="1" max="5" onChange={this.handleChangeNum} />
-                                    <label htmlFor='review-text'>Review</label>
-                                    <input type='text' name='comment' id='review-text' onChange={this.handleChangeText} />
-                                    <input type="submit" />
-                                </form>
-                                <button type='button' className='btn btn-secondary' onClick={this.closeDialog}>Close</button>
-                            </dialog>
+                            <button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#review">Add Review</button>
+                            <div className="modal fade" id="review" tabIndex={-1} aria-labelledby="reviewLabel" aria-hidden="true">
+                                <div className="modal-dialog modal-dialog-centered">
+                                    <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h1 className="modal-title fs-5" id="exampleModalLabel">Add Review for {this.state.product?.productName}</h1>
+                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <form id='review-form' onSubmit={this.postReview}>
+                                            <label htmlFor="rating">Rating</label>
+                                            <input type="number" id="rating" name="rating" min="1" max="5" onChange={this.handleChangeNum} required />
+                                            <label htmlFor='review-text'>Review</label>
+                                            <input type='text' name='comment' id='review-text' onChange={this.handleChangeText} required />
+                                        </form>
+                                    </div>
+                                    <div className="modal-footer">
+                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" className="btn btn-primary" form='review-form'>Add Review</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
                             {reviews.map(review => (
                                 <ProductReview id = {review.reviewId}
                                 rating = {review.rating}
@@ -120,16 +132,7 @@ export default class ProductDetail extends Component {
             </div>
         );
     }
-
-    openDialog() {
-        const dialog = document.getElementById('addreview') as HTMLDialogElement;
-        dialog?.showModal();
-    }
-    closeDialog() {
-        const dialog = document.getElementById('addreview') as HTMLDialogElement;
-        dialog?.close();
-    }
-
+    
     handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({ review: e.target.value });
     }
@@ -138,7 +141,6 @@ export default class ProductDetail extends Component {
     }
 
     postReview = (e: React.FormEvent<HTMLFormElement>) => {
-        this.closeDialog();
         e.preventDefault();
         const rev = {
             userId: 1,
