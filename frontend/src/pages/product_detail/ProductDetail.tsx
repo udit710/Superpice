@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Product } from '../../interfaces/product.interface';
 import "./ProductDetail.css";
 import ProductReview from '../../components/product_review/ProductReview';
 
-interface Product {
-    productName: string;
-    description: string;
-    details: {store: {storeName: string}; price: number; available: number; discount: number }[];
-    images: { imageUrl: string }[];
-}
+// interface Product {
+//     productName: string;
+//     description: string;
+//     details: {store: {storeName: string}; price: number; available: number; discount: number }[];
+//     images: { imageUrl: string }[];
+// }
 
 interface Review {
     reviewId: number;
@@ -20,7 +21,9 @@ interface Review {
 export default class ProductDetail extends Component {
     state = {
         product: null as Product | null,
-        reviews: [] as Review[]
+        reviews: [] as Review[],
+        review: null as string | null,
+        rating: 1 as number,
     };
 
     componentDidMount() {
@@ -95,6 +98,50 @@ export default class ProductDetail extends Component {
                         </table>
                         <div className="mt-5 col-md-8 offset-md-2">
                             <h2>Reviews & Ratings</h2>
+                            <button type="button" id='review-button' className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#review">Add Review</button>
+                            <div className="modal fade" id="review" tabIndex={-1} aria-labelledby="reviewLabel" aria-hidden="true">
+                                <div className="modal-dialog modal-dialog-centered">
+                                    <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h1 className="modal-title fs-5" id="review-modal-title">Add Review for {this.state.product?.productName}</h1>
+                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <form id='review-form' onSubmit={this.postReview}>
+                                            <p className="form-label">Rating</p>
+                                            <div className="form-check form-check-inline">
+                                                <input className="form-check-input" type="radio" name="rating" value={1} onChange={this.handleChangeNum} />
+                                                <label className="form-check-label" htmlFor="inlineRadio1">1</label>
+                                            </div>
+                                            <div className="form-check form-check-inline">
+                                                <input className="form-check-input" type="radio" name="rating" value={2} onChange={this.handleChangeNum} />
+                                                <label className="form-check-label" htmlFor="inlineRadio2">2</label>
+                                            </div>
+                                            <div className="form-check form-check-inline">
+                                                <input className="form-check-input" type="radio" name="rating" value={3} onChange={this.handleChangeNum} />
+                                                <label className="form-check-label" htmlFor="inlineRadio3">3</label>
+                                            </div>
+                                            <div className="form-check form-check-inline">
+                                                <input className="form-check-input" type="radio" name="rating" value={4} onChange={this.handleChangeNum} />
+                                                <label className="form-check-label" htmlFor="inlineRadio3">4</label>
+                                            </div>
+                                            <div className="form-check form-check-inline">
+                                                <input className="form-check-input" type="radio" name="rating" value={5} onChange={this.handleChangeNum} />
+                                                <label className="form-check-label" htmlFor="inlineRadio3">5</label>
+                                            </div>
+                                            
+                                            <br/>
+                                            <label id='review-lable' className="form-label" htmlFor='review-text'>Review</label>
+                                            <input className="form-control" type='text' name='comment' id='review-text' onChange={this.handleChangeText} placeholder='Review' required />
+                                        </form>
+                                    </div>
+                                    <div className="modal-footer">
+                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" className="btn btn-primary" form='review-form'>Add Review</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
                             {reviews.map(review => (
                                 <ProductReview id = {review.reviewId}
                                 rating = {review.rating}
@@ -105,5 +152,26 @@ export default class ProductDetail extends Component {
                 </div>
             </div>
         );
+    }
+    
+    handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({ review: e.target.value });
+    }
+    handleChangeNum = (e: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({ rating: e.target.value });
+    }
+
+    postReview = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const rev = {
+            userId: 1,
+            productId: this.state.product?.id,
+            rating: this.state.rating,
+            comment: this.state.review,
+        }
+        axios.post(`${process.env.REACT_APP_API_URL}/api/reviews`, rev)
+        .then(res => {
+                window.location.href = `/ProductDetail/${this.state.product?.id}`;
+        });
     }
 }

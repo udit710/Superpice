@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import au.edu.rmit.sept.superprice.model.Product;
 import au.edu.rmit.sept.superprice.model.Review;
 import au.edu.rmit.sept.superprice.service.ReviewService;
 
@@ -28,6 +31,9 @@ public class ReviewController {
         this.reviewService = reviewService;
     }
 
+    @Autowired
+    public ProductController productController;
+
     @GetMapping
     public List<Review> getReviews(@RequestParam(value = "product", defaultValue = "-1") Long productId) {
         if (productId == -1)
@@ -42,7 +48,13 @@ public class ReviewController {
     }
 
     @PostMapping
-    public Review createReview(@RequestBody Review review) {
+    public Review createReview(@RequestBody ObjectNode objectNode) {
+        Product product = productController.getProductById(objectNode.get("productId").asLong());
+        Review review = new Review();
+        review.setUserId(objectNode.get("userId").asLong());
+        review.setProductId(product);
+        review.setRating(objectNode.get("rating").asInt());
+        review.setComment(objectNode.get("comment").asText());
         return reviewService.save(review);
     }
 
