@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Product } from '../../interfaces/product.interface';
 import "./ProductDetail.css";
 import ProductReview from '../../components/product_review/ProductReview';
 
-interface Product {
-    productName: string;
-    description: string;
-    details: {store: {storeName: string}; price: number; available: number; discount: number }[];
-    images: { imageUrl: string }[];
-}
+// interface Product {
+//     productName: string;
+//     description: string;
+//     details: {store: {storeName: string}; price: number; available: number; discount: number }[];
+//     images: { imageUrl: string }[];
+// }
 
 interface Review {
     reviewId: number;
@@ -20,7 +21,9 @@ interface Review {
 export default class ProductDetail extends Component {
     state = {
         product: null as Product | null,
-        reviews: [] as Review[]
+        reviews: [] as Review[],
+        review: null as string | null,
+        rating: 1 as number,
     };
 
     componentDidMount() {
@@ -95,6 +98,17 @@ export default class ProductDetail extends Component {
                         </table>
                         <div className="mt-5 col-md-8 offset-md-2">
                             <h2>Reviews & Ratings</h2>
+                            <button type='button' className='btn btn-secondary' onClick={this.openDialog}>Add Review</button>
+                            <dialog id='addreview'>
+                                <form onSubmit={this.postReview}>
+                                    <label htmlFor="rating">Rating</label>
+                                    <input type="number" id="rating" name="rating" min="1" max="5" onChange={this.handleChangeNum} />
+                                    <label htmlFor='review-text'>Review</label>
+                                    <input type='text' name='comment' id='review-text' onChange={this.handleChangeText} />
+                                    <input type="submit" />
+                                </form>
+                                <button type='button' className='btn btn-secondary' onClick={this.closeDialog}>Close</button>
+                            </dialog>
                             {reviews.map(review => (
                                 <ProductReview id = {review.reviewId}
                                 rating = {review.rating}
@@ -105,5 +119,36 @@ export default class ProductDetail extends Component {
                 </div>
             </div>
         );
+    }
+
+    openDialog() {
+        const dialog = document.getElementById('addreview') as HTMLDialogElement;
+        dialog?.showModal();
+    }
+    closeDialog() {
+        const dialog = document.getElementById('addreview') as HTMLDialogElement;
+        dialog?.close();
+    }
+
+    handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({ review: e.target.value });
+    }
+    handleChangeNum = (e: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({ rating: e.target.value });
+    }
+
+    postReview = (e: React.FormEvent<HTMLFormElement>) => {
+        this.closeDialog();
+        e.preventDefault();
+        const rev = {
+            userId: 1,
+            productId: this.state.product?.id,
+            rating: this.state.rating,
+            comment: this.state.review,
+        }
+        axios.post(`${process.env.REACT_APP_API_URL}/api/reviews`, rev)
+        .then(res => {
+                window.location.href = `/ProductDetail/${this.state.product?.id}`;
+        });
     }
 }
