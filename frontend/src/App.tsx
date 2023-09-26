@@ -22,12 +22,9 @@ function App() {
         <div className='pg-content'>
       <Navbar/>
       {/* <div className='space'></div> */}
-      
-      {/**IDK how to do next.js routing so i did this for the time being */}
 
       {/**IMPORTANT: Also need to add path to index.tsx */}
       {/**See index.tsx for mor info */}
-
         <Routes>
           <Route path='/ProductDetail/:id' element={<ProductDetail/>}/>
           <Route path='/search' element={<SearchResults searchItem=''/>} />
