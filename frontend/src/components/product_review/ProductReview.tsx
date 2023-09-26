@@ -42,7 +42,7 @@ export default class ProductReview extends Component<ProductReviewProps>{
                                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div className="modal-body">
-                                        <form id='edit-review-form'>
+                                        <form id='edit-review-form' onSubmit={this.onUpdate}>
                                             <label id='edit-review-lable' className="form-label" htmlFor='review-text'>New Review</label>
                                             <input className="form-control" type='text' name='comment' id='review-text' onChange={this.handleChangeText} placeholder='New Review' required />
                                         </form>
@@ -65,8 +65,15 @@ export default class ProductReview extends Component<ProductReviewProps>{
     }
 
     onDelete = () => {
-        console.log(this.props.id);
         axios.delete(`${process.env.REACT_APP_API_URL}/api/reviews/${this.props.id}`)
+        .then(res => {
+            window.location.reload();
+        });
+    }
+
+    onUpdate = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        axios.put(`${process.env.REACT_APP_API_URL}/api/reviews/${this.props.id}`, { comment: this.state.review })
         .then(res => {
             window.location.reload();
         });
