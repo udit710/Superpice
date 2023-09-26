@@ -8,7 +8,7 @@ import au.edu.rmit.sept.superprice.service.OrderService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/orders")
 public class OrderController {
 
