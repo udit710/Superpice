@@ -1,6 +1,7 @@
 import { Component } from "react";
-import "./ProductReview.css"
 import axios from "axios";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import "./ProductReview.css"
 
 interface ProductReviewProps {
     id: number;
@@ -22,9 +23,11 @@ export default class ProductReview extends Component<ProductReviewProps>{
                     <h5 className="card-title" data-testid="rating" >Rating: {rating}/5</h5>
                     <p className="card-text" data-testid="comment" >{body}</p>
 
-                    <div className="dropdown">
-                        <a className="btn btn-secondary dropdown-toggle" href="/#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown link
+                    
+                </div>
+                <div className="dropdown menu">
+                        <a href="/#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <BsThreeDotsVertical size={20}/>
                         </a>
 
                         <ul className="dropdown-menu">
@@ -49,13 +52,12 @@ export default class ProductReview extends Component<ProductReviewProps>{
                                     </div>
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" className="btn btn-primary" form='edit-review-form'>Add Review</button>
+                                        <button type="submit" className="btn btn-primary" form='edit-review-form'>Save Review</button>
                                     </div>
                                     </div>
                                 </div>
                             </div>
                     </div>
-                </div>
             </div>
         )
     }
