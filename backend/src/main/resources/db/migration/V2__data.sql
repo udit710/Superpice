@@ -152,7 +152,7 @@ VALUES (1, 'Your order has been shipped!', 'INFO'),
        (5, 'Your order is being prepared.', 'INFO');
 
 -- Populating cart_item table
-INSERT INTO cart_item (user_id, product_id, quantity)
+INSERT INTO cart_item (user_id, product_details_id, quantity)
 VALUES (1, 1, 2),
        (1, 2, 1),
        (2, 3, 1),
