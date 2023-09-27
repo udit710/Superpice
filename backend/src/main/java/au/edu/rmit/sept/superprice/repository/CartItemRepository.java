@@ -1,6 +1,6 @@
 package au.edu.rmit.sept.superprice.repository;
 
-import au.edu.rmit.sept.superprice.model.User;
+import au.edu.rmit.sept.superprice.model.CartItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
