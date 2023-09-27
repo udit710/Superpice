@@ -24,8 +24,9 @@ export default class Navbar extends Component {
                       </a>
                       <ul className="dropdown-menu">
                         <li><a className="dropdown-item" href="/#">Action</a></li>
+                        <li><hr className="dropdown-divider"/></li>
                         {/**WARNING: REMOVE LINK FROM HERE ---Added By Rashik */}
-                        <li><Link to="/ProductDetail/2"><a className="dropdown-item" href="/#">Temp_ProductDetailPage</a> </Link></li>
+                        <li><Link to="/checkout-page"><a className="dropdown-item" href="/#">Checkout-Page</a> </Link></li>
                         <li><hr className="dropdown-divider"/></li>
                         <li><a className="dropdown-item" href="/#">Something else here</a></li>
                       </ul>

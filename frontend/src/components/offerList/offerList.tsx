@@ -15,13 +15,12 @@ export default function OfferList() {
     useEffect(() => {
         // Define an asynchronous function inside useEffect
         async function fetchData() {
-          try {
             // Change Endpoint to get all the products with a particular discount
-            const response = await axios.get<Product[]>(`${process.env.REACT_APP_API_URL}/api/products/offer/${discount}`);
-            setProduct(response.data);
-          } catch (error) {
-            console.error('Error fetching product data:', error);
-          }
+            await axios.get<Product[]>(`${process.env.REACT_APP_API_URL}/api/products/offer/${discount}`)
+                .then((response) => setProduct(response.data))
+                .catch ((error)=>{
+                    console.error('Error fetching product data:', error)
+                });
         }
       
         // Call the async function
