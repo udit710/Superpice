@@ -30,7 +30,7 @@ public class CartItem{
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_details_id", referencedColumnName = "product_details_id")
-    private Long product_details_id;
+    private Long productDetailsId;
 
     @JsonIgnore
     @ManyToOne

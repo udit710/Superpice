@@ -151,18 +151,6 @@ VALUES (1, 'Your order has been shipped!', 'INFO'),
        (4, 'Your order has been received and is being processed.', 'INFO'),
        (5, 'Your order is being prepared.', 'INFO');
 
--- Populating cart_item table
-INSERT INTO cart_item (user_id, product_details_id, quantity)
-VALUES (1, 1, 2),
-       (1, 2, 1),
-       (2, 3, 1),
-       (2, 4, 3),
-       (2, 5, 1),
-       (3, 6, 1),
-       (3, 7, 2),
-       (4, 8, 3),
-       (4, 9, 1),
-       (5, 10, 1);
 
 -- Populating product_details association table
 INSERT INTO product_details (product_id, store_id, original_price, discount, price, available)
@@ -195,3 +183,16 @@ VALUES (1, 1, 1.50, 30, 1.05, 10),
        (13, 2, 2.60, 0, 2.60, 18),
        (14, 1, 1.50, 10, 1.35, 25),
        (14, 3, 1.55, 0, 1.55, 23);
+
+-- Populating cart_item table
+INSERT INTO cart_item (user_id, product_details_id, quantity)
+VALUES (1, 1, 2),
+       (1, 2, 1),
+       (2, 3, 1),
+       (2, 4, 3),
+       (2, 5, 1),
+       (3, 6, 1),
+       (3, 7, 2),
+       (4, 8, 3),
+       (4, 9, 1),
+       (5, 10, 1);
