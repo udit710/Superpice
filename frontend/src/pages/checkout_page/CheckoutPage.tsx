@@ -106,14 +106,22 @@ const CheckoutPage = () => {
   }
 
   
-  async function setupPage(){
-    await fetchData();
-    calculateTotal();
-  }
+  // async function setupPage(){
+  //   await fetchData();
+  //   calculateTotal();
+  // }
 
   useEffect(()=>{
-    setupPage();
+    // setupPage();
+    fetchData();
+
   },[]);
+
+  useEffect(()=>{
+    // setupPage();
+    // fetchData();
+    calculateTotal();
+  },[product_and_quantity]);
 
   return (
     <>
