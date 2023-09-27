@@ -47,4 +47,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("SELECT p FROM Product p WHERE lower(p.category.categoryName) LIKE lower('%'||?1||'%')")
     List<Product> findAllByCategoryName(String categoryName);
+
+    @Query("SELECT p FROM Product p JOIN p.details pd WHERE pd.discount <= ?1 and pd.discount >= ?1 - 30")
+    List<Product> findAllByProductDetailDiscount(Integer discount);
 }
