@@ -1,0 +1,14 @@
+.main-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: left;
+}
+
+.left-container{
+    width: 50vw;
+}
+
+.right-container{
+    width: 30vw;
+}

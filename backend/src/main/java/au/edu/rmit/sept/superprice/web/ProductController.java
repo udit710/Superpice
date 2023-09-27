@@ -65,4 +65,10 @@ public class ProductController {
     public List<Product> getProductsByCategoryName(@PathVariable String name){
         return productService.getProductsByCategoryName(name);
     }
+
+    @GetMapping("/offer/{discount}")
+    public List<Product> getProductsByProductDetailsDiscount(@PathVariable Integer discount){
+    return productService.getProductsByProductDetailsDiscount(discount);
+    }
+
 }

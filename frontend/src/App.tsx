@@ -13,6 +13,7 @@ import Homepage from './pages/homepage';
 import ProductDetail from './pages/product_detail/ProductDetail';
 import SearchResults from './pages/searchResults/searchResults';
 import OfferList from './components/offerList/offerList';
+import CheckoutPage from './pages/checkout_page/CheckoutPage';
 // import ResultList from './components/searchResults/resultList';
 
 
@@ -22,18 +23,16 @@ function App() {
         <div className='pg-content'>
       <Navbar/>
       {/* <div className='space'></div> */}
-      
-      {/**IDK how to do next.js routing so i did this for the time being */}
 
       {/**IMPORTANT: Also need to add path to index.tsx */}
       {/**See index.tsx for mor info */}
-
         <Routes>
           <Route path='/ProductDetail/:id' element={<ProductDetail/>}/>
           <Route path='/search' element={<SearchResults searchItem=''/>} />
           <Route path='/' element={<Homepage/>}>
-            <Route path=":discount" element={<OfferList/>}/>
+            <Route path="/offer/:discount" element={<OfferList/>}/>
           </Route>
+          <Route path="/checkout-page" element={<CheckoutPage/>}></Route>
         </Routes>
       </div>
 

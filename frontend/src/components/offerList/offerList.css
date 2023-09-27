@@ -3,4 +3,21 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
+    flex-wrap: wrap;
+    row-gap: 30px;
+}
+
+.card_container{
+    transition: all 0.2s;
+}
+.card_container:hover{
+    transform: scale(1.1, 1.1); 
+    box-shadow: 1px 1px 10px 1px grey;
+
+}
+
+/* Remove text decoration */
+.link-style {
+    text-decoration: none;
+    color: inherit; /* Use the parent's text color */
 }

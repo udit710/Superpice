@@ -80,4 +80,9 @@ public class ProductService {
     public List<Product> getProductsByCategoryName(String categoryName){
         return productRepository.findByProductName(categoryName);
     }
+
+    public List<Product> getProductsByProductDetailsDiscount(Integer discount){
+        return productRepository.findAllByProductDetailDiscount(discount);
+        }
+        
 }
