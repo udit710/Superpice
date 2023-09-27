@@ -29,7 +29,7 @@ function App() {
           <Route path='/ProductDetail/:id' element={<ProductDetail/>}/>
           <Route path='/search' element={<SearchResults searchItem=''/>} />
           <Route path='/' element={<Homepage/>}>
-            <Route path=":discount" element={<OfferList/>}/>
+            <Route path="/offer/:discount" element={<OfferList/>}/>
           </Route>
         </Routes>
       </div>

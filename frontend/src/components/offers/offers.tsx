@@ -16,10 +16,10 @@ export default function Offers(){
                     
                     { 
                         offerList.map((discount: number) => (
-                            <Card style={{ width: '18rem' }}>
+                            <Card key = {discount} style={{ width: '18rem' }}>
                                 <Card.Body>
                                     <Card.Title><h2>Offer: {discount}%</h2></Card.Title>
-                                    <Link to={`/:${discount}`}><Button variant="primary">Show Offer</Button></Link>
+                                    <Link to={`/offer/${discount}`}><Button variant="primary">Show Offer</Button></Link>
                                 </Card.Body>
                             </Card>
                         ))

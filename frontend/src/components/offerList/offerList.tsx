@@ -5,10 +5,11 @@ import Card from 'react-bootstrap/Card';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./offerList.css"
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default function OfferList() {
     let {discount} = useParams();
-    discount = discount?.substring(1);
+    // discount = discount?.substring(1);
     const [product, setProduct] = useState<Product[]>([]);
 
     useEffect(() => {
@@ -34,14 +35,16 @@ export default function OfferList() {
             <div className="offerlist_container">
                 {
                     product.map(p => (
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={p.images[0].imageUrl}  style={{width: '100%', height: '250px'}}/>
-                            <Card.Body>
-                                <Card.Title>{p.productName}</Card.Title>
-                                <Card.Text>
-                                    {p.description}
-                                </Card.Text>
-                            </Card.Body>
+                        <Card key={p.id} className="card_container" style={{ width: '18rem' }}>
+                            <Link to={`/ProductDetail/${p.id}`} className="link-style">
+                                <Card.Img variant="top" src={p.images[0].imageUrl}  style={{width: '100%', height: '250px'}}/>
+                                <Card.Body>
+                                    <Card.Title>{p.productName}</Card.Title>
+                                    <Card.Text>
+                                        {p.description}
+                                    </Card.Text>
+                                </Card.Body>
+                            </Link>
                         </Card>
                     ))
                 }
