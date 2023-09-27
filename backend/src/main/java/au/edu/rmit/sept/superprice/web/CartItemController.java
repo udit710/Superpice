@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import au.edu.rmit.sept.superprice.model.CartItem;
 import au.edu.rmit.sept.superprice.service.CartItemService;
+import au.edu.rmit.sept.superprice.model.User;
+import au.edu.rmit.sept.superprice.model.ProductDetails;
 
 import java.util.List;
 
