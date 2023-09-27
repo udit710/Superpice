@@ -30,12 +30,12 @@ public class CartItem{
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_details_id", referencedColumnName = "product_details_id")
-    private Long productDetailsId;
+    private ProductDetails productDetailsId;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private Long userId;
+    private User userId;
 
     @Column(name = "quantity")
     private int quantity;
