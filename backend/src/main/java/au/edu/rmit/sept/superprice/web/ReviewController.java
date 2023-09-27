@@ -21,7 +21,7 @@ import au.edu.rmit.sept.superprice.model.Review;
 import au.edu.rmit.sept.superprice.service.ReviewService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/reviews")
 public class ReviewController {
 

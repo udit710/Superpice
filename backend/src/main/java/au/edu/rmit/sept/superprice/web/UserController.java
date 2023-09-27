@@ -8,6 +8,7 @@ import au.edu.rmit.sept.superprice.service.UserService;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/users")
 public class UserController {
 

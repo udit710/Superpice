@@ -8,7 +8,7 @@ COPY mvnw pom.xml ./
 RUN sed -i -e 's/\r$//' ./mvnw
 RUN ./mvnw dependency:go-offline
 COPY ./src ./src
-RUN ./mvnw package
+RUN ./mvnw clean package
 
 # Now run it
 FROM base AS runner

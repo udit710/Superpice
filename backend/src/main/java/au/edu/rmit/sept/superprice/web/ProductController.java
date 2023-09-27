@@ -8,17 +8,17 @@ import au.edu.rmit.sept.superprice.service.ProductService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/products")
 public class ProductController {
-    
+
     private ProductService productService;
 
     @Autowired
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
-    
+
     @GetMapping
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
