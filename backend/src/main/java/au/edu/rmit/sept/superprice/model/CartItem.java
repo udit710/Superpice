@@ -8,8 +8,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import .User;
-import .ProductDetails;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,17 +15,6 @@ import lombok.NoArgsConstructor;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
-// 
-// CREATE TABLE IF NOT EXISTS cart_item (
-//     cart_item_id INT AUTO_INCREMENT PRIMARY KEY,
-//     user_id INT,
-//     product_details_id INT,
-//     quantity INT NOT NULL,
-//     FOREIGN KEY (user_id) REFERENCES app_user(user_id),
-//     FOREIGN KEY (product_details_id) REFERENCES product_details(product_details_id)
-// );
-// 
 @Getter
 @Entity
 @NoArgsConstructor
@@ -43,12 +30,12 @@ public class CartItem{
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_details_id", referencedColumnName = "product_details_id")
-    private ProductDetails product;
+    private Long product_details_id;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private User user;
+    private Long userId;
 
     @Column(name = "quantity")
     private int quantity;

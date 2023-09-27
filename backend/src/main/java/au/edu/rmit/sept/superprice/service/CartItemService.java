@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import au.edu.rmit.sept.superprice.model.CartItem;
 import au.edu.rmit.sept.superprice.repository.CartItemRepository;
+import au.edu.rmit.sept.superprice.model.User;
+import au.edu.rmit.sept.superprice.model.ProductDetails;
 
 import java.util.List;
 
