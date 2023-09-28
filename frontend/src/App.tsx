@@ -14,6 +14,7 @@ import ProductDetail from './pages/product_detail/ProductDetail';
 import SearchResults from './pages/searchResults/searchResults';
 import OfferList from './components/offerList/offerList';
 import CheckoutPage from './pages/checkout_page/CheckoutPage';
+import LoginPage from './pages/login_page/login';
 // import ResultList from './components/searchResults/resultList';
 
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/offer/:discount" element={<OfferList/>}/>
           </Route>
           <Route path="/checkout-page" element={<CheckoutPage/>}></Route>
+          <Route path="/login" element={<LoginPage/>}></Route>
         </Routes>
       </div>
 
