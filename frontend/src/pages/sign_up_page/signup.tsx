@@ -40,7 +40,7 @@ export default function SignUp(){
               </div>
               <div className="input-field">
                   <label htmlFor="password-confirmation">Confirm Password:</label>
-                  <input type="text" id="password-confirmation" name="password-confirmation" placeholder='password confirmation' required></input>
+                  <input type="password" id="password-confirmation" name="password-confirmation" placeholder='password confirmation' required></input>
               </div>
               <button className="signup-button" type="submit">Login</button>
             </div>
