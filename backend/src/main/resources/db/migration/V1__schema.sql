@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS notification (
     notification_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
     message TEXT NOT NULL,
-    type ENUM('INFO', 'WARNING', 'ERROR'),
+    type ENUM('OFFERS', 'ORDER', 'ERROR'),
     date_sent TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES app_user(user_id)
 );
