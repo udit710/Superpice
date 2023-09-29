@@ -4,7 +4,6 @@ import au.edu.rmit.sept.superprice.model.Notification;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import au.edu.rmit.sept.superprice.model.User;
 import au.edu.rmit.sept.superprice.service.NotificationService;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class NotificationController {
     }
 
     @GetMapping("/{id}")
-    public Notification getNotificationById(@PathVariable Integer id) {
+    public Notification getNotificationById(@PathVariable Long id) {
         return notificationService.getNotificationById(id);
     }
 
@@ -35,14 +34,14 @@ public class NotificationController {
         return notificationService.saveNotification(notification);
     }
 
-    @PutMapping("/{id}")
-    public Notification updateNotification(@PathVariable Integer id, @RequestBody Notification notification) {
-        // Logic to update the notification based on the provided ID
-        return notificationService.updateNotification(id);
-    }
+    // @PutMapping("/{id}")
+    // public Notification updateNotification(@PathVariable Long id, @RequestBody Notification notification) {
+    //    // Logic to update the notification based on the provided ID
+    //   return notificationService.updateNotification(id);
+    // }
 
     @DeleteMapping("/{id}")
-    public void deleteNotification(@PathVariable Integer id) {
+    public void deleteNotification(@PathVariable Long id) {
         notificationService.deleteNotification(id);
     }
 }

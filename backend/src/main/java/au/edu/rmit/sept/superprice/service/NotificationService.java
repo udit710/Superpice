@@ -17,8 +17,8 @@ public class NotificationService {
         return notificationRepository.findAll();
     }
 
-    public Notification getNotificationById(Integer Id) {
-        return notificationRepository.findByNotificationId(Id);
+    public Notification getNotificationById(Long Id) {
+        return notificationRepository.findById(Id).orElse(null);
     }
 
 
@@ -26,11 +26,11 @@ public class NotificationService {
         return notificationRepository.save(notification);
     }
 
-    public Notification updateNotification(Integer id) {
-        return notificationRepository.notificationSeen(id);
-    }
+    // public Notification updateNotification(Integer id) {
+    //     return notificationRepository.notificationSeen(id);
+    // }
 
-    public void deleteNotification(Integer id) {
+    public void deleteNotification(Long id) {
         notificationRepository.deleteById(id);
     }
 }
