@@ -19,15 +19,20 @@ public class NotificationController {
     public NotificationController(NotificationService notificationService) {
         this.notificationService = notificationService;
     }
-    
+
+    @GetMapping("/")
+    public List<Notification> getAllNotifications() {
+        return notificationService.getAllNotifications();
+    }
+
     @GetMapping("/{id}")
     public Notification getNotificationById(@PathVariable Integer id) {
         return notificationService.getNotificationById(id);
     }
 
     @PostMapping
-    public Notification createNotification(@RequestBody Notification Notification) {
-        return notificationService.saveNotification(Notification);
+    public Notification createNotification(@RequestBody Notification notification) {
+        return notificationService.saveNotification(notification);
     }
 
     @PutMapping("/{id}")
