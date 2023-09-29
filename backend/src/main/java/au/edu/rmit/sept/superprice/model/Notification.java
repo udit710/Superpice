@@ -7,12 +7,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Enumerated;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.sql.Date;
 
 @Data
 @Entity
@@ -24,20 +27,24 @@ public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "notification_id")
-    private Integer notification_id;
+    private Long notificationId;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private Product user_id;
+    private User userId;
 
     @JoinColumn(name = "message")
     private String message;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    private enum type {OFFERS, ORDER, ERROR};
+    private Type type;
 
     @Column(name = "date_sent")
-    private date date_sent;
+    private Date dateSent;
 
+    public static enum Type {
+        OFFERS, ORDER, ERROR
+    }
 }
