@@ -145,11 +145,11 @@ VALUES (1, 1, 2, 3.00),
 
 -- Populating notification table
 INSERT INTO notification (user_id, message, type)
-VALUES (1, 'Your order has been shipped!', 'INFO'),
-       (2, 'Your order is on its way!', 'INFO'),
-       (3, 'Your order is out for delivery!', 'INFO'),
-       (4, 'Your order has been received and is being processed.', 'INFO'),
-       (5, 'Your order is being prepared.', 'INFO');
+VALUES (1, 'Your order has been shipped!', 'ORDER'),
+       (2, 'Your order is on its way!', 'ORDER'),
+       (3, 'Your order is out for delivery!', 'ORDER'),
+       (4, 'Your order has been received and is being processed.', 'ORDER'),
+       (5, 'Your order is being prepared.', 'ORDER');
 
 
 -- Populating product_details association table
