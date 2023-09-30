@@ -69,10 +69,9 @@ public class UserControllerTest{
             User user = new User(1l, "test", "test", "test", "test", "test", "test", 2l);
 
             when(this.userService.getUsersByUsername("test"))
-                .thenReturn(
-                    List.of(user));
+                .thenReturn(user);
             
-            assertEquals(user, this.userController.getUsersByUsername("test").get(0));
+            assertEquals(user, this.userController.getUsersByUsername("test"));
         }
 
         @Test

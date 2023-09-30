@@ -90,8 +90,13 @@ public class AuthController {
             user.setLastName(lastName);
             user.setPhone(phone);
             user.setPassword(password);
+            user.setAddressId(1l); // TODO CHANGE TO INPUT
     
-            // TODO CHECK IF USER ALREADY EXISTS
+            if (userService.getUsersByUsername(username) != null || 
+                userService.getUsersByEmail(email) != null) {
+                
+                throw new Exception("Username or email already used");
+            }
             
             userService.saveOrUpdateUser(user);
 

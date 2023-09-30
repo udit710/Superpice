@@ -37,7 +37,7 @@ public class UserService implements UserDetailsService{
         userRepository.deleteById(id);
     }
 
-    public List<User> getUsersByUsername(String username) {
+    public User getUsersByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
