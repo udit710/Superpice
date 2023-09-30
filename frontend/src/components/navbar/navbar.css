@@ -27,3 +27,13 @@
     padding-left: 1% !important;
     padding-right: 1% !important;
 }
+
+.user-options {
+    display: flex;
+    align-items: center;
+}
+
+.user-options > a {
+    margin-left: 10px;
+    margin-right: 10px;
+}

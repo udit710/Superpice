@@ -65,7 +65,10 @@ export default class Navbar extends Component {
                   </div>
                 ):
                 (
-                  <a className='nav-link post-nav-items' href='/login'>Login</a>
+                  <div className='post-nav-items user-options'>
+                    <a className='nav-link post-nav-items' href='/login'>Login</a>
+                    <a className='nav-link post-nav-items' href='/signup'>Sign Up</a>
+                  </div>
                 )}
               </div>
           </div>
