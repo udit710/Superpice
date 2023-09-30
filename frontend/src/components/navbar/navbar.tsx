@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import Notifications from './notifications';
-import { Link, Form } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './navbar.css';
 import { BsBell } from 'react-icons/bs';
+import axios from 'axios';
+import { user } from '../../interfaces/user.interface';
 
 export default class Navbar extends Component {
+  state = {
+    isLogedIn: false as boolean,
+    user: null as string | null
+  }
+
   render() {
     return (
       <div className='Navbar'>
@@ -37,7 +44,6 @@ export default class Navbar extends Component {
                     </li>
                     
                 </ul>
-                {/**use 'Form' instead of 'form' to allow data to pass through routers */}
                 <form className="d-flex" role="search" method="get" action="/search">
                     <input name="item" className="form-control me-2" type="search" placeholder="Search" aria-label="Search" required />
                     <button className="btn btn-outline-success" type="submit">Search</button>
@@ -49,12 +55,46 @@ export default class Navbar extends Component {
                   <a aria-label='Notification' className='nav-link dropdown-toggle' role="button" data-bs-toggle="dropdown" href='/#'><BsBell size={25} /></a>
                   <Notifications/>
                 </div>
-
-                <a className='nav-link post-nav-items' href='/#'>Account</a>
+                
+                {this.state.isLogedIn ? (
+                  <div className="dropdown user-dropdown">
+                    <a href='/#' role="button" className='nav-link post-nav-items' data-bs-toggle="dropdown" aria-expanded="false">{this.state.user}</a>
+                    <ul className="dropdown-menu dropdown-menu-end">
+                        <li><a className="dropdown-item" href="/#" onClick={this.logout} >Logout</a></li>
+                    </ul>
+                  </div>
+                ):
+                (
+                  <a className='nav-link post-nav-items' href='/login'>Login</a>
+                )}
               </div>
           </div>
         </nav>
       </div>
     );
   }
+
+  componentDidMount() {
+    const token = window.sessionStorage.getItem('userToken');
+
+    if (token === undefined || token === null) return;
+
+    let currUser: user;
+    axios.post(`${process.env.REACT_APP_API_URL}/api/auth/validate`, { token: token })
+    .then(res => {
+      currUser = res.data;
+      this.setState({ user: currUser.username });
+      this.setState({ isLogedIn: true });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
+  logout = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.sessionStorage.removeItem("userToken");
+    window.location.reload();
+  }
+
 }
