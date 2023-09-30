@@ -15,7 +15,7 @@ export default class Navbar extends Component {
   render() {
     return (
       <div className='Navbar'>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav className="navbar navbar-expand-lg bg-body-tertiary navbar-container">
           <div className="container-fluid nav-content">
               <a className="navbar-brand" href="/#">SUPERPRICE</a>
               
@@ -57,8 +57,8 @@ export default class Navbar extends Component {
                 </div>
                 
                 {this.state.isLogedIn ? (
-                  <div className="dropdown user-dropdown">
-                    <a href='/#' role="button" className='nav-link post-nav-items' data-bs-toggle="dropdown" aria-expanded="false">{this.state.user}</a>
+                  <div className="dropdown post-nav-items">
+                    <a href='/#' role="button" className='nav-link username' data-bs-toggle="dropdown" aria-expanded="false">{this.state.user}</a>
                     <ul className="dropdown-menu dropdown-menu-end">
                         <li><a className="dropdown-item" href="/#" onClick={this.logout} >Logout</a></li>
                     </ul>
