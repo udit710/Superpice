@@ -42,8 +42,10 @@ SuperPrice is a comprehensive application designed to revolutionize the shopping
    ```bash
    cd backend
    ```
+   
+2. Create a `.env` file following the template in `.env.development` file
 
-2. Package and run the backend application:
+3. Package and run the backend application:
    ```bash
    ./mvnw package && java -jar target/superprice-0.0.1-SNAPSHOT.jar
    ```
