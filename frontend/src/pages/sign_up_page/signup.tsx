@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import './signup.css';
 import { Outlet } from 'react-router';
 import axios from 'axios';
@@ -12,6 +12,10 @@ export default function SignUp(){
   const [username, setUsername] = useState(null as string | null);
   const [password, setPassword] = useState(null as string | null);
   const [conf, setConf] = useState(null as string | null);
+
+  const search = window.location.search;
+  const params = new URLSearchParams(search);
+	const error = params.get('error');
 
   return (
     <div className='signup'>
@@ -53,6 +57,7 @@ export default function SignUp(){
                   <label htmlFor="password-confirmation">Confirm Password:</label>
                   <input type="password" id="password-confirmation" name="password-confirmation" placeholder='password confirmation' required onChange={(e) => {setConf(e.target.value)}} ></input>
               </div>
+              {errorMessage(error)}
               <button className="signup-button" type="submit">Login</button>
             </div>
         </form>
@@ -64,7 +69,10 @@ export default function SignUp(){
   function postSignUp(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (password !== conf) return;
+    if (password !== conf) {
+      window.location.href = `/signup?error=0`; 
+      return;
+    }
 
     const inputs = {
       username: username,
@@ -80,7 +88,25 @@ export default function SignUp(){
       window.location.href = `/login`;
     })
     .catch(err => {
-      window.location.reload();
+      window.location.href = `/signup?error=1`;
     });
+  }
+
+  function errorMessage(error: string | null): ReactElement | null {
+    if (error === '0') {
+      return (
+        <div className="alert alert-danger" role="alert">
+          Passwords do not match!
+        </div>
+      )
+    }
+    if (error === '1') {
+      return (
+        <div className="alert alert-danger" role="alert">
+          Username or Email already used!
+        </div>
+      )
+    }
+    return null;
   }
 }

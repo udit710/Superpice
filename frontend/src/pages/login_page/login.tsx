@@ -8,6 +8,10 @@ export default function Login(){
   const [email, setEmail] = useState("" as string);
   const [password, setPassword] = useState("" as string);
 
+  const search = window.location.search;
+  const params = new URLSearchParams(search);
+	const error = params.get('error');
+
   return (
     <div className='login'>
       <div className='login-header'>
@@ -22,6 +26,12 @@ export default function Login(){
                   <label htmlFor="password">Password:</label>
                   <input type="password" id="password" name="password" placeholder='password' required onChange={(e) => {setPassword(e.target.value)}} ></input>
               </div>
+              {error === 'true' ? (
+                <div className="alert alert-danger" role="alert">
+                  Incorrect Email or Password!
+                </div>
+              ):
+              (<div />)}
               <button className="login-button" type="submit">Login</button>
             </div>
         </form>
@@ -51,7 +61,7 @@ export default function Login(){
     })
     .catch(err => {
       // console.log(err);
-      window.location.reload();
+      window.location.href = `/login?error=true`;
     });
   }
 }
