@@ -87,11 +87,10 @@ public class UserControllerTest{
             User user = new User(1l, "test", "test", "test", "test", "test", "test", 2l);
 
             when(this.userService.getUsersByEmail("test"))
-                .thenReturn(
-                    List.of(user));
+                .thenReturn(user);
             
-            assertEquals(user, this.userController.getUsersByEmail("test").get(0));
-        }
+            assertEquals(user, this.userController.getUsersByEmail("test"));
+        } 
 
         @Test
         void should_return_null_when_user_email_not_found() {
