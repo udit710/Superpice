@@ -66,7 +66,8 @@ export default class ProductReview extends Component<ProductReviewProps>{
         this.setState({ review: e.target.value });
     }
 
-    onDelete = () => {
+    onDelete = (e: React.MouseEvent) => {
+        e.preventDefault();
         axios.delete(`${process.env.REACT_APP_API_URL}/api/reviews/${this.props.id}`)
         .then(res => {
             window.location.reload();
