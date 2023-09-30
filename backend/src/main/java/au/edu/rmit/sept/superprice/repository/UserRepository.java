@@ -20,7 +20,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByUsername(String username);
 
     @Query("SELECT u FROM User u WHERE u.email = ?1")
-    List<User> findByEmail(String email);
+    User findByEmail(String email);
 
     @Query("SELECT u FROM User u WHERE u.firstName = ?1")
     List<User> findByFirstName(String firstName);
