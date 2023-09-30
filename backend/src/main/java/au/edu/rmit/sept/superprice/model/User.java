@@ -10,7 +10,6 @@ import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
@@ -57,13 +56,4 @@ public class User {
         this.email = email;
     }
 
-    public User(String username, String password, String email, String firstName, String lastName, String phone, Long addressId) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.addressId = addressId;
-    }
 }

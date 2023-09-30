@@ -65,9 +65,6 @@ public class UserService implements UserDetailsService{
     public UserDetails loadUserByUsername(String email) {
         User user = userRepository.findByEmail(email);
 
-        // if (user == null) throw new Exception("wtf");
-        // user.setEmail("email");
-        // List<String> roles 
         UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
             .username(user.getEmail())
             .password(user.getPassword())

@@ -45,11 +45,6 @@ public class AuthController {
         this.userService = userService;
     }
 
-    // @GetMapping("/login")
-    // public String test() {
-    //     return "wow";
-    // }
-    
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody ObjectNode details) {
         try {
@@ -66,17 +61,14 @@ public class AuthController {
             LoginResponse loginResponse = new LoginResponse(email, token, HttpStatus.OK, "Success");
 
             return ResponseEntity.ok(loginResponse);
-            // return "ok";
         }
         catch (BadCredentialsException err) {
             LoginResponse loginResponse = new LoginResponse(HttpStatus.BAD_REQUEST, "Incorrect username/password");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(loginResponse);
-            // return "wrong";
         }
         catch (Exception err) {
             LoginResponse loginResponse = new LoginResponse(HttpStatus.BAD_REQUEST, err.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(loginResponse);
-            // return "what";
         }
     }
 
@@ -108,6 +100,7 @@ public class AuthController {
         catch (NoSuchAlgorithmException err) {
             return HttpStatus.INTERNAL_SERVER_ERROR;
         }
+        // Exception if username or email already exists
         catch (Exception err) {
             return HttpStatus.BAD_REQUEST;
         }

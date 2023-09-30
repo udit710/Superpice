@@ -39,8 +39,6 @@ public class Config {
         httpSecurity.csrf().disable()
             .authorizeRequests()
             .requestMatchers(mvc.pattern("/**")).permitAll()
-            // .requestMatchers(mvc.pattern("/h2-console/**")).permitAll()
-            // .requestMatchers("/h2-console/**").permitAll()
             .anyRequest().authenticated()
             .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         

@@ -19,8 +19,6 @@ import jakarta.servlet.http.HttpServletRequest;
 @Component
 public class JwtUtil {
     
-    // Environment env;
-
     private final String secret_key;
     private long accessTokenValidity = 60*60*1000;
 
@@ -30,8 +28,6 @@ public class JwtUtil {
     private final String TOKEN_PREFIX = "Bearer ";
 
     public JwtUtil(Environment env) {
-        // this.env = env;
-        // System.out.println(env.getProperty("secret_key"));
         this.secret_key = env.getProperty("secret_key");
         jwtParser = Jwts.parser().setSigningKey(secret_key);
     }
@@ -86,8 +82,4 @@ public class JwtUtil {
     public String getEmail(Claims claims) {
         return claims.getSubject();
     }
-
-    // private List<String> getRoles(Claims claims) {
-    //     return (List<String>) claims.get("roles");
-    // }
 }
