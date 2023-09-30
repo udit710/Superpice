@@ -84,33 +84,33 @@ public class UserServiceTest {
     @Test
     void should_return_users_by_UserName() {
         when(this.userRepository.findByUsername("test"))
-            .thenReturn(List.of(new User()));
+            .thenReturn(new User());
         
-        assertEquals(1, this.userService.getUsersByUsername("test").size());
+        assertNotNull(this.userService.getUsersByUsername("test"));
     }
 
     @Test
     void should_return_empty_list_when_no_user_exists_with_userName() {
         when(this.userRepository.findByUsername("test"))
-            .thenReturn(new ArrayList<User>());
+            .thenReturn(null);
         
-        assertEquals(0, this.userService.getUsersByUsername("test").size());
+        assertNull(this.userService.getUsersByUsername("test"));
     }
 
     @Test
     void should_return_users_by_Email() {
         when(this.userRepository.findByEmail("test"))
-            .thenReturn(List.of(new User()));
+            .thenReturn(new User());
         
-        assertEquals(1, this.userService.getUsersByEmail("test").size());
+        assertNotNull(this.userService.getUsersByEmail("test"));
     }
 
     @Test
     void should_return_empty_list_when_no_user_exists_with_Email() {
         when(this.userRepository.findByEmail("test"))
-            .thenReturn(new ArrayList<User>());
+            .thenReturn(null);
         
-        assertEquals(0, this.userService.getUsersByEmail("test").size());
+        assertNull(this.userService.getUsersByEmail("test"));
     }
 
     @Test

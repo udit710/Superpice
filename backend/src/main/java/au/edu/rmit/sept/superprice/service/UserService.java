@@ -2,6 +2,8 @@ package au.edu.rmit.sept.superprice.service;
 
 import au.edu.rmit.sept.superprice.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 // import au.edu.rmit.sept.superprice.model.User;
 import au.edu.rmit.sept.superprice.repository.UserRepository;
@@ -9,7 +11,7 @@ import au.edu.rmit.sept.superprice.repository.UserRepository;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService{
 
     private UserRepository userRepository;
 
@@ -35,11 +37,11 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public List<User> getUsersByUsername(String username) {
+    public User getUsersByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-    public List<User> getUsersByEmail(String email) {
+    public User getUsersByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
@@ -57,6 +59,18 @@ public class UserService {
 
     public List<User> getUsersByAddressId(Long addressId) {
         return userRepository.findByAddressId(addressId);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) {
+        User user = userRepository.findByEmail(email);
+
+        UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
+            .username(user.getEmail())
+            .password(user.getPassword())
+            .build();
+        
+        return userDetails;
     }
     
 }
