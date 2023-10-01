@@ -73,7 +73,7 @@ public class AuthController {
     }
 
     @PostMapping("/sign-up")
-    public HttpStatus signUp(@RequestBody ObjectNode details) {
+    public ResponseEntity<HttpStatus> signUp(@RequestBody ObjectNode details) {
         try {
             String username = details.get("username").asText();
             String email = details.get("email").asText();
@@ -100,14 +100,14 @@ public class AuthController {
             
             userService.saveOrUpdateUser(user);
 
-            return HttpStatus.OK;        
+            return ResponseEntity.ok(HttpStatus.OK);        
         }
         catch (NoSuchAlgorithmException err) {
-            return HttpStatus.INTERNAL_SERVER_ERROR;
+            return ResponseEntity.status(500).build();
         }
         // Exception if username or email already exists
         catch (Exception err) {
-            return HttpStatus.BAD_REQUEST;
+            return ResponseEntity.status(400).build();
         }
 
     }
