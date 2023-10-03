@@ -1,8 +1,13 @@
-.OffersPage > h1 {
+.OffersPage > h1, .OffersPage > input {
     margin-bottom: 50px;
-    display: flex;
-    justify-content: center;
-    width: 100%;
+}
+
+.OffersPage > input {
+    width: 50%;
+}
+
+.min-label {
+    font-size: large;
 }
 
 .offers-cards {
