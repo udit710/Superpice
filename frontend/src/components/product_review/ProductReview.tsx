@@ -2,16 +2,19 @@ import { Component } from "react";
 import axios from "axios";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import "./ProductReview.css"
+import { user } from "../../interfaces/user.interface";
 
 interface ProductReviewProps {
     id: number;
     rating: number;
     body: string;
+    user: number;
 }
 
 export default class ProductReview extends Component<ProductReviewProps>{
     state = {
         review: null as string | null,
+        username: null as string | null,
     };
 
     render() {
@@ -20,6 +23,7 @@ export default class ProductReview extends Component<ProductReviewProps>{
         return (
             <div key={id} className="card mb-3" data-testid="productreview">
                 <div className="card-body">
+                    <p className="card-user-name">{ this.state.username }</p>
                     <h5 className="card-title" data-testid="rating" >Rating: {rating}/5</h5>
                     <p className="card-text" data-testid="comment" >{body}</p>
 
@@ -79,6 +83,14 @@ export default class ProductReview extends Component<ProductReviewProps>{
         axios.put(`${process.env.REACT_APP_API_URL}/api/reviews/${this.props.id}`, { comment: this.state.review })
         .then(res => {
             window.location.reload();
+        });
+    }
+
+    componentDidMount() {
+        axios.get(`${process.env.REACT_APP_API_URL}/api/users/${this.props.user}`)
+        .then(res => {
+            const user: user = res.data;
+            this.setState({ username: user.username})
         });
     }
 }

@@ -145,7 +145,8 @@ export default class ProductDetail extends Component {
                             {reviews.map(review => (
                                 <ProductReview id = {review.reviewId}
                                 rating = {review.rating}
-                                body = {review.comment}/>
+                                body = {review.comment}
+                                user = {review.userId} />
                             ))}
                         </div>
                     </div>
