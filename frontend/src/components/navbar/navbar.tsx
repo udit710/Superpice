@@ -40,7 +40,7 @@ export default class Navbar extends Component {
                     </li>
 
                     <li className="nav-item">
-                      <a className="nav-link" href="/#">Current Sales</a>
+                      <a className="nav-link" href="/current-offers">Current Sales</a>
                     </li>
                     
                 </ul>
