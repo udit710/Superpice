@@ -96,6 +96,9 @@ export default class ProductReview extends Component<ProductReviewProps>{
         .then(res => {
             const user: user = res.data;
             this.setState({ username: user.username})
+        })
+        .catch(err => {
+            console.log(err);
         });
     }
 }
