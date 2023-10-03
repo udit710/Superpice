@@ -47,8 +47,10 @@ export default function OffersPage() {
 			<h1>Current Offers</h1>
 
 			<label htmlFor="min-discount" className="form-label min-label">Minimum Discount</label><br/>
-			<input type="range" className="form-range" min="0" max="100" id="min-discount" defaultValue={minDiscountOption} onChange={e => {setMinDiscountOption(+e.target.value)}} />
-			<p>{ minDiscountOption }%</p>
+			<div className='min-slider'>
+				<input type="range" className="form-range slider" min="0" max="100" id="min-discount" defaultValue={minDiscountOption} onChange={e => {setMinDiscountOption(+e.target.value)}} />
+				<p>{ minDiscountOption }%</p>
+			</div>
 
 			<div className='offers-cards'>
 				{maxDiscount.map(p => {

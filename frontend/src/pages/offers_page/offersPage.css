@@ -2,8 +2,19 @@
     margin-bottom: 50px;
 }
 
-.OffersPage > input {
+.min-slider {
+    display: flex;
+    justify-content: center;
+}
+
+.min-slider > input {
     width: 50%;
+}
+
+.min-slider > p {
+    margin-left: 1%;
+    font-weight: bold;
+    font-size: large;
 }
 
 .min-label {
