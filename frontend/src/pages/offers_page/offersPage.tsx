@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Product } from '../../interfaces/product.interface'
 import axios from 'axios'
 import OffersCard from '../../components/offers_card/offersCard';
+import './offersPage.css';
 
 interface maxProductDiscount {
 	product: Product;
@@ -40,11 +41,11 @@ export default function OffersPage() {
 	return (
 		<div className='OffersPage'>
 			<h1>Current Offers</h1>
-
-			{maxDiscount.map(p => (
-				// <p>{ p.maxDiscount }</p>
-				<OffersCard product={p.product} maxIndex={p.maxDiscount} />
-			))}
+			<div className='offers-cards'>
+				{maxDiscount.map(p => (
+					<OffersCard product={p.product} maxIndex={p.maxDiscount} />
+				))}
+			</div>
 			
 		</div>
 	)
