@@ -199,7 +199,7 @@ export default class ProductDetail extends Component {
     postReview = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const rev = {
-            userId: 1,
+            userId: this.state.userId,
             productId: this.state.product?.id,
             rating: this.state.rating,
             comment: this.state.review,

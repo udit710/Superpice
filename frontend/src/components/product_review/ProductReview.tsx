@@ -24,7 +24,7 @@ export default class ProductReview extends Component<ProductReviewProps>{
         return (
             <div key={id} className="card mb-3" data-testid="productreview">
                 <div className="card-body">
-                    <p className="card-user-name">By { this.state.username }</p>
+                    <p className="card-user-name">By { this.state.username } {isUser ? "(You)" : ""}</p>
                     <h5 className="card-title" data-testid="rating" >Rating: {rating}/5</h5>
                     <p className="card-text" data-testid="comment" >{body}</p>
 
