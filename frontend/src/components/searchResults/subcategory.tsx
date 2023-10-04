@@ -5,6 +5,7 @@ import { SubCategory } from '../../interfaces/subcategory.interface';
 export default class Subcategory extends Component<{subcategories: SubCategory[]}> {
 
   render() {
+	console.log(this.props.subcategories.length);
 	const subcategories = this.dataToElements();
     return (
       <div className='Subcategory' data-testid='subcategory'>
