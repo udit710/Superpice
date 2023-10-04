@@ -30,8 +30,8 @@ export default function OfferList() {
     return (
         <>  
             <hr/>
-            <h2>~ Our Products ~</h2>
-            <div className="offerlist_container">
+            <h2 data-testid='offer-title'>~ Our Products ~</h2>
+            <div data-testid='offer-container' className="offerlist_container">
                 {   
                     product.map(p => (
                         <Card key={p.id} className="card_container" style={{ width: '18rem' }}>

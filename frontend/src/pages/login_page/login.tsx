@@ -15,14 +15,14 @@ export default function Login(){
   return (
     <div className='login'>
       <div className='login-header'>
-        <h1>LOG IN</h1>
+        <h1 data-testid='login-title'>LOG IN</h1>
         <form id='login-form' onSubmit={postLogin}>
           <div className='form-container'>
-              <div className="input-field">
+              <div data-testid='login-email' className="input-field">
                   <label htmlFor="email">Email:</label>
                   <input type="text" id="email" name="email" placeholder='email' required onChange={(e) => {setEmail(e.target.value)}} ></input>
               </div>
-              <div className="input-field">
+              <div data-testid='login-pass'className="input-field">
                   <label htmlFor="password">Password:</label>
                   <input type="password" id="password" name="password" placeholder='password' required onChange={(e) => {setPassword(e.target.value)}} ></input>
               </div>
@@ -32,7 +32,7 @@ export default function Login(){
                 </div>
               ):
               (<div />)}
-              <button className="login-button" type="submit">Login</button>
+              <button data-testid='login-submit'className="login-button" type="submit">Login</button>
             </div>
         </form>
         <Outlet/>

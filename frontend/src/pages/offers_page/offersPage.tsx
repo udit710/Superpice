@@ -20,6 +20,9 @@ export default function OffersPage() {
 		axios.get(`${process.env.REACT_APP_API_URL}/api/products/discounts`)
 		.then(res => {
 			setProducts(res.data);
+		})
+		.catch(err => {
+			console.error(err);
 		});
 		
 	}, []);
@@ -44,10 +47,10 @@ export default function OffersPage() {
 
 	return (
 		<div className='OffersPage'>
-			<h1>Current Offers</h1>
+			<h1 data-testid='offers-page-title'>Current Offers</h1>
 
 			<label htmlFor="min-discount" className="form-label min-label">Minimum Discount</label><br/>
-			<div className='min-slider'>
+			<div data-testid='offers-page-slider' className='min-slider'>
 				<input type="range" className="form-range slider" min="0" max="100" id="min-discount" defaultValue={minDiscountOption} onChange={e => {setMinDiscountOption(+e.target.value)}} />
 				<p>{ minDiscountOption }%</p>
 			</div>
