@@ -49,7 +49,9 @@ export default class Navbar extends Component {
                     <button className="btn btn-outline-success" type="submit">Search</button>
                 </form>
 
-                <a className='nav-link post-nav-items' href='/#'>Saved</a>
+                <li className="nav-item">
+                      <a className="nav-link" href="/cart-page">Cart</a>
+                    </li>
 
                 <div className='post-nav-items dropdown'>
                   <a aria-label='Notification' className='nav-link dropdown-toggle' role="button" data-bs-toggle="dropdown" href='/#'><BsBell size={25} /></a>

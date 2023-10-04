@@ -27,12 +27,12 @@ public class CartItem{
     @Column(name = "cart_item_id")
     private Long id;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_details_id", referencedColumnName = "product_details_id")
     private ProductDetails productDetailsId;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User userId;
