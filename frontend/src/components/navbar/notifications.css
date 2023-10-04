@@ -22,4 +22,11 @@
     border-bottom: 1px solid rgba(0,0,0,.1);
 }
 
+.notif p{
+    margin: 0;
+}
+
+
+.notif:hover {
+    background-color: rgba(90, 86, 86, 0.1);
 }
