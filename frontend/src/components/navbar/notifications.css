@@ -3,14 +3,15 @@
     text-align: center;
     max-height: 500px;
     overflow: auto;
-    overflow-y: scroll
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .notifications-heading {
     width: 30rem;
-    margin-top: 0;
     padding-left: 2rem;
-    position: top;
+    position: sticky;
+    top: 0;
     background: white;
     box-shadow: 0 8px 4px -4px rgba(0,0,0,.1);
 }
