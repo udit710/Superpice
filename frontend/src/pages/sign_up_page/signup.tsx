@@ -20,20 +20,20 @@ export default function SignUp(){
   return (
     <div className='signup'>
       <div className='signup-header'>
-        <h1>SIGN UP</h1>
+        <h1 data-testid='signup-title'>SIGN UP</h1>
       </div>
       <div className='signup-form'>
         <form id='signup-form' onSubmit={postSignUp} >
           <div className='form-container'>
-              <div className="input-field">
+              <div data-testid='signup-first' className="input-field">
                   <label htmlFor="first-name">First name:</label>
                   <input type="text" id="first-name" name="first-name" placeholder='first name' required onChange={(e) => {setFirst(e.target.value)}} ></input>
               </div>
-              <div className="input-field">
+              <div data-testid='signup-last' className="input-field">
                   <label htmlFor="last-name">Last name:</label>
                   <input type="text" id="last-name" name="last-name" placeholder='last name' required onChange={(e) => {setLast(e.target.value)}} ></input>
               </div>
-              <div className="input-field">
+              <div data-testid='signup-email' className="input-field">
                   <label htmlFor="email">Email:</label>
                   <input type="text" id="email" name="email" placeholder='email' required onChange={(e) => {setEmail(e.target.value)}} ></input>
               </div>
@@ -41,24 +41,24 @@ export default function SignUp(){
                   <label htmlFor="email-confirmation">Confirm Email:</label>
                   <input type="text" id="email-confirmation" name="email-confirmation" placeholder='email confirmation' required></input>
               </div> */}
-              <div className="input-field">
+              <div data-testid='signup-phone' className="input-field">
                   <label htmlFor="phone">Telephone:</label>
                   <input type="text" id="phone" name="phone" placeholder='phone' required onChange={(e) => {setPhone(e.target.value)}} ></input>
               </div>
-              <div className="input-field">
+              <div data-testid='signup-username' className="input-field">
                   <label htmlFor="username">Username:</label>
                   <input type="text" id="username" name="username" placeholder='username' required onChange={(e) => {setUsername(e.target.value)}} ></input>
               </div>
-              <div className="input-field">
+              <div data-testid='signup-pass' className="input-field">
                   <label htmlFor="password">Password:</label>
                   <input type="password" id="password" name="password" placeholder='password' required onChange={(e) => {setPassword(e.target.value)}} ></input>
               </div>
-              <div className="input-field">
+              <div data-testid='signup-pass-conf' className="input-field">
                   <label htmlFor="password-confirmation">Confirm Password:</label>
                   <input type="password" id="password-confirmation" name="password-confirmation" placeholder='password confirmation' required onChange={(e) => {setConf(e.target.value)}} ></input>
               </div>
               {errorMessage(error)}
-              <button className="signup-button" type="submit">Login</button>
+              <button data-testid='signup-submit' className="signup-button" type="submit">Login</button>
             </div>
         </form>
       </div>
