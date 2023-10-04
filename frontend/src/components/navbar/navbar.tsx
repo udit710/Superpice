@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Notifications from './notifications';
-import { Link } from 'react-router-dom';
 import './navbar.css';
 import { BsBell } from 'react-icons/bs';
 import axios from 'axios';
@@ -17,12 +16,12 @@ export default class Navbar extends Component {
       <div className='Navbar'>
         <nav className="navbar navbar-expand-lg bg-body-tertiary navbar-container">
           <div className="container-fluid nav-content">
-              <a className="navbar-brand" href="/#">SUPERPRICE</a>
+              <a data-testid='app-title' className="navbar-brand" href="/#">SUPERPRICE</a>
               
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-3 mb-lg-0">
                     <li className="nav-item">
-                      <a className="nav-link active" aria-current="page" href="/#">Home</a>
+                      <a data-testid='app-home-link' className="nav-link active" aria-current="page" href="/#">Home</a>
                     </li>
                     
                     <li className="nav-item dropdown">
@@ -33,23 +32,23 @@ export default class Navbar extends Component {
                         <li><a className="dropdown-item" href="/#">Action</a></li>
                         <li><hr className="dropdown-divider"/></li>
                         {/**WARNING: REMOVE LINK FROM HERE ---Added By Rashik */}
-                        <li><Link to="/checkout-page"><a className="dropdown-item" href="/#">Checkout-Page</a> </Link></li>
+                        <li><a href="/checkout-page">Checkout-Page</a></li>
                         <li><hr className="dropdown-divider"/></li>
                         <li><a className="dropdown-item" href="/#">Something else here</a></li>
                       </ul>
                     </li>
 
                     <li className="nav-item">
-                      <a className="nav-link" href="/current-offers">Current Sales</a>
+                      <a data-testid='app-offers-link' className="nav-link" href="/current-offers">Current Sales</a>
                     </li>
                     
                 </ul>
                 <form className="d-flex" role="search" method="get" action="/search">
                     <input name="item" className="form-control me-2" type="search" placeholder="Search" aria-label="Search" required />
-                    <button className="btn btn-outline-success" type="submit">Search</button>
+                    <button data-testid='app-search' className="btn btn-outline-success" type="submit">Search</button>
                 </form>
 
-                <a className='nav-link post-nav-items' href='/#'>Saved</a>
+                <a data-testid='app-saved' className='nav-link post-nav-items' href='/#'>Saved</a>
 
                 <div className='post-nav-items dropdown'>
                   <a aria-label='Notification' className='nav-link dropdown-toggle' role="button" data-bs-toggle="dropdown" href='/#'><BsBell size={25} /></a>
