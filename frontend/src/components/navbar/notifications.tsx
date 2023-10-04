@@ -32,7 +32,7 @@ export default class Notifications extends Component {
 
   render() {
     return (
-      <div className='Notifications'>
+      <div className='Notifications' data-testid='notifs'>
 
         <div className="dropdown-menu dropdown-menu-end notif-dropdown p-0 m-0" >
 
