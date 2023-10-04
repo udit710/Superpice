@@ -17,8 +17,8 @@ export enum OrderStatus {
 }
 
 export enum PaymentMethod{
-    CREDIT_CARD='CREDIT CARD',
+    CREDIT_CARD='CREDIT_CARD',
     PAYPAL='PAYPAL',
-    DEBIT_CARD='DEBIT CARD',
+    DEBIT_CARD='DEBIT_CARD',
     WALLET='WALLET'
 }

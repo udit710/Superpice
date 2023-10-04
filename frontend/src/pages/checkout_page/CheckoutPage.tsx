@@ -3,32 +3,49 @@ import React, { useEffect, useState } from 'react'
 import Address, { AddressType } from '../../interfaces/address.interface';
 import { Cart_Item } from '../../interfaces/cart_item.interface';
 import Product_And_Quantity from '../../interfaces/product_and_quantity.interface';
-import { PaymentMethod } from '../../interfaces/order.interface';
+import { OrderStatus, PaymentMethod } from '../../interfaces/order.interface';
 import { Product } from '../../interfaces/product.interface';
 import './CheckoutPage.css'
 import Form from 'react-bootstrap/Form';
 import { Button, Table } from 'react-bootstrap';
+import { user } from '../../interfaces/user.interface';
+import { Product_Details } from '../../interfaces/product_details.interface';
+import { useNavigate } from 'react-router';
 
 
 const CheckoutPage = () => {
-  const user_id: number = 1; //get user id
-  const [total, setTotal] = useState(0); //to store total value
-  const [product_and_quantity, set_product_and_quantity] = useState([] as Product_And_Quantity[]);
-  let paymentMethod: PaymentMethod;
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
+  const [currUser,  setCurrUser] = useState<user | null>(null); //to store current logged in user
+  const [total, setTotal] = useState(0); //to store total value of the prodcuts
+  const [cartItems, setCartItems] = useState([] as Cart_Item[]); //to store the list of cartItems
+  let paymentMethod: PaymentMethod; //CHECK if it is used??
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<PaymentMethod | null>(null);
   const [user_address, set_user_address] = useState<Address | null>(null);
+  const navigate = useNavigate();
 
-  //TEMP Variable to store products
-  let product_list: Product[];
-
-  //handle order submittion
-  const handleSubmit = (event: any) => {
+  //handle order submition
+  const handleSubmit = async (event: any) => {
     //1. add final order to ORDER Table.
-    //2. show alert that order is submitted
+    await axios.post(`${process.env.REACT_APP_API_URL}/api/orders`, {
+      userId: currUser?.userId,
+      orderDate: new Date(),
+      orderStatus: OrderStatus.PENDING,
+      totalAmount: total,
+      orderAddressId: currUser?.addressId,
+      paymentMethod: selectedPaymentMethod,
+    })
     //3. reduce item quantity
+    // FIX ME: CREATE A PRODUCT DETAIL CONTROLLER
+
     //4. remove items from the cart
+    const deleteCartItems = async ()=>{cartItems.map((item)=>{
+      axios.delete(`${process.env.REACT_APP_API_URL}/api/cartItems/${item.cart_item_id}`)
+    })}
+    await deleteCartItems();
+    setCartItems([]);
     //3. redirect to home-page
-    console.log('order submitted');
+    navigate("/");
+    //2. show alert that order is submitted
+    localStorage.setItem('showSubmitedPopUp', 'true');
   };
 
   //handle payment method change
@@ -36,34 +53,27 @@ const CheckoutPage = () => {
     setSelectedPaymentMethod(event.target.value);
   };
 
-  //get minimum price of an item from all its variant
-  function getMinimumPriceForItem(item: Product_And_Quantity): number{
-    let min_price: number = Number.MAX_SAFE_INTEGER;
-      for(const detail of item.product.details){
-        min_price = (detail.price < min_price)? detail.price : min_price;
-      }
-      return min_price
-  }
   //calculate total of the items
   function calculateTotal(){
     let tmp_total = 0;
-    for(const item of product_and_quantity){
-      tmp_total += (item.quantity * getMinimumPriceForItem(item));
+    for(const item of cartItems){
+      tmp_total += (item.quantity * item.product_id.price);
     }
     setTotal(tmp_total)
   }
   
   //fetch data
   async function fetchData(){
-    //fetch address
-    // await axios.get<Address>(`${process.env.REACT_APP_API_URL}/api/user/address/${user_id}`)
+    //FIX THIS: GET REAL ADDRESSS
+    //fetch user address
+    // await axios.get<user>(`${process.env.REACT_APP_API_URL}/api/users/${currUser?.userId}`)
     // .then((response)=>{
-    //   user_address = response.data;
+    //   set_user_address(response.data.address);
     // })
     // .catch((error)=>{
     //   console.error('Error fetching address using user id: ', error)
     // });
-    //TEMP: user addresse
+     //TEMP: user addresse
     set_user_address({ 
       id: 1,
       addressLine1: '715 Sydney Rd',
@@ -75,53 +85,38 @@ const CheckoutPage = () => {
       addressType: AddressType.STORE
     });
       
-
-    //fetch cart items list
-    // await axios.get<Product_And_Quantity[]>(`${process.env.REACT_APP_API_URL}/api/cart/${user_id}`)
-    // .then((response)=>{
-    //   product_and_quantity = response.data;
-    // })
-    // .catch((error)=>{
-    //   console.error('Error fetching all cart items using user id: ', error)
-    // });
-
-    //TEMP CART ITEMS
-    await axios.get<Product[]>(`${process.env.REACT_APP_API_URL}/api/products/offer/50`)
-                .then((response) => {product_list = response.data})
+    //Fetch Cart_Items for a UserID
+    await axios.get<Cart_Item[]>(`${process.env.REACT_APP_API_URL}/api/cartItems/userId/${currUser?.userId}`)
+                .then((response) => {setCartItems(response.data)})
                 .catch ((error)=>{
-                    console.error('Error fetching temp product data at checkout:', error)
+                    console.error('Error from Fetching Cart Items by UserId:', error)
                 });
-
-    set_product_and_quantity([
-        {
-          product: product_list[0],
-          quantity: 2
-        },
-        {
-          product: product_list[1],
-          quantity: 2
-        }
-      ]
-    )
   }
 
-  
-  // async function setupPage(){
-  //   await fetchData();
-  //   calculateTotal();
-  // }
+  //setup user
+  async function setupUser(){
+    const token = window.sessionStorage.getItem('userToken');
+
+    if (token === undefined || token === null) return;
+    
+    await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/validate`, { token: token })
+    .then(res => {setCurrUser(res.data)})
+    .catch(err => {
+      console.log(err);
+    });
+  }
 
   useEffect(()=>{
-    // setupPage();
-    fetchData();
-
+    setupUser();
   },[]);
 
   useEffect(()=>{
-    // setupPage();
-    // fetchData();
+    fetchData();
+  }, [currUser]);
+
+  useEffect(()=>{
     calculateTotal();
-  },[product_and_quantity]);
+  },[cartItems]);
 
   return (
     <>
@@ -173,21 +168,17 @@ const CheckoutPage = () => {
             </thead>
             <tbody>
               {
-                // use table here instead to create structure
-                product_and_quantity ? (
-                  product_and_quantity.map((item) => (
-                    // Render each item here
-                    <tr key={item.product.id}>
-                      <td>{item.product.productName} </td>
-                      <td>{getMinimumPriceForItem(item)}</td>
-                      <td>{item.quantity}</td>
-                      <td>{item.quantity * getMinimumPriceForItem(item)}</td>
-                    </tr>
-                  ))
-                ) : (
-                  // Render a loading indicator or placeholder content here
-                  <div>Loading Items...</div>
-                )
+                //List of products in the cart
+                cartItems.map((item) => (
+                  // Render each item here
+                  <tr key={item.cart_item_id}>
+                    <td>{item.product_id.product.productName} </td>
+                    <td>${item.product_id.price}</td>
+                    <td>{item.quantity}</td>
+                    <td>${item.quantity * item.product_id.price}</td>
+                  </tr>
+                ))
+
               }
             </tbody>
           </Table>
@@ -199,7 +190,7 @@ const CheckoutPage = () => {
         <div>
           <h3>Order Summary</h3>
           <h4>Total: {total}</h4>
-          <Button variant="primary">Submit</Button>
+          <Button variant="primary" onClick={handleSubmit}>Submit</Button>
         </div>
         <hr/>
       </div>
