@@ -31,9 +31,7 @@ function App() {
         <Routes>
           <Route path='/ProductDetail/:id' element={<ProductDetail/>}/>
           <Route path='/search' element={<SearchResults searchItem=''/>} />
-          <Route path='/' element={<Homepage/>}>
-            <Route path="/offer/:discount" element={<OfferList/>}/>
-          </Route>
+          <Route path='/' element={<Homepage/>}/>
           <Route path="/checkout-page" element={<CheckoutPage/>}></Route>
           <Route path="/login" element={<LoginPage/>}></Route>
           <Route path="/signup" element={<SignUpPage/>}></Route>

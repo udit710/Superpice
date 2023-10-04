@@ -4,11 +4,11 @@ import { Product } from '../../interfaces/product.interface';
 import Card from 'react-bootstrap/Card';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./offerList.css"
-import { useParams } from 'react-router';
+// import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 export default function OfferList() {
-    let {discount} = useParams();
+    // let {discount} = useParams();
     // discount = discount?.substring(1);
     const [product, setProduct] = useState<Product[]>([]);
 
@@ -16,7 +16,7 @@ export default function OfferList() {
         // Define an asynchronous function inside useEffect
         async function fetchData() {
             // Change Endpoint to get all the products with a particular discount
-            await axios.get<Product[]>(`${process.env.REACT_APP_API_URL}/api/products/offer/${discount}`)
+            await axios.get<Product[]>(`${process.env.REACT_APP_API_URL}/api/products`)
                 .then((response) => setProduct(response.data))
                 .catch ((error)=>{
                     console.error('Error fetching product data:', error)
@@ -25,14 +25,14 @@ export default function OfferList() {
       
         // Call the async function
         fetchData();
-      }, [discount]); 
-    
+      }, []); 
+      console.log(product);
     return (
         <>  
             <hr/>
-            <h2>Offer List: </h2>
+            <h2>~ Our Products ~</h2>
             <div className="offerlist_container">
-                {
+                {   
                     product.map(p => (
                         <Card key={p.id} className="card_container" style={{ width: '18rem' }}>
                             <Link to={`/ProductDetail/${p.id}`} className="link-style">
