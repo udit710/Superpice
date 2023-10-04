@@ -1,13 +1,33 @@
 .notif-dropdown {
     width: 30rem;
     text-align: center;
+    max-height: 500px;
+    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
-.type-groups {
-    display: flex;
-    justify-content: space-evenly;
+.notifications-heading {
+    width: 30rem;
+    padding-left: 2rem;
+    position: sticky;
+    top: 0;
+    background: white;
+    box-shadow: 0 8px 4px -4px rgba(0,0,0,.1);
 }
 
-#order-notifs, #account-notifs {
-    display: none;
+.notif {
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.notif p{
+    margin: 0;
+}
+
+
+.notif:hover {
+    background-color: rgba(90, 86, 86, 0.1);
 }
