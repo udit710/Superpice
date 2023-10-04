@@ -6,9 +6,13 @@
     overflow-y: scroll
 }
 
-.type-groups {
-    display: flex;
-    justify-content: space-evenly;
+.notifications-heading {
+    width: 30rem;
+    margin-top: 0;
+    padding-left: 2rem;
+    position: top;
+    background: white;
+    box-shadow: 0 8px 4px -4px rgba(0,0,0,.1);
 }
 
 #order-notifs, #account-notifs {
