@@ -115,7 +115,7 @@ export default class ProductDetail extends Component {
                                 {product.details.map((detail, index) => (
                                     <tr key={index}>
                                         <td>{detail.store.storeName}</td>
-                                        <td>{detail.discount*100}%</td>
+                                        <td>{detail.discount}%</td>
                                         <td>${detail.price.toFixed(2)}</td>
                                         <td>{detail.available}</td>
                                     </tr>
