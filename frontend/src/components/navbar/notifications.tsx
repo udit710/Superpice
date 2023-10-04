@@ -34,7 +34,7 @@ export default class Notifications extends Component {
     return (
       <div className='Notifications'>
 
-        <div className="dropdown-menu dropdown-menu-end notif-dropdown" >
+        <div className="dropdown-menu dropdown-menu-end notif-dropdown p-0 m-0" >
 
           <div className="notifications-heading">
             <h3>Notifications</h3>
@@ -58,7 +58,6 @@ export default class Notifications extends Component {
                 <p>TYPE</p>
                 <p>timestamp</p>
               </div>
-              
           </div>
         </div>
       </div>
