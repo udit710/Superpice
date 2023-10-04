@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import Homepage from '../pages/homepage';
+import Homepage from '../../pages/homepage';
 import { BrowserRouter } from 'react-router-dom';
 
 describe('Home page', () => {
