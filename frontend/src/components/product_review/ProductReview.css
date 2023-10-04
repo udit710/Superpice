@@ -9,3 +9,12 @@
     text-decoration: none;
     color: rgb(48, 48, 48);
 }
+
+.card-user-name {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 30%;
+    font-size: 14px;
+    font-weight: bold;
+}
