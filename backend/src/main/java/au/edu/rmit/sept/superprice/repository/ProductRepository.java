@@ -50,4 +50,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("SELECT p FROM Product p JOIN p.details pd WHERE pd.discount <= ?1 and pd.discount >= ?1 - 30")
     List<Product> findAllByProductDetailDiscount(Integer discount);
+
+    @Query("SELECT p FROM Product p JOIN p.details pd WHERE pd.discount >= 1")
+    List<Product> findAllThatHaveDiscount();
 }

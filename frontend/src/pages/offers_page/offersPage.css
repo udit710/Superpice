@@ -1,0 +1,28 @@
+.OffersPage > h1, .OffersPage > input {
+    margin-bottom: 50px;
+}
+
+.min-slider {
+    display: flex;
+    justify-content: center;
+}
+
+.min-slider > input {
+    width: 50%;
+}
+
+.min-slider > p {
+    margin-left: 1%;
+    font-weight: bold;
+    font-size: large;
+}
+
+.min-label {
+    font-size: large;
+}
+
+.offers-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
