@@ -8,7 +8,7 @@ export default function Homepage(){
     <div className='home-header'>
       <h1>SUPERPRICE</h1>
       <h5>Your place for shopping smart</h5>
-      <OfferList/>
+      <OfferList data-testid='offerlist' />
     </div>
   )
 }

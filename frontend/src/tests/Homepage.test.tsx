@@ -7,14 +7,23 @@ describe('Home page', () => {
   test('Displays header', () => {
     const view = render(<BrowserRouter><Homepage /></BrowserRouter>);
     expect(view).toBeTruthy()
-    // screen.debug();
+    
+    test('Title', () => {
+      // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
+      const h1 = view.container.querySelector('h1');
+      expect(h1?.textContent).toBe('SUPERPRICE');
+    });
 
-    // Use @testing-library/react's screen utility to query the DOM
-    // const h1 = screen.getByText('SUPERPRICE');
-    // expect(h1).toBeInTheDocument();
+    test('Subtitle', () => {
+      // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
+      const h5 = view.container.querySelector('h5');
+      expect(h5?.textContent).toBe('Your place for shopping smart');
+    });
 
-    // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-    const h1 = view.container.querySelector('h1');
-    expect(h1?.textContent).toBe('SUPERPRICE');
+    test('OfferList', () => {
+      const offer = screen.getByTestId('offerlist');
+      expect(offer).toBeDefined();
+    });
+
   })
 });
