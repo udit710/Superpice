@@ -4,7 +4,7 @@ import { Cart_Item } from "../../interfaces/cart_item.interface";
 import axios from 'axios';
 import { Product } from "../../interfaces/product.interface";
 import './CartPage.css';
-
+import { BsTrash3Fill } from 'react-icons/bs';
 export default class CartPage extends React.Component {
   state = {
     cart_items: [] as Cart_Item[],
@@ -26,6 +26,46 @@ export default class CartPage extends React.Component {
       console.error('Error fetching cart items and products:', error);
     }
   }
+    
+  async putChangeQuantity(cartItem: Cart_Item, change: string) {
+    let new_cart_item = { ...cartItem, quantity: cartItem.quantity + 1 };
+    if (change === '-') {
+    new_cart_item = { ...cartItem, quantity: cartItem.quantity - 1 };
+    }
+    console.log('New cart item:', new_cart_item);
+    axios
+      .put<Cart_Item>(`${process.env.REACT_APP_API_URL}/api/cartItems/${cartItem.id}`, new_cart_item)
+      .then((response) => {
+        const updated_cart_item = response.data;
+        console.log('Updated cart item:', updated_cart_item);
+        const cart_items = this.state.cart_items.map((item) => {
+          if (item.id === updated_cart_item.id) {
+            return updated_cart_item;
+          } else {
+            return item;
+          }
+        });
+        this.setState({ cart_items });
+      })
+      .catch((error) => {
+        console.error('Error updating cart item:', error);
+      });
+  }
+
+  async deleteCartItem(cartItem: Cart_Item) {
+    axios
+      .delete(`${process.env.REACT_APP_API_URL}/api/cartItems/${cartItem.id}`)
+      .then((response) => {
+        console.log('Deleted cart item:', cartItem);
+        const cart_items = this.state.cart_items.filter((item) => item.id !== cartItem.id);
+        this.setState({ cart_items });
+      })
+      .catch((error) => {
+        console.error('Error deleting cart item:', error);
+      });
+  }
+  
+  
 
   
   render() {
@@ -46,11 +86,24 @@ export default class CartPage extends React.Component {
         </a>
       </td>
         <td width={10}>{cart_item.productDetailsId.store.storeName}</td>
-        <td width={10}> <a className='og-price'>${cart_item.productDetailsId.original_price}</a> ${cart_item.productDetailsId.price}</td>
-        <td width={10}>{cart_item.quantity}</td>
-        <td width={10}>${cart_item.productDetailsId.price*cart_item.quantity}</td>
+        <td width={10}> <a className='og-price'>${cart_item.productDetailsId.original_price.toFixed(2)}</a> ${cart_item.productDetailsId.price.toFixed(2)}</td>
+        <td width={10}> 
+          <button className='changeQty' onClick={() => this.putChangeQuantity(cart_item,"-")} disabled={cart_item.quantity <= 1} > - </button> 
+            {cart_item.quantity} 
+          <button className='changeQty' onClick={() => this.putChangeQuantity(cart_item,"+")} disabled={cart_item.quantity >= 10}> + </button>
+          <button className='trash' onClick={() => this.deleteCartItem(cart_item)}>  <BsTrash3Fill /> </button> 
+        </td>
+        <td width={10}>${(cart_item.productDetailsId.price*cart_item.quantity).toFixed(2)}</td>
       </tr>
     );
+
+    function calculateTotal(){
+      let tmp_total = 0;
+      for(const item of cart_items){
+        tmp_total += (item.quantity * item.productDetailsId.price);
+      }
+      return tmp_total.toFixed(2);
+    }
 
     if (cart_items.length === 0) {
       return <h2>Your cart is empty</h2>
@@ -75,8 +128,8 @@ export default class CartPage extends React.Component {
                 {listItems}
               </tbody>
             </Table>
+            <div className='subtotal'>SubTotal : ${calculateTotal()}</div>
           </div>
-          
           </>
         );
       }
