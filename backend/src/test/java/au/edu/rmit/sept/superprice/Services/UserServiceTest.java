@@ -177,4 +177,11 @@ public class UserServiceTest {
         assertEquals(0, this.userService.getUsersByAddressId(1l).size());
     }
 
+    @Test
+    void should_return_UserDetails_object() {
+        when(this.userRepository.findByEmail("email"))
+            .thenReturn(new User(11l,"test","test","email", null, null, null, null));
+        
+        assertNotNull(this.userService.loadUserByUsername("email"));
+    }
 }
