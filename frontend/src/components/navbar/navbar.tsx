@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Notifications from './notifications';
 import './navbar.css';
-import { BsBell } from 'react-icons/bs';
+import { BsBell,BsCart4 } from 'react-icons/bs';
 import axios from 'axios';
 import { user } from '../../interfaces/user.interface';
 
@@ -48,7 +48,9 @@ export default class Navbar extends Component {
                     <button data-testid='app-search' className="btn btn-outline-success" type="submit">Search</button>
                 </form>
 
-                <a data-testid='app-saved' className='nav-link post-nav-items' href='/#'>Saved</a>
+                <span className="post-nav-itemx">
+                      <a data-testid='app-saved' className="nav-link" href="/cart-page"><BsCart4  size={25}/></a>
+                    </span>
 
                 <div className='post-nav-items dropdown'>
                   <a aria-label='Notification' className='nav-link dropdown-toggle' role="button" data-bs-toggle="dropdown" href='/#'><BsBell size={25} /></a>
