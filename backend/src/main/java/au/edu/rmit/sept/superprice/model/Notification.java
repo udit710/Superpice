@@ -24,6 +24,13 @@ import java.sql.Date;
 @Table(name = "NOTIFICATION")
 public class Notification {
 
+    public Notification(Long notifId, User userId, String message, Type type) {
+        this.notificationId = notifId;
+        this.userId = userId;
+        this.message = message;
+        this.type = type;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "notification_id")

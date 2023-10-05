@@ -1,34 +1,28 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
+import axios from 'axios'
 import './notifications.css';
 
+interface Notifs {
+  message: string;
+  type: string;
+  timestamp: string;
+}
+
 export default class Notifications extends Component {
-  // constructor(props: any) {
-  //   super(props);
-  //   this.toggleNotificationTypes = this.toggleNotificationTypes.bind(this);
-  // }
-
-  // componentDidMount(): void {
-  //     const notifications =  document.querySelector('.Notifications') as Element | null;
-  //     notifications?.addEventListener('click', function(event) {
-  //       event.stopPropagation();
-  //    });
-  // }
-  toggleNotificationTypes(e: any) {
-    console.log(e.target.value);
-    const types: string[] = ["discount", "order", "account"];
-
-    if (e.target.value === null || !(e.target.value in types)) return;
-
-    for (let t in types) {
-      const notifs = document.getElementById(t + "-notifs")?.style as CSSStyleDeclaration;
-      if (t === e.target.value) {
-        notifs.display = "block";
-      }
-      else {
-        notifs.display = "none";
-      }
-    }
+  state = {
+    notifs: [] as Notifs[]
   }
+
+  
+  componentDidMount() {
+		axios.get(`${process.env.REACT_APP_API_URL}/api/notifications`)
+		.then(res => {
+			this.setState({ notifs: res.data });
+		})
+    .catch(error => console.error('Error fetching notifications:', error));
+
+  }
+		
 
   render() {
     return (
@@ -41,23 +35,15 @@ export default class Notifications extends Component {
           </div>
 
             <div>
-              <div className='notif'>
-                <p>This is the order message</p>
-                <p>TYPE</p>
-                <p>timestamp</p>
-              </div>
 
+                {this.state.notifs.map(notif => (
               <div className='notif'>
-                <p>This is the order message</p>
-                <p>TYPE</p>
-                <p>timestamp</p>
+                    <p>{notif.message}</p>
+                    <p>{notif.type}</p>
+                    <p>{notif.timestamp}</p>
               </div>
+                ))}
 
-              <div className='notif'>
-                <p>This is the order message</p>
-                <p>TYPE</p>
-                <p>timestamp</p>
-              </div>
           </div>
         </div>
       </div>
