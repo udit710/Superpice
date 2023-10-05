@@ -10,7 +10,7 @@ import au.edu.rmit.sept.superprice.model.ProductDetails;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/cartItems")
 public class CartItemController {
 
