@@ -17,7 +17,7 @@ public class ReviewTest {
 
     @BeforeEach
     void createReview() {
-        this.review = new Review(1l, 1l, new Product(), 5, "test review");
+        this.review = new Review(1l, 1l, null, 5, "test review");
     }
 
     @Test
@@ -27,22 +27,26 @@ public class ReviewTest {
 
     @Test
     void should_return_userId() {
-        assertEquals(1l, this.review.getUserId());
+        this.review.setUserId(2l);
+        assertEquals(2l, this.review.getUserId());
     }
     
     @Test
     void should_return_productId() {
+        this.review.setProductId(new Product());
         assertNotNull(this.review.getProductId());
     }
 
     @Test
     void should_return_rating() {
-        assertEquals(5, this.review.getRating());
+        this.review.setRating(2);
+        assertEquals(2, this.review.getRating());
     }
 
     @Test
     void should_return_comment() {
-        assertEquals("test review", this.review.getComment());
+        this.review.setComment("testing");
+        assertEquals("testing", this.review.getComment());
     }
     
 }
