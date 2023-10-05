@@ -119,7 +119,7 @@ export default class CartPage extends React.Component {
                   <th>Image</th>
                   <th>Product</th>
                   <th>Store</th>
-                  <th>Price</th>
+                  <th>Price (per unit)</th>
                   <th>Quantity</th>
                   <th>Total</th>
                 </tr>
@@ -129,6 +129,9 @@ export default class CartPage extends React.Component {
               </tbody>
             </Table>
             <div className='subtotal'>SubTotal : ${calculateTotal()}</div>
+            <div className='checkout'>
+              <a href='/checkout-page' className='checkout'> Checkout &rarr; </a>
+            </div>
           </div>
           </>
         );
