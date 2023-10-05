@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import au.edu.rmit.sept.superprice.model.Notification;
+import au.edu.rmit.sept.superprice.model.User;
 import au.edu.rmit.sept.superprice.model.Notification.Type;
 import au.edu.rmit.sept.superprice.service.NotificationService;
 import au.edu.rmit.sept.superprice.web.NotificationController;
@@ -30,28 +31,30 @@ public class NotificationControllerTest {
 
     @BeforeEach
     void initializeObjects() {
-    this.notificationService = mock(NotificationService.class);
-    this.notificationController = new
-    NotificationController(this.notificationService);
+        this.notificationService = mock(NotificationService.class);
+        this.notificationController = new
+        NotificationController(this.notificationService);
     }
 
     @Test
     void should_return_all_notifications() {
-    Notification notification_list = new Notification(1L, 1L, "Test message",
-    Type.OFFERS,
-    Date.valueOf("2023-09-12"));
-    when(this.notificationService.getAllNotifications())
-    .thenReturn(List.of(notification_list));
+        User user = new User();
+        Notification notification_list = new Notification(1L, user, "Test message",
+        Type.OFFERS,
+        Date.valueOf("2023-09-12"));
+        when(this.notificationService.getAllNotifications())
+        .thenReturn(List.of(notification_list));
 
-    assertEquals(1, this.notificationController.getAllNotifications().size());
+        assertEquals(1, this.notificationController.getAllNotifications().size());
     }
 
     @Test
     void should_return_notification_with_id_one() {
-    Notification notif = new Notification(1L, 1L, "Test message", Type.OFFERS);
-    when(this.notificationService.getNotificationById(1L)).thenReturn(notif);
+        User user = new User();
+        Notification notif = new Notification(1L, user, "Test message", Type.OFFERS);
+        when(this.notificationService.getNotificationById(1L)).thenReturn(notif);
 
-    assertEquals(notif, this.notificationController.getNotificationById(1L));
+        assertEquals(notif, this.notificationController.getNotificationById(1L));
     }
 
     // @Test
