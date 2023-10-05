@@ -25,26 +25,26 @@ import au.edu.rmit.sept.superprice.web.NotificationController;
 @SpringBootTest
 public class NotificationControllerTest {
 
-    // NotificationController notificationController;
-    // NotificationService notificationService;
+    NotificationController notificationController;
+    NotificationService notificationService;
 
-    // @BeforeEach
-    // void initializeObjects() {
-    // this.notificationService = mock(NotificationService.class);
-    // this.notificationController = new
-    // NotificationController(this.notificationService);
-    // }
+    @BeforeEach
+    void initializeObjects() {
+    this.notificationService = mock(NotificationService.class);
+    this.notificationController = new
+    NotificationController(this.notificationService);
+    }
 
-    // @Test
-    // void should_return_all_notifications() {
-    // Notification notification_list = new Notification(1, 1, "Test message",
-    // notification.type.OFFERS,
-    // Date.valueOf("2023-09-12"));
-    // when(this.notificationService.getAllNotifications())
-    // .thenReturn(List.of(notification_list));
+    @Test
+    void should_return_all_notifications() {
+    Notification notification_list = new Notification(1L, 1L, "Test message",
+    Type.OFFERS,
+    Date.valueOf("2023-09-12"));
+    when(this.notificationService.getAllNotifications())
+    .thenReturn(List.of(notification_list));
 
-    // assertEquals(1, this.notificationController.getAllNotifications().size());
-    // }
+    assertEquals(1, this.notificationController.getAllNotifications().size());
+    }
 
     // @Test
     // void should_return_notification_with_id_one() {
