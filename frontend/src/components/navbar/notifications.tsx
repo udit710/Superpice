@@ -32,42 +32,34 @@ export default class Notifications extends Component {
 
   render() {
     return (
-      <div className='Notifications'>
-        <ul className="dropdown-menu dropdown-menu-end notif-dropdown" >
-          <li><h3>Notifications</h3></li>
-          <li><hr className="dropdown-divider"/></li>
+      <div className='Notifications' data-testid='notifs'>
 
-          <li>
-            <div className="type-groups" role='group' onChange={this.toggleNotificationTypes}>
-                <input type="radio" value="discount" className="btn-check" name="notif-options" id="Discounts" defaultChecked />
-                <label className="btn btn-outline-primary" htmlFor="Discounts">Discounts</label>
+        <div className="dropdown-menu dropdown-menu-end notif-dropdown p-0 m-0" >
 
-                <input type="radio" value="order" className="btn-check" name="notif-options" id="Order" />
-                <label className="btn btn-outline-primary" htmlFor="Order">Order</label>
+          <div className="notifications-heading">
+            <h3>Notifications</h3>
+          </div>
 
-                <input type="radio" value="account" className="btn-check" name="notif-options" id="Account" />
-                <label className="btn btn-outline-primary" htmlFor="Account">Account</label>
-            </div>
-          </li>
-          <li><br/></li>
-          
-          <li>
             <div>
-              <div className='notif-types' id='discount-notifs'>
-                <p>Discount Notification!</p>
-                <p>Discount Notification 2, Electric Boogaloo</p>
+              <div className='notif'>
+                <p>This is the order message</p>
+                <p>TYPE</p>
+                <p>timestamp</p>
               </div>
-              <div className='notif-types' id='order-notifs'>
-                <p>Order Notification!</p>
-                <p>Order Notification also</p>
+
+              <div className='notif'>
+                <p>This is the order message</p>
+                <p>TYPE</p>
+                <p>timestamp</p>
               </div>
-              <div className='notif-types' id='account-notifs'>
-                <p>Account Notification!</p>
-                <p>Account Notification? ¯\_(ツ)_/¯</p>
+
+              <div className='notif'>
+                <p>This is the order message</p>
+                <p>TYPE</p>
+                <p>timestamp</p>
               </div>
-            </div>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     );
   }

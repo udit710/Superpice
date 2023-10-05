@@ -83,6 +83,10 @@ public class ProductService {
 
     public List<Product> getProductsByProductDetailsDiscount(Integer discount){
         return productRepository.findAllByProductDetailDiscount(discount);
-        }
+    }
+
+    public List<Product> getProductsThatHaveDiscount() {
+        return productRepository.findAllThatHaveDiscount();
+    }
         
 }

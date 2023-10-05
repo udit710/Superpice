@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import ProductReview from '../../components/product_review/ProductReview';
 
 describe('ProductReview component tests', () => {
-    const view = render(<ProductReview id={1} rating={1} body='test'/>);
+    const view = render(<ProductReview id={1} rating={1} body='test' user={1} isUser={false} />);
     expect(view).toBeTruthy();
 
     test('Check rating exists', async () => {

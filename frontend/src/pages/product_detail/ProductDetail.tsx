@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Product } from '../../interfaces/product.interface';
 import "./ProductDetail.css";
 import ProductReview from '../../components/product_review/ProductReview';
+import { user } from '../../interfaces/user.interface';
 
 // interface Product {
 //     productName: string;
@@ -24,9 +25,14 @@ export default class ProductDetail extends Component {
         reviews: [] as Review[],
         review: null as string | null,
         rating: 1 as number,
+        user: null as string | null,
+        isLogedIn: false as boolean,
+        userId: null as number | null,
     };
 
     componentDidMount() {
+        this.getUserLoggedIn();
+
         const urlList = window.location.href.split("/");
         const productId = urlList[urlList.length - 1];
         console.log("ProductID: " + productId);
@@ -42,6 +48,26 @@ export default class ProductDetail extends Component {
                 this.setState({ reviews: response.data });
             })
             .catch(error => console.error('Error fetching reviews:', error));
+
+    }
+
+    getUserLoggedIn = () => {
+        const token = window.sessionStorage.getItem('userToken');
+
+        if (token === undefined || token === null) return;
+
+        let currUser: user;
+        axios.post(`${process.env.REACT_APP_API_URL}/api/auth/validate`, { token: token })
+        .then(res => {
+            currUser = res.data;
+            console.log(currUser.username);
+            this.setState({ user: currUser.username });
+            this.setState({ isLogedIn: true });
+            this.setState({ userId: currUser.userId });
+        })
+        .catch(err => {
+            console.log(err);
+        });
     }
 
     render() {
@@ -89,7 +115,7 @@ export default class ProductDetail extends Component {
                                 {product.details.map((detail, index) => (
                                     <tr key={index}>
                                         <td>{detail.store.storeName}</td>
-                                        <td>{detail.discount*100}%</td>
+                                        <td>{detail.discount}%</td>
                                         <td>${detail.price.toFixed(2)}</td>
                                         <td>{detail.available}</td>
                                     </tr>
@@ -98,54 +124,63 @@ export default class ProductDetail extends Component {
                         </table>
                         <div className="mt-5 col-md-8 offset-md-2">
                             <h2>Reviews & Ratings</h2>
-                            <button type="button" id='review-button' className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#review">Add Review</button>
-                            <div className="modal fade" id="review" tabIndex={-1} aria-labelledby="reviewLabel" aria-hidden="true">
-                                <div className="modal-dialog modal-dialog-centered">
-                                    <div className="modal-content">
-                                    <div className="modal-header">
-                                        <h1 className="modal-title fs-5" id="review-modal-title">Add Review for {this.state.product?.productName}</h1>
-                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div className="modal-body">
-                                        <form id='review-form' onSubmit={this.postReview}>
-                                            <p className="form-label">Rating</p>
-                                            <div className="form-check form-check-inline">
-                                                <input className="form-check-input" type="radio" name="rating" value={1} onChange={this.handleChangeNum} />
-                                                <label className="form-check-label" htmlFor="inlineRadio1">1</label>
+                            {this.state.isLogedIn ? (
+                                <div>
+                                    <button type="button" id='review-button' className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#review">Add Review</button>
+                                    <div className="modal fade" id="review" tabIndex={-1} aria-labelledby="reviewLabel" aria-hidden="true">
+                                        <div className="modal-dialog modal-dialog-centered">
+                                            <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h1 className="modal-title fs-5" id="review-modal-title">Add Review for {this.state.product?.productName}</h1>
+                                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div className="form-check form-check-inline">
-                                                <input className="form-check-input" type="radio" name="rating" value={2} onChange={this.handleChangeNum} />
-                                                <label className="form-check-label" htmlFor="inlineRadio2">2</label>
+                                            <div className="modal-body">
+                                                <form id='review-form' onSubmit={this.postReview}>
+                                                    <p className="form-label">Rating</p>
+                                                    <div className="form-check form-check-inline">
+                                                        <input className="form-check-input" type="radio" name="rating" value={1} onChange={this.handleChangeNum} />
+                                                        <label className="form-check-label" htmlFor="inlineRadio1">1</label>
+                                                    </div>
+                                                    <div className="form-check form-check-inline">
+                                                        <input className="form-check-input" type="radio" name="rating" value={2} onChange={this.handleChangeNum} />
+                                                        <label className="form-check-label" htmlFor="inlineRadio2">2</label>
+                                                    </div>
+                                                    <div className="form-check form-check-inline">
+                                                        <input className="form-check-input" type="radio" name="rating" value={3} onChange={this.handleChangeNum} />
+                                                        <label className="form-check-label" htmlFor="inlineRadio3">3</label>
+                                                    </div>
+                                                    <div className="form-check form-check-inline">
+                                                        <input className="form-check-input" type="radio" name="rating" value={4} onChange={this.handleChangeNum} />
+                                                        <label className="form-check-label" htmlFor="inlineRadio3">4</label>
+                                                    </div>
+                                                    <div className="form-check form-check-inline">
+                                                        <input className="form-check-input" type="radio" name="rating" value={5} onChange={this.handleChangeNum} />
+                                                        <label className="form-check-label" htmlFor="inlineRadio3">5</label>
+                                                    </div>
+                                                    
+                                                    <br/>
+                                                    <label id='review-lable' className="form-label" htmlFor='review-text'>Review</label>
+                                                    <input className="form-control" type='text' name='comment' id='review-text' onChange={this.handleChangeText} placeholder='Review' required />
+                                                </form>
                                             </div>
-                                            <div className="form-check form-check-inline">
-                                                <input className="form-check-input" type="radio" name="rating" value={3} onChange={this.handleChangeNum} />
-                                                <label className="form-check-label" htmlFor="inlineRadio3">3</label>
+                                            <div className="modal-footer">
+                                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" className="btn btn-primary" form='review-form'>Add Review</button>
                                             </div>
-                                            <div className="form-check form-check-inline">
-                                                <input className="form-check-input" type="radio" name="rating" value={4} onChange={this.handleChangeNum} />
-                                                <label className="form-check-label" htmlFor="inlineRadio3">4</label>
                                             </div>
-                                            <div className="form-check form-check-inline">
-                                                <input className="form-check-input" type="radio" name="rating" value={5} onChange={this.handleChangeNum} />
-                                                <label className="form-check-label" htmlFor="inlineRadio3">5</label>
-                                            </div>
-                                            
-                                            <br/>
-                                            <label id='review-lable' className="form-label" htmlFor='review-text'>Review</label>
-                                            <input className="form-control" type='text' name='comment' id='review-text' onChange={this.handleChangeText} placeholder='Review' required />
-                                        </form>
-                                    </div>
-                                    <div className="modal-footer">
-                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" className="btn btn-primary" form='review-form'>Add Review</button>
-                                    </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            ): 
+                            (
+                                <p><a href='/login'>Login</a> to add reviews</p>
+                            )}
                             {reviews.map(review => (
                                 <ProductReview id = {review.reviewId}
                                 rating = {review.rating}
-                                body = {review.comment}/>
+                                body = {review.comment}
+                                user = {review.userId} 
+                                isUser = {this.state.userId === review.userId} />
                             ))}
                         </div>
                     </div>
@@ -164,7 +199,7 @@ export default class ProductDetail extends Component {
     postReview = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const rev = {
-            userId: 1,
+            userId: this.state.userId,
             productId: this.state.product?.id,
             rating: this.state.rating,
             comment: this.state.review,

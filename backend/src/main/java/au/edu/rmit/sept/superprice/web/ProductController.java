@@ -71,4 +71,9 @@ public class ProductController {
     return productService.getProductsByProductDetailsDiscount(discount);
     }
 
+    @GetMapping("/discounts")
+    public List<Product> getProductsThatHaveDiscount() {
+        return productService.getProductsThatHaveDiscount();
+    }
+    
 }
