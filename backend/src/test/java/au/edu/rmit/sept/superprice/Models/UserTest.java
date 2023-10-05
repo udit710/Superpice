@@ -25,36 +25,49 @@ public class UserTest {
 
     @Test
     void should_return_addressId() {
-        assertEquals(1l, this.user.getAddressId());
+        this.user.setAddressId(2l);
+        assertEquals(2l, this.user.getAddressId());
     }
 
     @Test
     void should_return_username() {
-        assertEquals("test", this.user.getUsername());
+        this.user.setUsername("testing");
+        assertEquals("testing", this.user.getUsername());
     }
 
     @Test
     void should_return_Password() {
-        assertEquals("test", this.user.getPassword());
+        this.user.setPassword("testing");
+        assertEquals("testing", this.user.getPassword());
     }
 
     @Test
     void should_return_Email() {
-        assertEquals("test", this.user.getEmail());
+        this.user.setEmail("testing");
+        assertEquals("testing", this.user.getEmail());
     }
 
     @Test
     void should_return_FirstName() {
-        assertEquals("test", this.user.getFirstName());
+        this.user.setFirstName("testing");
+        assertEquals("testing", this.user.getFirstName());
     }
 
     @Test
     void should_return_LastName() {
-        assertEquals("test", this.user.getLastName());
+        this.user.setLastName("testing");
+        assertEquals("testing", this.user.getLastName());
     }
 
     @Test
     void should_return_Phone() {
-        assertEquals("test", this.user.getPhone());
+        this.user.setPhone("testing");
+        assertEquals("testing", this.user.getPhone());
+    }
+
+    @Test
+    void user_email_constructor() {
+        User user = new User("email");
+        assertEquals("email", user.getEmail());
     }
 }
