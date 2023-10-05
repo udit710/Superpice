@@ -8,6 +8,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
+import static org.mockito.ArgumentMatchers.any;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import au.edu.rmit.sept.superprice.model.Product;
 import au.edu.rmit.sept.superprice.model.Review;
 import au.edu.rmit.sept.superprice.service.ReviewService;
+import au.edu.rmit.sept.superprice.web.ProductController;
 import au.edu.rmit.sept.superprice.web.ReviewController;
 
 @SpringBootTest
@@ -75,13 +77,20 @@ public class ReviewControllerTest {
 
     // @Test
     // void should_create_review() throws JsonMappingException, JsonProcessingException {
-    //     String object = "{ \"comment\": \"test\"}";
-    //     ObjectMapper mapper = new ObjectMapper();
-    //     this.reviewController.updateReview(1l, mapper.readTree(object).deepCopy());
-    //     // this.reviewController.createReview(null);
+    //     // String object = "{ \"comment\": \"test\"}";
+    //     // ObjectMapper mapper = new ObjectMapper();
+    //     // this.reviewController.updateReview(1l, mapper.readTree(object).deepCopy());
+    //     // // this.reviewController.createReview(null);
 
-    //     verify(this.reviewService, times(1))
-    //         .save(null);
+    //     // verify(this.reviewService, times(1))
+    //     //     .save(null);
+    //     // String object = "{\"productId\":1, \"userId\":1, \"rating\":1, \"comment\":\"test\"}";
+    //     // ObjectMapper mapper = new ObjectMapper();
+    //     // ProductController productController = mock(ProductController.class);
+    //     // when(productController.getProductById(1l)).thenReturn(new Product());
+    //     // when(this.reviewService.save(any(Review.class))).thenReturn(new Review());
+
+    //     // assertNotNull(this.reviewController.createReview(mapper.readTree(object).deepCopy()));
     // }
 
     @Test
@@ -109,13 +118,14 @@ public class ReviewControllerTest {
 
     }
 
-    // @Test
-    // void should_update_reviews() throws JsonMappingException, JsonProcessingException {
-    //     String object = "{ \"comment\": \"test\"}";
-    //     ObjectMapper mapper = new ObjectMapper();
-    //     this.reviewController.updateReview(1l, mapper.readTree(object).deepCopy());
+    @Test
+    void should_update_reviews() throws JsonMappingException, JsonProcessingException {
+        String object = "{ \"comment\": \"test\"}";
+        ObjectMapper mapper = new ObjectMapper();
+        Review review = new Review();
+        when(this.reviewService.getById(1l)).thenReturn(review);
+        when (this.reviewService.save(review)).thenReturn(review);
 
-    //     verify(this.reviewService, times(1))
-    //         .save(this.reviewController.getReviewById(1l));
-    // }
+        assertEquals(review, this.reviewController.updateReview(1l, mapper.readTree(object).deepCopy()));
+    }
 }
