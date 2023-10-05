@@ -9,6 +9,7 @@ import au.edu.rmit.sept.superprice.service.NotificationService;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/notifications")
 public class NotificationController {
 
@@ -19,7 +20,7 @@ public class NotificationController {
         this.notificationService = notificationService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Notification> getAllNotifications() {
         return notificationService.getAllNotifications();
     }
