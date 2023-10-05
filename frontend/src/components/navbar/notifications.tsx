@@ -13,7 +13,8 @@ interface Notifs {
 
 export default class Notifications extends Component {
   state = {
-    notifs: [] as Notifs[]
+    notifs: [] as Notifs[],
+    userId: null as number | null
   }
 
   
