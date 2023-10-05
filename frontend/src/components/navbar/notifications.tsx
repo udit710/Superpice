@@ -36,17 +36,17 @@ export default class Notifications extends Component {
         console.log(err);
       });
   }
-  
+
   componentDidMount() {
     this.getUserLoggedIn();
-		axios.get(`${process.env.REACT_APP_API_URL}/api/notifications`)
-		.then(res => {
-			this.setState({ notifs: res.data });
-		})
-    .catch(error => console.error('Error fetching notifications:', error));
+    axios.get(`${process.env.REACT_APP_API_URL}/api/notifications`)
+      .then(res => {
+        this.setState({ notifs: res.data });
+      })
+      .catch(error => console.error('Error fetching notifications:', error));
 
   }
-		
+
 
   render() {
     return (
@@ -58,15 +58,18 @@ export default class Notifications extends Component {
             <h3>Notifications</h3>
           </div>
 
-            <div>
+          <div>
 
-                {this.state.notifs.map(notif => (
-              <div className='notif'>
-                    <p>{notif.message}</p>
-                    <p>{notif.type}</p>
-                    <p>{notif.timestamp}</p>
-              </div>
-                ))}
+            {this.state.notifs.map(notif => (
+
+              (notif.user.userId === this.state.userId) ?
+                <div className='notif' key={notif.notifId}>
+                  <p>{notif.message}</p>
+                  <p>{notif.type}</p>
+                  <p>{notif.timestamp}</p>
+                </div>
+                : null
+            ))}
 
           </div>
         </div>
