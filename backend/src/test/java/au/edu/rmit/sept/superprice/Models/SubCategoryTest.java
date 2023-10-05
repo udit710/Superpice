@@ -17,7 +17,7 @@ public class SubCategoryTest {
     SubCategory subCategory;
 
     @BeforeEach
-    void createReview() {
+    void createSubCategory() {
         this.subCategory = new SubCategory(1l, "test", new Category());
     }
 

@@ -17,7 +17,7 @@ public class ProductDetailsTest {
     ProductDetails productDetails;
 
     @BeforeEach
-    void createReview() {
+    void createProductDetails() {
         this.productDetails = new ProductDetails(1l, new Product(), new Store(), 1.0, 1, 1.0, 1);
     }
 

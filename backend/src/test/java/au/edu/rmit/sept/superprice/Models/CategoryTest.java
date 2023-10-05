@@ -18,7 +18,7 @@ public class CategoryTest {
     Category category;
 
     @BeforeEach
-    void createReview() {
+    void createCategory() {
         this.category = new Category(1l, "test", new ArrayList<SubCategory>(), new ArrayList<Product>());
     }
 

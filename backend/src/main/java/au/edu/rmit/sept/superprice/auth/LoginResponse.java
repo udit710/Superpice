@@ -3,9 +3,9 @@ package au.edu.rmit.sept.superprice.auth;
 import org.springframework.http.HttpStatus;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 @AllArgsConstructor
 public class LoginResponse {
     

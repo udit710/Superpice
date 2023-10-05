@@ -153,4 +153,20 @@ public class ProductControllerTest {
         
         assertEquals(0, this.productController.getProductsByCategoryName("test").size());
     }
+
+    @Test
+    void should_return_products_by_discount() {
+        when(this.productService.getProductsByProductDetailsDiscount(50))
+            .thenReturn(List.of(new Product()));
+        
+        assertEquals(1, this.productController.getProductsByProductDetailsDiscount(50).size());
+    }
+
+    @Test
+    void should_return_products_with_discount() {
+        when(this.productService.getProductsThatHaveDiscount())
+            .thenReturn(List.of(new Product()));
+        
+        assertEquals(1, this.productController.getProductsThatHaveDiscount().size());
+    }
 }

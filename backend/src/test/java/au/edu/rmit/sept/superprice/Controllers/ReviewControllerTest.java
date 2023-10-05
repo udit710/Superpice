@@ -8,6 +8,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
+import static org.mockito.ArgumentMatchers.any;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -23,6 +26,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import au.edu.rmit.sept.superprice.model.Product;
 import au.edu.rmit.sept.superprice.model.Review;
 import au.edu.rmit.sept.superprice.service.ReviewService;
+import au.edu.rmit.sept.superprice.web.ProductController;
 import au.edu.rmit.sept.superprice.web.ReviewController;
 
 @SpringBootTest
@@ -71,25 +75,23 @@ public class ReviewControllerTest {
         assertEquals(0, this.reviewController.getReviews(1l).size());
     }
 
-    @Test
-    void should_create_review() {
-        // ObjectMapper map = new ObjectMapper();
-        // ObjectNode node = map.createObjectNode();
-        // node.set("userId", map.convertValue(1l, JsonNode.class));
-        // node.set("productId", map.convertValue(1l, JsonNode.class));
-        // node.set("rating", map.convertValue(5, JsonNode.class));
-        // node.set("comment", map.convertValue("test", JsonNode.class));
+    // @Test
+    // void should_create_review() throws JsonMappingException, JsonProcessingException {
+    //     // String object = "{ \"comment\": \"test\"}";
+    //     // ObjectMapper mapper = new ObjectMapper();
+    //     // this.reviewController.updateReview(1l, mapper.readTree(object).deepCopy());
+    //     // // this.reviewController.createReview(null);
 
-        // Review testReview = new Review();
-        // testReview.setUserId(1l);
-        // testReview.setProductId(new Product());
-        // testReview.setRating(5);
-        // testReview.setComment("test review");
+    //     // verify(this.reviewService, times(1))
+    //     //     .save(null);
+    //     // String object = "{\"productId\":1, \"userId\":1, \"rating\":1, \"comment\":\"test\"}";
+    //     // ObjectMapper mapper = new ObjectMapper();
+    //     // ProductController productController = mock(ProductController.class);
+    //     // when(productController.getProductById(1l)).thenReturn(new Product());
+    //     // when(this.reviewService.save(any(Review.class))).thenReturn(new Review());
 
-        // when(this.reviewService.save(testReview)).then(returnsFirstArg());
-
-        // assertEquals(testReview, this.reviewController.createReview(new ObjectNode(testReview)));
-    }
+    //     // assertNotNull(this.reviewController.createReview(mapper.readTree(object).deepCopy()));
+    // }
 
     @Test
     void should_return_review_by_id() {
@@ -114,5 +116,16 @@ public class ReviewControllerTest {
         verify(this.reviewService, times(1))
             .deleteById(1l);
 
+    }
+
+    @Test
+    void should_update_reviews() throws JsonMappingException, JsonProcessingException {
+        String object = "{ \"comment\": \"test\"}";
+        ObjectMapper mapper = new ObjectMapper();
+        Review review = new Review();
+        when(this.reviewService.getById(1l)).thenReturn(review);
+        when (this.reviewService.save(review)).thenReturn(review);
+
+        assertEquals(review, this.reviewController.updateReview(1l, mapper.readTree(object).deepCopy()));
     }
 }
