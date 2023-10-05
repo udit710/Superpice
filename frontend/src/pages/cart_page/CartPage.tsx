@@ -111,7 +111,7 @@ export default class CartPage extends React.Component {
       return (
           <>
           <div className="container">
-            <h1>My Cart</h1>
+            <h1 className='my_cart'>My Cart</h1>
             <Table striped bordered hover>
               <thead>
                 <tr>
