@@ -35,23 +35,15 @@ export default class Notifications extends Component {
           </div>
 
             <div>
-              <div className='notif'>
-                <p>This is the order message</p>
-                <p>TYPE</p>
-                <p>timestamp</p>
-              </div>
 
+                {this.state.notifs.map(notif => (
               <div className='notif'>
-                <p>This is the order message</p>
-                <p>TYPE</p>
-                <p>timestamp</p>
+                    <p>{notif.message}</p>
+                    <p>{notif.type}</p>
+                    <p>{notif.timestamp}</p>
               </div>
+                ))}
 
-              <div className='notif'>
-                <p>This is the order message</p>
-                <p>TYPE</p>
-                <p>timestamp</p>
-              </div>
           </div>
         </div>
       </div>
