@@ -10,8 +10,12 @@ import java.util.List;
 @Service
 public class NotificationService {
 
-    @Autowired
     private NotificationRepository notificationRepository;
+    
+    @Autowired
+    public NotificationService(NotificationRepository notificationRepository) {
+        this.notificationRepository = notificationRepository;
+    }
 
     public List<Notification> getAllNotifications() {
         return notificationRepository.findAll();
