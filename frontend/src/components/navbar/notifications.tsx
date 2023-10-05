@@ -9,6 +9,9 @@ interface Notifs {
 }
 
 export default class Notifications extends Component {
+  state = {
+    notifs: [] as Notifs[]
+  }
 
   render() {
     return (
