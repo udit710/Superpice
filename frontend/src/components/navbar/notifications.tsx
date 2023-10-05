@@ -13,6 +13,17 @@ export default class Notifications extends Component {
     notifs: [] as Notifs[]
   }
 
+  
+  componentDidMount() {
+		axios.get(`${process.env.REACT_APP_API_URL}/api/notifications`)
+		.then(res => {
+			this.setState({ notifs: res.data });
+		})
+    .catch(error => console.error('Error fetching notifications:', error));
+
+  }
+		
+
   render() {
     return (
       <div className='Notifications'>
