@@ -1,11 +1,14 @@
 import React, { Component, useState, useEffect } from 'react';
 import axios from 'axios'
 import './notifications.css';
+import { user } from '../../interfaces/user.interface';
 
 interface Notifs {
   message: string;
   type: string;
   timestamp: string;
+  notifId: number;
+  user: { userId: number };
 }
 
 export default class Notifications extends Component {
