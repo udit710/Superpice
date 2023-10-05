@@ -4,6 +4,7 @@ export interface Product {
     description: string;
     subCategoryId: number;
     details: {
+        id: number;
         store: {storeName: string};
         price: number;
         available: number;

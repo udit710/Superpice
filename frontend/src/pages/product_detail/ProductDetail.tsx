@@ -4,6 +4,11 @@ import { Product } from '../../interfaces/product.interface';
 import "./ProductDetail.css";
 import ProductReview from '../../components/product_review/ProductReview';
 import { user } from '../../interfaces/user.interface';
+import { Cart_Item } from '../../interfaces/cart_item.interface';
+import cartId_and_addressId  from '../../interfaces/cartId_and_addressId.interface';
+import { Link } from 'react-router-dom';
+import '../cart_page/CartPage';
+import CartPage from '../cart_page/CartPage';
 
 // interface Product {
 //     productName: string;
@@ -28,6 +33,8 @@ export default class ProductDetail extends Component {
         user: null as string | null,
         isLogedIn: false as boolean,
         userId: null as number | null,
+        listItems : [] as cartId_and_addressId[],
+        stores : [] as number[],
     };
 
     componentDidMount() {
@@ -71,6 +78,7 @@ export default class ProductDetail extends Component {
     }
 
     render() {
+        
         const { product, reviews } = this.state;
 
         if (!product) {
@@ -84,6 +92,7 @@ export default class ProductDetail extends Component {
 
 
         return (
+
             <div data-testid="product-details" className="container mt-5">
                 <div className="row">
                     <div className="col-md-4">
@@ -109,15 +118,24 @@ export default class ProductDetail extends Component {
                                     <th>Discount</th>
                                     <th>Price</th>
                                     <th>Availability</th>
+                                    <th>Quantity</th>
+                                    <th>Add</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {product.details.map((detail, index) => (
                                     <tr key={index}>
+
                                         <td>{detail.store.storeName}</td>
                                         <td>{detail.discount}%</td>
                                         <td>${detail.price.toFixed(2)}</td>
                                         <td>{detail.available}</td>
+                                        <td><input id='quantity' type="number" className="form-control" defaultValue={1} min={1} max={detail.available} /></td>
+                                        {/* {this.state.isLogedIn ? ( */}
+                                            <td><button className="btn btn-primary" onClick={() => this.addToCart(product,index, detail)}>Add to Cart</button></td>
+                                        {/* ) : (
+                                            <p><a href='/login'>Login</a> to add to cart</p>
+                                        )} */}
                                     </tr>
                                 ))}
                             </tbody>
@@ -182,10 +200,10 @@ export default class ProductDetail extends Component {
                                 user = {review.userId} 
                                 isUser = {this.state.userId === review.userId} />
                             ))}
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
         );
     }
     
@@ -208,5 +226,36 @@ export default class ProductDetail extends Component {
         .then(res => {
                 window.location.href = `/ProductDetail/${this.state.product?.id}`;
         });
+    }
+
+    async addToCart(product: Product, index: number, detail: any) {
+        const productId = this.state.product?.id;
+        const userId = this.state.userId;
+        let quantity = (document.getElementById("quantity") as HTMLInputElement).value;
+        if (Number(quantity) <= 1){ quantity = '1'}else if (Number(quantity) > product.details[index].available){ quantity = product.details[index].available.toString()};
+        axios.post(`${process.env.REACT_APP_API_URL}/api/cartItems`, { userId: userId, productDetailsId: product, quantity: quantity})
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    
+        try {
+            const cartItemsResponse = await axios.get<Cart_Item[]>(`${process.env.REACT_APP_API_URL}/api/cartItems`);
+            const cart_items = cartItemsResponse.data;
+
+            const cartId_and_addressId: cartId_and_addressId = {
+                cartId: cart_items[-1].id,
+                addressId: index,
+            }
+
+            this.setState({ listItems: [...this.state.listItems, cartId_and_addressId] });
+
+
+
+        } catch (error) {
+            console.error('Error fetching cart items:', error);
+        }
     }
 }

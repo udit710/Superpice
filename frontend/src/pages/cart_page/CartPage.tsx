@@ -5,11 +5,17 @@ import axios from 'axios';
 import { Product } from "../../interfaces/product.interface";
 import './CartPage.css';
 import { BsTrash3Fill } from 'react-icons/bs';
-export default class CartPage extends React.Component {
+import cartId_and_addressId  from '../../interfaces/cartId_and_addressId.interface';
+class CartPage extends React.Component {
   state = {
     cart_items: [] as Cart_Item[],
     products: [] as Product[],
   };
+
+  // constructor(props: cartId_and_addressId[]) {
+  //   super(props);
+
+  // }
 
   async componentDidMount() {
     try {
@@ -69,6 +75,7 @@ export default class CartPage extends React.Component {
 
   
   render() {
+    
     const { cart_items, products } = this.state;
     console.log("products: ", products);
     
@@ -138,3 +145,5 @@ export default class CartPage extends React.Component {
       }
     }
 }
+
+export default CartPage;
