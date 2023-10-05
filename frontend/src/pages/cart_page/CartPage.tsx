@@ -48,6 +48,7 @@ export default class CartPage extends React.Component {
         <td width={10}>{cart_item.productDetailsId.store.storeName}</td>
         <td width={10}> <a className='og-price'>${cart_item.productDetailsId.original_price}</a> ${cart_item.productDetailsId.price}</td>
         <td width={10}>{cart_item.quantity}</td>
+        <td width={10}>${cart_item.productDetailsId.price*cart_item.quantity}</td>
       </tr>
     );
 
@@ -67,6 +68,7 @@ export default class CartPage extends React.Component {
                   <th>Store</th>
                   <th>Price</th>
                   <th>Quantity</th>
+                  <th>Total</th>
                 </tr>
               </thead>
               <tbody>
