@@ -24,7 +24,7 @@ import java.sql.Date;
 @Table(name = "NOTIFICATION")
 public class Notification {
 
-    public Notification(Long notifId, Long userId, String message, Type type) {
+    public Notification(Long notifId, User userId, String message, Type type) {
         this.notificationId = notifId;
         this.userId = userId;
         this.message = message;
@@ -39,7 +39,7 @@ public class Notification {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private Long userId;
+    private User userId;
 
     @JoinColumn(name = "message")
     private String message;
