@@ -1,5 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
+import axios from 'axios'
 import './notifications.css';
+
+interface Notifs {
+  message: string;
+  type: string;
+  timestamp: string;
+}
 
 export default class Notifications extends Component {
 
