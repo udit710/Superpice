@@ -17,8 +17,28 @@ export default class Notifications extends Component {
     userId: null as number | null
   }
 
+
+  getUserLoggedIn = () => {
+    const token = window.sessionStorage.getItem('userToken');
+
+    if (token === undefined || token === null) return;
+
+    let currUser: user;
+    axios.post(`${process.env.REACT_APP_API_URL}/api/auth/validate`, { token: token })
+      .then(res => {
+        currUser = res.data;
+        console.debug(currUser);
+        this.setState({ user: currUser.username });
+        this.setState({ isLogedIn: true });
+        this.setState({ userId: currUser.userId});
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
   
   componentDidMount() {
+    this.getUserLoggedIn();
 		axios.get(`${process.env.REACT_APP_API_URL}/api/notifications`)
 		.then(res => {
 			this.setState({ notifs: res.data });
