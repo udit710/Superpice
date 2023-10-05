@@ -14,7 +14,6 @@ import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.sql.Date;
 
 @Data
@@ -24,9 +23,9 @@ import java.sql.Date;
 @Table(name = "NOTIFICATION")
 public class Notification {
 
-    public Notification(Long notifId, User userId, String message, Type type) {
+    public Notification(Long notifId, User user, String message, Type type) {
         this.notificationId = notifId;
-        this.userId = userId;
+        this.user = user;
         this.message = message;
         this.type = type;
     }
@@ -36,10 +35,9 @@ public class Notification {
     @Column(name = "notification_id")
     private Long notificationId;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private User userId;
+    private User user;
 
     @JoinColumn(name = "message")
     private String message;
