@@ -57,14 +57,28 @@ public class NotificationControllerTest {
         assertEquals(notif, this.notificationController.getNotificationById(1L));
     }
 
-    // @Test
-    // void should_return_notification_with_seen_true() {
-    // Notification notif = new Notification(1, 1, "Test message", Type.OFFERS,
-    // Date.valueOf("2023-09-12"));
-    // when(this.notificationService.updateNotification(1)).thenReturn(new
-    // Notification());
+    @Test
+    void should_return_null_with_id_100() {
+        when(this.notificationService.getNotificationById(100L)).thenReturn(null);
 
-    // assertEquals(false,
-    // this.notificationController.getNotificationById(1).seen());
-    // }
+        assertNull(this.notificationController.getNotificationById(100L));
+    }
+
+    @Test
+    void should_delete_notification() {
+        this.notificationController.deleteNotification(1l);
+
+        verify(this.notificationService, times(1))
+            .deleteNotification(1l);
+    }
+
+    @Test
+    void should_create_notification() {
+        Notification notification = new Notification();
+        this.notificationController.createNotification(notification);
+
+        verify(this.notificationService, times(1))
+            .saveNotification(notification);
+    }
+
 }
