@@ -15,7 +15,7 @@ public class AddressTest {
     Address address;
 
     @BeforeEach
-    void createReview() {
+    void createAddress() {
         this.address = new Address(1l, "test", "test", "test", "test", "test", "test", AddressType.USER);
     }
 

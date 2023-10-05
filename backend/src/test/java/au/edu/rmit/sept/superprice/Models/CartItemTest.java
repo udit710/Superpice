@@ -17,7 +17,7 @@ public class CartItemTest {
     CartItem cartItem;
 
     @BeforeEach
-    void createReview() {
+    void createCartItem() {
         this.cartItem = new CartItem(1l, new ProductDetails(), new User(), 1);
     }
 

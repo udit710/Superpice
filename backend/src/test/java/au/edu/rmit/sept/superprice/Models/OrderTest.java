@@ -19,7 +19,7 @@ public class OrderTest {
     Order order;
 
     @BeforeEach
-    void createReview() {
+    void createOrder() {
         this.order = new Order(1l, 1l, new Date(1), OrderStatus.DELIVERED, 1.0, 1l, PaymentMethod.CREDIT_CARD);
     }
 
