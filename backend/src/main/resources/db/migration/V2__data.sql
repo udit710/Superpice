@@ -185,14 +185,17 @@ VALUES (1, 1, 1.50, 30, 1.05, 10),
        (14, 3, 1.55, 0, 1.55, 23);
 
 -- Populating cart_item table
-INSERT INTO cart_item (user_id, product_details_id, quantity)
-VALUES (1, 1, 2),
-       (1, 2, 1),
-       (2, 3, 1),
-       (2, 4, 3),
-       (2, 5, 1),
-       (3, 6, 1),
-       (3, 7, 2),
-       (4, 8, 3),
-       (4, 9, 1),
-       (5, 10, 1);
+INSERT INTO cart_item (user_id, product_details_id, product_id,quantity)
+VALUES (1, 1,1, 2),
+         (1, 2,1, 2),
+         (2, 3,1, 1),
+         (2, 4,1, 3),
+         (3, 6,1, 1),
+         (3, 7,1, 1),
+         (4, 8,1, 2),
+         (4, 9,1, 1),
+         (5, 10,1, 1),
+         (5, 11,1, 1),
+         (5, 12,1, 1),
+         (5, 13,1, 1),
+         (5, 14,1, 1);

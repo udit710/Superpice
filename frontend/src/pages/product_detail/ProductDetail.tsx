@@ -262,7 +262,7 @@ export default class ProductDetail extends Component {
         console.log('cartItem: ', cartItem)
 
         console.log('cartItem: ', cartItem)
-        axios.post(`${process.env.REACT_APP_API_URL}/api/cartItems`, {userId: userId, productDetailsId: productDetailsId, quantity: Number(quantity)})
+        axios.post(`${process.env.REACT_APP_API_URL}/api/cartItems`, {productId: 14,productDetailsId: [productDetailsId], quantity: Number(quantity)})
             .then(res => {
                 console.log(res);
             })
