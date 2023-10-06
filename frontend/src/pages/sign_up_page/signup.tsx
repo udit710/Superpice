@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import './signup.css';
 import { Outlet } from 'react-router';
 import axios from 'axios';
@@ -16,6 +16,26 @@ export default function SignUp(){
   const search = window.location.search;
   const params = new URLSearchParams(search);
 	const error = params.get('error');
+
+  useEffect(() => {
+    const token = window.sessionStorage.getItem('userToken');
+
+    if (token === undefined || token === null) return;
+
+    axios.post(`${process.env.REACT_APP_API_URL}/api/auth/validate`, { token: token })
+    .then(res => {
+      const search = window.location.search;
+      const params = new URLSearchParams(search);
+      const url = params.get('next');
+      window.location.href = 
+        (url !== null && url !== '') ? 
+        url :
+        `/`;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }, [])
 
   return (
     <div className='signup'>
@@ -68,9 +88,16 @@ export default function SignUp(){
 
   function postSignUp(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+    const url = params.get('next');
 
     if (password !== conf) {
-      window.location.href = `/signup?error=0`; 
+      window.location.href = 
+        (url !== null && url !== '') ? 
+        `/signup?error=0&next=${url}` :
+        `/signup?error=0`;
       return;
     }
 
@@ -85,10 +112,15 @@ export default function SignUp(){
 
     axios.post(`${process.env.REACT_APP_API_URL}/api/auth/sign-up`, inputs)
     .then(res => {
-      window.location.href = `/login`;
+      
+      if (url !== null && url !== '') window.location.href = `/login?next=${url}`
+      else window.location.href = `/login`;
     })
     .catch(err => {
-      window.location.href = `/signup?error=1`;
+      window.location.href = 
+        (url !== null && url !== '') ? 
+        `/signup?error=1&next=${url}` :
+        `/signup?error=1`;
     });
   }
 

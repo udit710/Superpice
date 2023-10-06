@@ -207,7 +207,7 @@ export default class ProductDetail extends Component {
                                 </div>
                             ): 
                             (
-                                <p><a href='/login'>Login</a> to add reviews</p>
+                                <p><a href={`/login?next=${window.location.href}`}>Login</a> to add reviews</p>
                             )}
                             {reviews.map(review => (
                                 <ProductReview id = {review.reviewId}
@@ -248,7 +248,7 @@ export default class ProductDetail extends Component {
         // console.log('detail: ', detail.id);
 
         if (!this.state.isLogedIn) {
-            window.location.href = '/login';
+            window.location.href = `/login?next=${window.location.href}`;
             return;
         }
 

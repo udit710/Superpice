@@ -27,7 +27,7 @@ class CartPage extends React.Component {
     const token = window.sessionStorage.getItem('userToken');
 
     if (token === undefined || token === null) {
-      window.location.href = '/login';
+      window.location.href = `/login?next=${window.location.href}`;
       return;
     }
 
@@ -41,7 +41,7 @@ class CartPage extends React.Component {
     })
     .catch(err => {
         console.log(err);
-        window.location.href = '/login';
+        window.location.href = `/login?next=${window.location.href}`;
     });
 }
 
