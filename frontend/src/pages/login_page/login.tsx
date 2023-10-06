@@ -47,6 +47,10 @@ export default function Login(){
     e.preventDefault();
     // console.log(email);
     let response: tokenResponse;
+    
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+    const url = params.get('next');
 
     const creds = {
       email: email,
@@ -57,11 +61,16 @@ export default function Login(){
       response = res.data;
       // console.log(response.token);
       window.sessionStorage.setItem('userToken', response.token);
-      window.location.href = `/`;
+      
+      if (url !== null && url !== '') window.location.href = url;
+      else window.location.href = '/';
     })
     .catch(err => {
       // console.log(err);
-      window.location.href = `/login?error=true`;
+      window.location.href = 
+        (url !== null && url !== '') ? 
+        `/login?error=true&next=${url}` :
+        `/login?error=true`;
     });
   }
 }

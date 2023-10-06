@@ -68,9 +68,16 @@ export default function SignUp(){
 
   function postSignUp(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+    const url = params.get('next');
 
     if (password !== conf) {
-      window.location.href = `/signup?error=0`; 
+      window.location.href = 
+        (url !== null && url !== '') ? 
+        `/signup?error=0&next=${url}` :
+        `/signup?error=0`;
       return;
     }
 
@@ -85,10 +92,15 @@ export default function SignUp(){
 
     axios.post(`${process.env.REACT_APP_API_URL}/api/auth/sign-up`, inputs)
     .then(res => {
-      window.location.href = `/login`;
+      
+      if (url !== null && url !== '') window.location.href = `/login?next=${url}`
+      else window.location.href = `/login`;
     })
     .catch(err => {
-      window.location.href = `/signup?error=1`;
+      window.location.href = 
+        (url !== null && url !== '') ? 
+        `/signup?error=1&next=${url}` :
+        `/signup?error=1`;
     });
   }
 
