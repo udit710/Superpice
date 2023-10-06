@@ -102,7 +102,12 @@ class CartPage extends React.Component {
         </a>
       </td>
         <td width={10}>{cart_item.productDetailsId.store.storeName}</td>
-        <td width={10}> <a className='og-price'>${cart_item.productDetailsId.original_price.toFixed(2)}</a> ${cart_item.productDetailsId.price.toFixed(2)}</td>
+        {cart_item.productDetailsId.original_price !== cart_item.productDetailsId.price ? (
+          <td width={10}> <a className='og-price'>${cart_item.productDetailsId.original_price.toFixed(2)}</a> ${cart_item.productDetailsId.price.toFixed(2)}</td>
+        ):
+        (
+          <td width={10}>${cart_item.productDetailsId.price.toFixed(2)}</td>
+        )}
         <td width={10}> 
           <button className='changeQty' onClick={() => this.putChangeQuantity(cart_item,"-")} disabled={cart_item.quantity <= 1} > - </button> 
             {cart_item.quantity} 
