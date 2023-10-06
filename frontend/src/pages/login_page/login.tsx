@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './login.css';
 import { Outlet } from 'react-router';
 import axios from 'axios';
@@ -11,6 +11,27 @@ export default function Login(){
   const search = window.location.search;
   const params = new URLSearchParams(search);
 	const error = params.get('error');
+
+  useEffect(() => {
+    const token = window.sessionStorage.getItem('userToken');
+
+    if (token === undefined || token === null) return;
+
+    axios.post(`${process.env.REACT_APP_API_URL}/api/auth/validate`, { token: token })
+    .then(res => {
+      const search = window.location.search;
+      const params = new URLSearchParams(search);
+      const url = params.get('next');
+      window.location.href = 
+        (url !== null && url !== '') ? 
+        url :
+        `/`;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }, [])
+
 
   return (
     <div className='login'>
