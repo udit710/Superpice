@@ -102,9 +102,6 @@ public class AuthController {
 
             return ResponseEntity.ok(HttpStatus.OK);        
         }
-        catch (NoSuchAlgorithmException err) {
-            return ResponseEntity.status(500).build();
-        }
         // Exception if username or email already exists
         catch (Exception err) {
             return ResponseEntity.status(400).build();
