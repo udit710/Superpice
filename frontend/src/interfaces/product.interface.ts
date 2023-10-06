@@ -5,10 +5,11 @@ export interface Product {
     subCategoryId: number;
     details: {
         id: number;
-        store: {storeName: string};
+        store: {storeName: any};
+        original_price: number;
         price: number;
         available: number;
-        discount: number
+        discount: number;
     }[];
     images: { imageUrl: string }[];
 }

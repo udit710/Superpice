@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import axios from 'axios';
 import { Product } from '../../interfaces/product.interface';
 import "./ProductDetail.css";
@@ -24,7 +24,11 @@ interface Review {
     comment: string;
 }
 
+
+
 export default class ProductDetail extends Component {
+
+
     state = {
         product: null as Product | null,
         reviews: [] as Review[],
@@ -33,9 +37,10 @@ export default class ProductDetail extends Component {
         user: null as string | null,
         isLogedIn: false as boolean,
         userId: null as number | null,
-        listItems : [] as cartId_and_addressId[],
         stores : [] as number[],
+        data : [] as cartId_and_addressId[],
     };
+
 
     componentDidMount() {
         this.getUserLoggedIn();
@@ -77,8 +82,17 @@ export default class ProductDetail extends Component {
         });
     }
 
+    
+    
     render() {
         
+        const setAddressId =  (addressId: number, cartId: number) => {
+            const cd: cartId_and_addressId = {
+                cartId: cartId,
+                addressId: addressId,
+            }
+            this.setState({data: [...this.state.data,cd]});
+        }
         const { product, reviews } = this.state;
 
         if (!product) {
@@ -89,6 +103,7 @@ export default class ProductDetail extends Component {
         const description:string = product.description;
         const price:number = product.details[0]?.price || 0;
         const availability:boolean = product.details.some(detail => detail.available > 0);
+        const originalPrice:number = product.details[0]?.original_price || 0;
 
 
         return (
@@ -125,14 +140,14 @@ export default class ProductDetail extends Component {
                             <tbody>
                                 {product.details.map((detail, index) => (
                                     <tr key={index}>
-
-                                        <td>{detail.store.storeName}</td>
-                                        <td>{detail.discount}%</td>
-                                        <td>${detail.price.toFixed(2)}</td>
-                                        <td>{detail.available}</td>
-                                        <td><input id='quantity' type="number" className="form-control" defaultValue={1} min={1} max={detail.available} /></td>
+                                        
+                                        <td id={detail.store.storeName}>{detail.store.storeName}</td>
+                                        <td id={detail.discount.toString()} >{detail.discount}%</td>
+                                        <td id={detail.price.toFixed(2)}>${detail.price.toFixed(2)}</td>
+                                        <td id={detail.available.toString()}>{detail.available}</td>
+                                        <td><input id={index.toString()} type="number" className="form-control" defaultValue={1} min={1} max={detail.available} /></td>
                                         {/* {this.state.isLogedIn ? ( */}
-                                            <td><button className="btn btn-primary" onClick={() => this.addToCart(product,index, detail)}>Add to Cart</button></td>
+                                            <td><button className="btn btn-primary" onClick={() => this.addToCart(product, detail,index)}>Add to Cart</button></td>
                                         {/* ) : (
                                             <p><a href='/login'>Login</a> to add to cart</p>
                                         )} */}
@@ -228,29 +243,39 @@ export default class ProductDetail extends Component {
         });
     }
 
-    async addToCart(product: Product, index: number, detail: any) {
-        const productId = this.state.product?.id;
+    async addToCart(product: Product, detail: any, index: number) {
+        console.log('detail: ', detail)
+        const new_product = product;
+        new_product.details = detail;
+        console.log('new_product: ', new_product)
         const userId = this.state.userId;
-        let quantity = (document.getElementById("quantity") as HTMLInputElement).value;
-        if (Number(quantity) <= 1){ quantity = '1'}else if (Number(quantity) > product.details[index].available){ quantity = product.details[index].available.toString()};
-        axios.post(`${process.env.REACT_APP_API_URL}/api/cartItems`, { userId: userId, productDetailsId: product, quantity: quantity})
+        let quantity = (document.getElementById(index.toString()) as HTMLInputElement).value;
+        if (Number(quantity) <= 1){ quantity = '1'}else if (Number(quantity) > detail.available){ quantity = detail.available.toString()};
+        const cartItem = {
+            userId: 1,
+            productDetailsId: {id: new_product.id, store: detail.store, original_price: detail.original_price, discount: detail.discount, price: detail.price, available: detail.available},
+            quantity: quantity,
+        }
+
+        const productDetailsId = {id: new_product.id, store: detail.store, original_price: detail.original_price, discount: detail.discount, price: detail.price, available: detail.available}
+
+        console.log('cartItem: ', cartItem)
+
+        console.log('cartItem: ', cartItem)
+        axios.post(`${process.env.REACT_APP_API_URL}/api/cartItems`, {userId: userId, productDetailsId: productDetailsId, quantity: Number(quantity)})
             .then(res => {
                 console.log(res);
             })
             .catch(err => {
-                console.log(err);
+                console.error("Error adding to cart: ", err);
             });
     
         try {
             const cartItemsResponse = await axios.get<Cart_Item[]>(`${process.env.REACT_APP_API_URL}/api/cartItems`);
             const cart_items = cartItemsResponse.data;
 
-            const cartId_and_addressId: cartId_and_addressId = {
-                cartId: cart_items[-1].id,
-                addressId: index,
-            }
+            console.log('cart_items: ', cart_items[cart_items.length - 1])
 
-            this.setState({ listItems: [...this.state.listItems, cartId_and_addressId] });
 
 
 

@@ -23,10 +23,13 @@ class CartPage extends React.Component {
       const cart_items = cartItemsResponse.data;
       this.setState({ cart_items });
 
+      console.log('Cart items:', cart_items)
+
       const products = await Promise.all(cart_items.map(async (cart_item) => {
         const productResponse = await axios.get<Product>(`${process.env.REACT_APP_API_URL}/api/products/${cart_item.productDetailsId.id}`);
         return productResponse.data;
       }));
+      
       this.setState({ products });
     } catch (error) {
       console.error('Error fetching cart items and products:', error);

@@ -14,7 +14,8 @@ describe('ResultsList comonent tests', () => {
             store: {storeName: ''},
             price: 1,
             available: 1,
-            discount: 1
+            discount: 1,
+            original_price: 1,
         }],
         images: [{imageUrl: ''}]
     };
