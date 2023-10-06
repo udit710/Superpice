@@ -18,7 +18,7 @@ public class CartItemTest {
 
     @BeforeEach
     void createCartItem() {
-        this.cartItem = new CartItem(1l, new ProductDetails(), new User(), 1);
+        this.cartItem = new CartItem(1l, 1l, new ProductDetails(), new User(), 1);
     }
 
     @Test
@@ -39,6 +39,11 @@ public class CartItemTest {
     @Test
     void should_return_qty() {
         assertEquals(1, this.cartItem.getQuantity());
+    }
+
+    @Test
+    void should_return_productId() {
+        assertEquals(1l, this.cartItem.getProductId());
     }
 
 }
