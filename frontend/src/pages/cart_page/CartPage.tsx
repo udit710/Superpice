@@ -140,7 +140,7 @@ class CartPage extends React.Component {
         <td width={10}> 
           <button className='changeQty' onClick={() => this.putChangeQuantity(cart_item,"-")} disabled={cart_item.quantity <= 1} > - </button> 
             {cart_item.quantity} 
-          <button className='changeQty' onClick={() => this.putChangeQuantity(cart_item,"+")} disabled={cart_item.quantity >= 10}> + </button>
+          <button className='changeQty' onClick={() => this.putChangeQuantity(cart_item,"+")} disabled={cart_item.quantity >= cart_item.productDetailsId.available}> + </button>
           <button className='trash' onClick={() => this.deleteCartItem(cart_item)}>  <BsTrash3Fill /> </button> 
         </td>
         <td width={10}>${(cart_item.productDetailsId.price*cart_item.quantity).toFixed(2)}</td>
