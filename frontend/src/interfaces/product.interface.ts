@@ -4,10 +4,12 @@ export interface Product {
     description: string;
     subCategoryId: number;
     details: {
-        store: {storeName: string};
+        id: number;
+        store: {storeName: any};
+        original_price: number;
         price: number;
         available: number;
-        discount: number
+        discount: number;
     }[];
     images: { imageUrl: string }[];
 }
