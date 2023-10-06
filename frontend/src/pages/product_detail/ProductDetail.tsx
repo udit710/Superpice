@@ -247,7 +247,10 @@ export default class ProductDetail extends Component {
     async addToCart(product: Product, detail:any, index: number) {
         // console.log('detail: ', detail.id);
 
-        if (this.state.user === null) return;
+        if (!this.state.isLogedIn) {
+            window.location.href = '/login';
+            return;
+        }
 
         const object = {
             productId: product.id,
