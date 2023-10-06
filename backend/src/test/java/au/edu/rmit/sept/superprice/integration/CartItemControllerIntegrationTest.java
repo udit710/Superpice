@@ -20,8 +20,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import au.edu.rmit.sept.superprice.SuperPriceApplication;
 import au.edu.rmit.sept.superprice.model.CartItem;
 
@@ -78,7 +76,7 @@ public class CartItemControllerIntegrationTest {
     @Test
     void update_cartItem() throws Exception {
         mvc.perform(put("/api/cartItems/1")
-            .content(asJsonString(new CartItem(null, null, null, null, 5)))
+            .content(ObjectToJson.asJsonString(new CartItem(null, null, null, null, 5)))
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON))
             
@@ -118,11 +116,4 @@ public class CartItemControllerIntegrationTest {
             .andExpect(jsonPath("$[0].quantity", is(2)));
     }
 
-    public static String asJsonString(final Object object) {
-        try {
-            return new ObjectMapper().writeValueAsString(object);
-        } catch (Exception err) {
-            throw new RuntimeException(err);
-        }
-    }
 }
