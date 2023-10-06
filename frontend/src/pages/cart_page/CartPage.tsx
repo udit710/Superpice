@@ -19,18 +19,24 @@ class CartPage extends React.Component {
 
   async componentDidMount() {
     try {
-      const cartItemsResponse = await axios.get<Cart_Item[]>(`${process.env.REACT_APP_API_URL}/api/cartItems`);
-      const cart_items = cartItemsResponse.data;
-      this.setState({ cart_items });
+      let cart_items;
+      await axios.get(`${process.env.REACT_APP_API_URL}/api/cartItems`)
+      .then(res => {
+        console.log(res.data);
+        cart_items = res.data;
+        this.setState({ cart_items: res.data }, () => {getProducts()});
+      });
 
-      console.log('Cart items:', cart_items)
-
-      const products = await Promise.all(cart_items.map(async (cart_item) => {
-        const productResponse = await axios.get<Product>(`${process.env.REACT_APP_API_URL}/api/products/${cart_item.productId}`);
-        return productResponse.data;
-      }));
+      const getProducts = async () => {
+        const products = await Promise.all(this.state.cart_items.map(async (cart_item) => {
+          const productResponse = await axios.get<Product>(`${process.env.REACT_APP_API_URL}/api/products/${cart_item.productId}`);
+          return productResponse.data;
+        }));
       
-      this.setState({ products });
+      
+        this.setState({ products: products });
+      }
+    
     } catch (error) {
       console.error('Error fetching cart items and products:', error);
     }
@@ -46,7 +52,7 @@ class CartPage extends React.Component {
       .put<Cart_Item>(`${process.env.REACT_APP_API_URL}/api/cartItems/${cartItem.id}`, new_cart_item)
       .then((response) => {
         const updated_cart_item = response.data;
-        console.log('Updated cart item:', updated_cart_item);
+        // console.log('Updated cart item:', updated_cart_item);
         const cart_items = this.state.cart_items.map((item) => {
           if (item.id === updated_cart_item.id) {
             return updated_cart_item;
@@ -65,7 +71,7 @@ class CartPage extends React.Component {
     axios
       .delete(`${process.env.REACT_APP_API_URL}/api/cartItems/${cartItem.id}`)
       .then((response) => {
-        console.log('Deleted cart item:', cartItem);
+        // console.log('Deleted cart item:', cartItem);
         const cart_items = this.state.cart_items.filter((item) => item.id !== cartItem.id);
         this.setState({ cart_items });
       })
@@ -82,17 +88,17 @@ class CartPage extends React.Component {
     const { cart_items, products } = this.state;
     console.log("products: ", products);
     
-    function getProduct(productId:number) {
-      return products.find(product => product.id === productId);
-    }
+    // function getProduct(productId:number) {
+    //   return products.find(product => product.id === productId);
+    // }
 
     const listItems = cart_items.map((cart_item, i) =>
     <tr key={i}>
         <td width={10}>{i + 1}</td>
-        <td width={10}><img src={getProduct(cart_item.productDetailsId.id)?.images[0].imageUrl} alt={getProduct(cart_item.productDetailsId.id)?.productName} className='product-img'></img></td>
+        <td width={10}><img src={this.state.products[i]?.images[0]?.imageUrl} alt={products.at(i)?.productName} className='product-img'></img></td>
         <td width={10}>
-        <a href={'/ProductDetail/' + getProduct(cart_item.productDetailsId.id)?.id} className='product-name' >
-          {getProduct(cart_item.productDetailsId.id)?.productName} &rarr;
+        <a href={'/ProductDetail/' + products[i]?.id} className='product-name' >
+          {products[i]?.productName} &rarr;
         </a>
       </td>
         <td width={10}>{cart_item.productDetailsId.store.storeName}</td>
@@ -135,6 +141,7 @@ class CartPage extends React.Component {
                 </tr>
               </thead>
               <tbody>
+                {/* {this.state.products[0].images[0].imageUrl} */}
                 {listItems}
               </tbody>
             </Table>
