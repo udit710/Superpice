@@ -6,21 +6,50 @@ import { Product } from "../../interfaces/product.interface";
 import './CartPage.css';
 import { BsTrash3Fill } from 'react-icons/bs';
 import cartId_and_addressId  from '../../interfaces/cartId_and_addressId.interface';
+import { user } from '../../interfaces/user.interface';
 class CartPage extends React.Component {
   state = {
     cart_items: [] as Cart_Item[],
     products: [] as Product[],
+    isLogedIn: false as boolean,
+    userId: null as number | null,
   };
 
   // constructor(props: cartId_and_addressId[]) {
   //   super(props);
 
   // }
+  componentDidMount() {
+    this.getUserLoggedIn();
+  }
 
-  async componentDidMount() {
+  getUserLoggedIn = () => {
+    const token = window.sessionStorage.getItem('userToken');
+
+    if (token === undefined || token === null) {
+      window.location.href = '/login';
+      return;
+    }
+
+    let currUser: user;
+    axios.post(`${process.env.REACT_APP_API_URL}/api/auth/validate`, { token: token })
+    .then(res => {
+        currUser = res.data;
+        // console.log(currUser.username);
+        this.setState({ isLogedIn: true });
+        this.setState({ userId: currUser.userId }, () => {this.get_cart_items()});
+    })
+    .catch(err => {
+        console.log(err);
+        window.location.href = '/login';
+    });
+}
+
+   async get_cart_items() {    
+
     try {
       let cart_items;
-      await axios.get(`${process.env.REACT_APP_API_URL}/api/cartItems`)
+      await axios.get(`${process.env.REACT_APP_API_URL}/api/cartItems/userId/${this.state.userId}`)
       .then(res => {
         console.log(res.data);
         cart_items = res.data;
