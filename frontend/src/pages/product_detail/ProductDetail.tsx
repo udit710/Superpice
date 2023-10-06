@@ -39,6 +39,7 @@ export default class ProductDetail extends Component {
         userId: null as number | null,
         stores : [] as number[],
         data : [] as cartId_and_addressId[],
+        quantity: 1 as number,
     };
 
 
@@ -145,9 +146,9 @@ export default class ProductDetail extends Component {
                                         <td id={detail.discount.toString()} >{detail.discount}%</td>
                                         <td id={detail.price.toFixed(2)}>${detail.price.toFixed(2)}</td>
                                         <td id={detail.available.toString()}>{detail.available}</td>
-                                        <td><input id={index.toString()} type="number" className="form-control" defaultValue={1} min={1} max={detail.available} /></td>
+                                        <td><input onChange={e => {this.setState({ quantity: e.target.value })}}  id={index.toString()} type="number" className="form-control" defaultValue={1} min={1} max={detail.available} /></td>
                                         {/* {this.state.isLogedIn ? ( */}
-                                            <td><button className="btn btn-primary" onClick={() => this.addToCart(product, detail,index)}>Add to Cart</button></td>
+                                            <td><button className="btn btn-primary" onClick={() => this.addToCart(product, detail, index)}>Add to Cart</button></td>
                                         {/* ) : (
                                             <p><a href='/login'>Login</a> to add to cart</p>
                                         )} */}
@@ -243,44 +244,63 @@ export default class ProductDetail extends Component {
         });
     }
 
-    async addToCart(product: Product, detail: any, index: number) {
-        console.log('detail: ', detail)
-        const new_product = product;
-        new_product.details = detail;
-        console.log('new_product: ', new_product)
-        const userId = this.state.userId;
-        let quantity = (document.getElementById(index.toString()) as HTMLInputElement).value;
-        if (Number(quantity) <= 1){ quantity = '1'}else if (Number(quantity) > detail.available){ quantity = detail.available.toString()};
-        const cartItem = {
-            userId: 1,
-            productDetailsId: {id: new_product.id, store: detail.store, original_price: detail.original_price, discount: detail.discount, price: detail.price, available: detail.available},
-            quantity: quantity,
+    async addToCart(product: Product, detail:any, index: number) {
+        // console.log('detail: ', detail.id);
+
+        if (this.state.user === null) return;
+
+        const object = {
+            productId: product.id,
+            productDetailsId: detail.id,
+            userId: this.state.userId,
+            quantity: this.state.quantity
         }
 
-        const productDetailsId = {id: new_product.id, store: detail.store, original_price: detail.original_price, discount: detail.discount, price: detail.price, available: detail.available}
+        axios.post(`${process.env.REACT_APP_API_URL}/api/cartItems`, object)
+        .then(res => {
+            console.log(res.data);
+        })
+        .catch(err => {
+            console.error(err);
+        });
 
-        console.log('cartItem: ', cartItem)
 
-        console.log('cartItem: ', cartItem)
-        axios.post(`${process.env.REACT_APP_API_URL}/api/cartItems`, {productId: 14,productDetailsId: [productDetailsId], quantity: Number(quantity)})
-            .then(res => {
-                console.log(res);
-            })
-            .catch(err => {
-                console.error("Error adding to cart: ", err);
-            });
+        // const new_product = product;
+        // new_product.details = detail;
+        // console.log('new_product: ', new_product)
+        // const userId = this.state.userId;
+        // let quantity = (document.getElementById(index.toString()) as HTMLInputElement).value;
+        // if (Number(quantity) <= 1){ quantity = '1'}else if (Number(quantity) > detail.available){ quantity = detail.available.toString()};
+        // const cartItem = {
+        //     userId: 1,
+        //     productDetailsId: {id: new_product.id, store: detail.store, original_price: detail.original_price, discount: detail.discount, price: detail.price, available: detail.available},
+        //     quantity: quantity,
+        // }
+
+        // const productDetailsId = {id: new_product.id, store: detail.store, original_price: detail.original_price, discount: detail.discount, price: detail.price, available: detail.available}
+
+        // console.log('cartItem: ', cartItem)
+
+        // console.log('cartItem: ', cartItem)
+        // axios.post(`${process.env.REACT_APP_API_URL}/api/cartItems`, {productId: 14,productDetailsId: [productDetailsId], quantity: Number(quantity)})
+        //     .then(res => {
+        //         console.log(res);
+        //     })
+        //     .catch(err => {
+        //         console.error("Error adding to cart: ", err);
+        //     });
     
-        try {
-            const cartItemsResponse = await axios.get<Cart_Item[]>(`${process.env.REACT_APP_API_URL}/api/cartItems`);
-            const cart_items = cartItemsResponse.data;
+        // try {
+        //     const cartItemsResponse = await axios.get<Cart_Item[]>(`${process.env.REACT_APP_API_URL}/api/cartItems`);
+        //     const cart_items = cartItemsResponse.data;
 
-            console.log('cart_items: ', cart_items[cart_items.length - 1])
-
-
+        //     console.log('cart_items: ', cart_items[cart_items.length - 1])
 
 
-        } catch (error) {
-            console.error('Error fetching cart items:', error);
-        }
+
+
+        // } catch (error) {
+        //     console.error('Error fetching cart items:', error);
+        // }
     }
 }
