@@ -41,45 +41,4 @@ public class JwtUtil {
         return Jwts.builder().setClaims(claims).setExpiration(tokenValidate).signWith(SignatureAlgorithm.HS256, secret_key).compact();
     }
 
-    private Claims parseJwt(String token) {
-        return jwtParser.parseClaimsJws(token).getBody();
-    }
-
-    public String resolveToken(HttpServletRequest request) {
-
-        String bearer = request.getHeader(TOKEN_HEADER);
-        if (bearer != null && bearer.startsWith(TOKEN_PREFIX)) {
-            return bearer.substring(TOKEN_PREFIX.length());
-        }
-        return null;
-    }
-
-    public Claims resolve(HttpServletRequest request) {
-        try {
-            String token = resolveToken(request);
-            if (token != null) return parseJwt(token);
-            return null;
-        }
-        catch (ExpiredJwtException err) {
-            request.setAttribute("expired", err.getMessage());
-            throw err;
-        }
-        catch (Exception err) {
-            request.setAttribute("invalid", err.getMessage());
-            throw err;
-        }
-    }
-
-    public boolean tokenValidate(Claims claims) {
-        try {
-            return claims.getExpiration().after(new Date());
-        }
-        catch (Exception err) {
-            throw err;
-        }
-    }
-
-    public String getEmail(Claims claims) {
-        return claims.getSubject();
-    }
 }
