@@ -33,7 +33,7 @@ export default class ResultList extends Component<{products: Product[]}> {
             <img src={products[i].images[0].imageUrl} alt='product' height='160' width='160' />
             <div className='details'>
               <h3 data-testid='product_name'>{products[i].productName}</h3>
-              <p data-testid='price'>$ {products[i].details[0]?.price | 0.0}</p>
+              <p data-testid='price'>$ {products[i].details[0]?.price.toFixed(2)}</p>
             </div>
           </div>
         </a>
