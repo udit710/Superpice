@@ -252,6 +252,7 @@ export default class ProductDetail extends Component {
             return;
         }
 
+        if (this.state.quantity <= 1){ this.state.quantity = 1}else if (this.state.quantity > detail.available){ this.state.quantity = detail.available};
         const object = {
             productId: product.id,
             productDetailsId: detail.id,
