@@ -2,6 +2,8 @@ package au.edu.rmit.sept.superprice.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import au.edu.rmit.sept.superprice.model.Address;
 import au.edu.rmit.sept.superprice.model.User;
 import au.edu.rmit.sept.superprice.service.UserService;
 
@@ -13,6 +15,9 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    
+    @Autowired
+    AddressController addressController;
 
     @Autowired
     public UserController(UserService userService) {
@@ -74,6 +79,21 @@ public class UserController {
     @GetMapping("/addressId/{addressId}")
     public List<User> getUsersByAddressId(@PathVariable Long addressId) {
         return userService.getUsersByAddressId(addressId);
+    }
+
+    @PutMapping("/address/{id}")
+    public User updateAddress(@PathVariable Long id, @RequestBody Address address) {
+        User currUser = userService.getUserById(id);
+        Address add;
+        if (currUser.getAddressId() == null) {
+            add = addressController.addAddress(address);
+        }
+        else {
+            address.setId(currUser.getAddressId());
+            add = addressController.updateAddress(currUser.getAddressId(), address);        
+        }
+        currUser.setAddressId(add.getId());
+        return userService.saveOrUpdateUser(currUser);
     }
 
 }

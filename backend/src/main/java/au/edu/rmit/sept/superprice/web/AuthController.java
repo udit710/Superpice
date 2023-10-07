@@ -80,7 +80,6 @@ public class AuthController {
             String firstName = details.get("first_name").asText();
             String lastName = details.get("last_name").asText();
             String phone = details.get("phone").asText();
-            // TODO address
     
             String password = hashPassword(details.get("password").asText());
             User user = new User();
@@ -90,7 +89,6 @@ public class AuthController {
             user.setLastName(lastName);
             user.setPhone(phone);
             user.setPassword(password);
-            user.setAddressId(1l); // TODO CHANGE TO INPUT
     
             if (userService.getUsersByUsername(username) != null || 
                 userService.getUsersByEmail(email) != null) {

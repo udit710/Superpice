@@ -21,6 +21,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import au.edu.rmit.sept.superprice.SuperPriceApplication;
+import au.edu.rmit.sept.superprice.model.Address.AddressType;
+import au.edu.rmit.sept.superprice.web.UserController;
+import au.edu.rmit.sept.superprice.model.Address;
 import au.edu.rmit.sept.superprice.model.User;
 
 @AutoConfigureMockMvc
@@ -31,6 +34,9 @@ public class UserControllerIntegrationTest {
     MockMvc mvc;
     @Autowired
     Flyway flyway;
+
+    @Autowired
+    UserController userController;
 
     @BeforeEach
     private void init() {
@@ -128,6 +134,30 @@ public class UserControllerIntegrationTest {
     @Test
     void get_users_by_addressId() throws Exception {
         mvc.perform(get("/api/users/addressId/1").contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    void add_user_address() throws Exception {
+        User user = userController.createUser(new User(null, "test", "test", "test", "test", "test", "test", null));
+
+        mvc.perform(put("/api/users/address/" + user.getUserId())
+            .content(ObjectToJson.asJsonString(new Address(null, "test", null, "test", "test", "test", "test", AddressType.USER)))
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON))
+            
+            .andExpect(status().isOk())
+            .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    void update_user_address() throws Exception {
+        mvc.perform(put("/api/users/address/1")
+            .content(ObjectToJson.asJsonString(new Address(null, "test", null, "test", "test", "test", "test", AddressType.USER)))
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON))
+            
             .andExpect(status().isOk())
             .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
     }
