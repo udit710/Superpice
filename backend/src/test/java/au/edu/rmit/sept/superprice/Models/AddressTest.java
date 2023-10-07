@@ -21,7 +21,8 @@ public class AddressTest {
 
     @Test
     void should_return_id() {
-        assertEquals(1l, this.address.getId());
+        this.address.setId(2l);
+        assertEquals(2l, this.address.getId());
     }
 
     @Test
