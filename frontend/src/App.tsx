@@ -12,7 +12,6 @@ import Homepage from './pages/homepage';
 
 import ProductDetail from './pages/product_detail/ProductDetail';
 import SearchResults from './pages/searchResults/searchResults';
-import OfferList from './components/offerList/offerList';
 import CheckoutPage from './pages/checkout_page/CheckoutPage';
 import LoginPage from './pages/login_page/login';
 import SignUpPage from './pages/sign_up_page/signup';
