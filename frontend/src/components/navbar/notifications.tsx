@@ -55,10 +55,10 @@ export default class Notifications extends Component {
         <div className="dropdown-menu dropdown-menu-end notif-dropdown p-0 m-0" >
 
           <div className="notifications-heading">
-            <h3>Notifications</h3>
+            <h3 data-testid='notif-header'>Notifications</h3>
           </div>
 
-          <div>
+          <div data-testid='notifications'>
 
             {this.state.notifs.map(notif => (
 
