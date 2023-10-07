@@ -14,8 +14,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

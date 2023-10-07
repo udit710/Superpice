@@ -33,19 +33,30 @@ const CheckoutPage = () => {
       orderAddressId: currUser?.addressId,
       paymentMethod: selectedPaymentMethod,
     })
-    //3. reduce item quantity
-    // FIX ME: CREATE A PRODUCT DETAIL CONTROLLER
+    console.log("FINISHED: Creating a new Order")
 
-    //4. remove items from the cart
-    const deleteCartItems = async ()=>{cartItems.map((item)=>{
-      axios.delete(`${process.env.REACT_APP_API_URL}/api/cartItems/${item.cart_item_id}`)
+    //2. reduce item quantity
+    const updateCartItems = async ()=>{cartItems.map(async (item)=>{
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/product-details/${item.product_id}/update-quantity?newQuantity=${item.quantity}`)
+      .then((response)=>{
+         axios.delete(`${process.env.REACT_APP_API_URL}/api/cartItems/${item.cart_item_id}`)
+      })
+      .catch((error)=>{
+        console.error("Error updating product details:", error);
+      })
     })}
-    await deleteCartItems();
+    await updateCartItems();
+    console.log("FINISHED: Reducing quantity in Product_Detail & Deleted Items from the CartItem")
+
     setCartItems([]);
-    //3. redirect to home-page
-    navigate("/");
-    //2. show alert that order is submitted
+    console.log("Cleared: Cleared Cart Item")
+
+    //4. show alert that order is submitted
     localStorage.setItem('showSubmitedPopUp', 'true');
+
+    //5. redirect to home-page
+    navigate("/");
+    console.log("NAVIGATED: to homepage")
   };
 
   //handle payment method change
@@ -64,27 +75,16 @@ const CheckoutPage = () => {
   
   //fetch data
   async function fetchData(){
-    //FIX THIS: GET REAL ADDRESSS
-    //fetch user address
-    // await axios.get<user>(`${process.env.REACT_APP_API_URL}/api/users/${currUser?.userId}`)
-    // .then((response)=>{
-    //   set_user_address(response.data.address);
-    // })
-    // .catch((error)=>{
-    //   console.error('Error fetching address using user id: ', error)
-    // });
-     //TEMP: user addresse
-    set_user_address({ 
-      id: 1,
-      addressLine1: '715 Sydney Rd',
-      addressLine2: 'Brunswick',
-      city: 'Melbourne',
-      state: 'Victoria',
-      postalCode: '3056',
-      country: 'Australia',
-      addressType: AddressType.STORE
+    
+    // fetch user address
+    await axios.get<Address>(`${process.env.REACT_APP_API_URL}/api/address/${currUser?.userId}`)
+    .then((response)=>{
+      set_user_address(response.data);
+    })
+    .catch((error)=>{
+      console.error('Error fetching address using user id: ', error)
     });
-      
+     
     //Fetch Cart_Items for a UserID
     await axios.get<Cart_Item[]>(`${process.env.REACT_APP_API_URL}/api/cartItems/userId/${currUser?.userId}`)
                 .then((response) => {setCartItems(response.data)})
@@ -142,7 +142,7 @@ const CheckoutPage = () => {
           <Form>
             {Object.values(PaymentMethod).map((method) => (
               <div key={`default-${method}`} className="mb-3">
-                <Form.Check // prettier-ignore
+                <Form.Check 
                   name='payment method'
                   type='radio'
                   id={`default-${method}`}

@@ -27,7 +27,6 @@ public class CartItem{
     @Column(name = "cart_item_id")
     private Long id;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_details_id", referencedColumnName = "product_details_id")
     private ProductDetails productDetailsId;
