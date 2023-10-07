@@ -156,7 +156,7 @@ class CartPage extends React.Component {
     }
 
     if (cart_items.length === 0) {
-      return <h2>Your cart is empty</h2>
+      return <h2 data-testid='cart-title'>Your cart is empty</h2>
     }else{
       return (
           <>
