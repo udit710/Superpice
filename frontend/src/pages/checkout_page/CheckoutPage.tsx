@@ -40,11 +40,11 @@ const CheckoutPage = () => {
       //TEMP CODE: Comment this before uncommenting below code
       axios.delete(`${process.env.REACT_APP_API_URL}/api/cartItems/${item.id}`)
 
-      //ERROR COMMENTED: Here in axios.put() there is some CORS Policy Issue
-      // axios.put(`${process.env.REACT_APP_API_URL}/api/productDetail/${item.productDetailsId}/update-quantity?newQuantity=${item.quantity}`)
-      // .then((response)=>{
-      //    axios.delete(`${process.env.REACT_APP_API_URL}/api/cartItems/${item.id}`)
-      // })
+      // ERROR COMMENTED: Here in axios.put() there is some CORS Policy Issue
+      axios.put(`${process.env.REACT_APP_API_URL}/api/productDetail/${item.productDetailsId.id}/update-quantity?newQuantity=${item.productDetailsId.available - item.quantity}`)
+      .then((response)=>{
+        //  axios.delete(`${process.env.REACT_APP_API_URL}/api/cartItems/${item.id}`)
+      })
       .catch((error)=>{
         console.error("Error updating product details:", error);
       })
@@ -199,7 +199,7 @@ const CheckoutPage = () => {
         {/* Total[On the Right Side] */}
         <div>
           <h3>Order Summary</h3>
-          <h4>Total: {total}</h4>
+          <h4>Total: {total.toFixed(2)}</h4>
           <Button variant="primary" onClick={handleSubmit}>Submit</Button>
         </div>
         <hr/>
