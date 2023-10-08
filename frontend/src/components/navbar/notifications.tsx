@@ -14,7 +14,8 @@ interface Notifs {
 export default class Notifications extends Component {
   state = {
     notifs: [] as Notifs[],
-    userId: null as number | null
+    userId: null as number | null,
+    isLogedIn: false as boolean,
   }
 
 
@@ -60,7 +61,10 @@ export default class Notifications extends Component {
 
           <div data-testid='notifications'>
 
-            {this.state.notifs.map(notif => (
+            {!this.state.isLogedIn ? (
+              <h5>Log In to get notifications</h5>
+            ):
+            this.state.notifs.map(notif => (
 
               (notif.user.userId === this.state.userId) ?
                 <div className='notif' key={notif.notifId}>
