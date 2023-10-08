@@ -102,6 +102,7 @@ export default function SignUp(){
         .then(res => {
           console.log(res.data);
         })
+        .catch(err => console.error('Error creating welcome notification:', error));
       })
       .catch(error => console.error('Error fetching user ID:', error));
 
