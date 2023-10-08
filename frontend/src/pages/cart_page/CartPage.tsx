@@ -20,6 +20,7 @@ class CartPage extends React.Component {
 
   // }
   componentDidMount() {
+    document.title = 'Cart - SUPERPRICE';
     this.getUserLoggedIn();
   }
 

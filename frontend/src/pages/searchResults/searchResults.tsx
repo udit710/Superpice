@@ -28,6 +28,10 @@ export default class SearchResults extends Component<{searchItem: string}> {
     const params = new URLSearchParams(search);
     const searchTerm = params.get('item');
 
+    if (searchTerm !== null && searchTerm !== '') {
+      document.title = `Search: ${searchTerm} - SUPERPRICE`;
+    }
+
     await axios.get(`${process.env.REACT_APP_API_URL}/api/search?name=${searchTerm}`)
       .then(res => {
         this.setState({ products: res.data }, this.getSubcategories);        

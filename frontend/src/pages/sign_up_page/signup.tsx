@@ -18,6 +18,7 @@ export default function SignUp(){
 	const error = params.get('error');
 
   useEffect(() => {
+    document.title = 'Sign up - SUPERPRICE';
     const token = window.sessionStorage.getItem('userToken');
 
     if (token === undefined || token === null) return;

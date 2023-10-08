@@ -13,6 +13,7 @@ export default function Login(){
 	const error = params.get('error');
 
   useEffect(() => {
+    document.title = 'Login - SUPERPRICE';
     const token = window.sessionStorage.getItem('userToken');
 
     if (token === undefined || token === null) return;

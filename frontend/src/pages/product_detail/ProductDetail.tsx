@@ -53,6 +53,7 @@ export default class ProductDetail extends Component {
         axios.get(`${process.env.REACT_APP_API_URL}/api/products/${productId}`)
             .then(response => {
                 this.setState({ product: response.data });
+                document.title = `${response.data?.productName} - SUPERPRICE`;
             })
             .catch(error => console.error('Error fetching product data:', error));
         console.log("Value of product: " + this.state.product);
