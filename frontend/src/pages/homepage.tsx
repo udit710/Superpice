@@ -11,9 +11,12 @@ export default function Homepage(){
     if(localStorage.getItem('showSubmitedPopUp') === 'true'){
       setShowPopUp('true');
       setTimeout(()=>{
-        localStorage.setItem('showSubmitedPopUp', 'true');
+        localStorage.setItem('showSubmitedPopUp', 'false');
         setShowPopUp('false');
-      }, 5000)
+      }, 2000)
+    }
+    return ()=>{
+      localStorage.removeItem('showSubmitedPopUp')
     }
   },[])
 

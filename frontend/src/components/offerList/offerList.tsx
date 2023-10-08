@@ -26,7 +26,7 @@ export default function OfferList() {
         // Call the async function
         fetchData();
       }, []); 
-      console.log(product);
+    //   console.log(product);
     return (
         <>  
             <hr/>

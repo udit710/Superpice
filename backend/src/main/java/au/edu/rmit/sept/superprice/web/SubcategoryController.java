@@ -11,7 +11,7 @@ import au.edu.rmit.sept.superprice.model.SubCategory;
 import au.edu.rmit.sept.superprice.service.SubCategoryService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/subcategory")
 public class SubcategoryController {
     

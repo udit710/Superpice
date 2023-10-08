@@ -36,18 +36,23 @@ const CheckoutPage = () => {
     console.log("FINISHED: Creating a new Order")
 
     //2. reduce item quantity
-    const updateCartItems = async ()=>{cartItems.map(async (item)=>{
-      await axios.put(`${process.env.REACT_APP_API_URL}/api/product-details/${item.productDetailsId}/update-quantity?newQuantity=${item.quantity}`)
-      .then((response)=>{
-         axios.delete(`${process.env.REACT_APP_API_URL}/api/cartItems/${item.id}`)
-      })
+    const updateCartItems = async ()=>{cartItems.map((item)=>{
+      //TEMP CODE: Comment this before uncommenting below code
+      axios.delete(`${process.env.REACT_APP_API_URL}/api/cartItems/${item.id}`)
+
+      //ERROR COMMENTED: Here in axios.put() there is some CORS Policy Issue
+      // axios.put(`${process.env.REACT_APP_API_URL}/api/productDetail/${item.productDetailsId}/update-quantity?newQuantity=${item.quantity}`)
+      // .then((response)=>{
+      //    axios.delete(`${process.env.REACT_APP_API_URL}/api/cartItems/${item.id}`)
+      // })
       .catch((error)=>{
         console.error("Error updating product details:", error);
       })
     })}
+
     await updateCartItems();
     console.log("FINISHED: Reducing quantity in Product_Detail & Deleted Items from the CartItem")
-
+    
     setCartItems([]);
     console.log("Cleared: Cleared Cart Item")
 
@@ -58,6 +63,7 @@ const CheckoutPage = () => {
     navigate("/");
     console.log("NAVIGATED: to homepage")
   };
+
 
   //handle payment method change
   const handlePaymentMethodChange = (event: any) => {
@@ -111,11 +117,15 @@ const CheckoutPage = () => {
   },[]);
 
   useEffect(()=>{
-    fetchData();
+    if(currUser){
+      fetchData();
+    }
   }, [currUser]);
 
   useEffect(()=>{
-    calculateTotal();
+    if(currUser){
+      calculateTotal();
+    }
   },[cartItems]);
 
   return (
@@ -171,11 +181,11 @@ const CheckoutPage = () => {
                 //List of products in the cart
                 cartItems.map((item) => (
                   // Render each item here
-                  <tr key={item.id}>
-                    <td>{item.productDetailsId.product.productName} </td>
-                    <td>${item.productDetailsId.price}</td>
-                    <td>{item.quantity}</td>
-                    <td>${item.quantity * item.productDetailsId.price}</td>
+                  <tr key={item?.id}>
+                    <td>{item?.productDetailsId?.product?.productName} </td>
+                    <td>${item?.productDetailsId?.price}</td>
+                    <td>{item?.quantity}</td>
+                    <td>${item?.quantity * item?.productDetailsId?.price}</td>
                   </tr>
                 ))
 
