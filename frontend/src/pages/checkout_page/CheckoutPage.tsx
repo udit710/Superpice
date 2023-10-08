@@ -124,12 +124,16 @@ const CheckoutPage = () => {
   async function setupUser(){
     const token = window.sessionStorage.getItem('userToken');
 
-    if (token === undefined || token === null) return;
+    if (token === undefined || token === null) {
+      window.location.href = `/login?next=${window.location.href}`;
+      return;
+    }
     
     await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/validate`, { token: token })
     .then(res => {setCurrUser(res.data)})
     .catch(err => {
       console.log(err);
+      window.location.href = `/login?next=${window.location.href}`;
     });
   }
 
