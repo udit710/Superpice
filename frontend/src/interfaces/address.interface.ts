@@ -1,7 +1,7 @@
 export default interface Address{
     id: number;
     addressLine1: string;
-    addressLine2: string;
+    addressLine2: string | null;
     city: string;
     state: string;
     postalCode: string;

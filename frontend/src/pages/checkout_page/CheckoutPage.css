@@ -12,3 +12,7 @@
 .right-container{
     width: 30vw;
 }
+
+.add-address-container {
+    display: flex;
+}
