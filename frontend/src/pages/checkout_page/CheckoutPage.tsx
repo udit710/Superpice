@@ -20,6 +20,8 @@ const CheckoutPage = () => {
   let paymentMethod: PaymentMethod; //CHECK if it is used??
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<PaymentMethod | null>(null);
   const [user_address, set_user_address] = useState<Address | null>(null);
+  const [prodcuts, setProducts] = useState(null as Product[] | null);
+  const [display, setDisp] = useState(null as any);
   const navigate = useNavigate();
 
   //handle order submition
@@ -124,9 +126,39 @@ const CheckoutPage = () => {
 
   useEffect(()=>{
     if(currUser){
+      getProds();
       calculateTotal();
     }
   },[cartItems]);
+
+  useEffect(()=>{
+    if(currUser){
+      const dispmap = () => {
+          //List of products in the cart
+        if (prodcuts == null) return;
+        return cartItems.map((item, index) => (
+          // Render each item here
+          <tr key={item?.id}>
+            <td>{prodcuts[index]?.productName} </td>
+            <td>{item?.productDetailsId?.store.storeName}</td>
+            <td>${item?.productDetailsId?.price.toFixed(2)}</td>
+            <td>{item?.quantity}</td>
+            <td>${(item?.quantity * item?.productDetailsId?.price).toFixed(2)}</td>
+          </tr>
+        ))
+      }
+      setDisp(dispmap());
+    }
+  },[prodcuts]);
+
+  async function getProds() {
+    const pros = await Promise.all(cartItems.map(async (cart_item) => {
+      const productResponse = await axios.get<Product>(`${process.env.REACT_APP_API_URL}/api/products/${cart_item.productId}`);
+      return productResponse.data;
+    }));
+    setProducts(pros);
+    console.log(pros);
+  };
 
   return (
     <>
@@ -171,6 +203,7 @@ const CheckoutPage = () => {
             <thead>
               <tr>
                 <th>Name</th>
+                <th>Store</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Total</th>
@@ -178,17 +211,7 @@ const CheckoutPage = () => {
             </thead>
             <tbody>
               {
-                //List of products in the cart
-                cartItems.map((item) => (
-                  // Render each item here
-                  <tr key={item?.id}>
-                    <td>{item?.productDetailsId?.product?.productName} </td>
-                    <td>${item?.productDetailsId?.price}</td>
-                    <td>{item?.quantity}</td>
-                    <td>${item?.quantity * item?.productDetailsId?.price}</td>
-                  </tr>
-                ))
-
+                display
               }
             </tbody>
           </Table>
@@ -199,8 +222,8 @@ const CheckoutPage = () => {
         {/* Total[On the Right Side] */}
         <div>
           <h3>Order Summary</h3>
-          <h4>Total: {total.toFixed(2)}</h4>
-          <Button variant="primary" onClick={handleSubmit}>Submit</Button>
+          <h4>Total: ${total.toFixed(2)}</h4>
+          <Button variant="primary" onClick={handleSubmit}>Purchase</Button>
         </div>
         <hr/>
       </div>
