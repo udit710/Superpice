@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import au.edu.rmit.sept.superprice.model.Notification;
-import au.edu.rmit.sept.superprice.model.Product;
 import au.edu.rmit.sept.superprice.model.User;
 
 @SpringBootTest

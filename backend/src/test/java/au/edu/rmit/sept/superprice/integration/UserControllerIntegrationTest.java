@@ -1,6 +1,5 @@
 package au.edu.rmit.sept.superprice.integration;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -89,11 +88,6 @@ public class UserControllerIntegrationTest {
             .andExpect(status().isOk())
             .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
     }
-
-    // @Test
-    // void delete_user() throws Exception {
-    //     mvc.perform(delete("/api/users/1")).andExpect(status().isOk());
-    // }
 
     @Test
     void get_user_by_username() throws Exception {

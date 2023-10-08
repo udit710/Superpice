@@ -1,6 +1,5 @@
 package au.edu.rmit.sept.superprice.integration;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -116,9 +115,4 @@ public class OrderControllerIntegrationTest {
             .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
     }
 
-    // @Test
-    // void delete_order() throws Exception {
-    //     mvc.perform(delete("/api/orders/2")).andExpect(status().isOk());
-    // }
-    
 }

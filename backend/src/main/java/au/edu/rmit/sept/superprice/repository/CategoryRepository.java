@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-    //String GetCategoryNameByCategoryId(Long categoryId);
+    
     @Query("SELECT c.categoryName FROM Category c WHERE c.categoryId = ?1 ")
     String findCategoryByCategoryId(Long categoryId);
 }

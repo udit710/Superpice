@@ -194,7 +194,5 @@ public class UserControllerTest{
     
             verify(this.userService, times(1)).deleteUser(1l);
         }
-        
-                
 
 }

@@ -30,10 +30,6 @@ public class NotificationService {
         return notificationRepository.save(notification);
     }
 
-    // public Notification updateNotification(Integer id) {
-    //     return notificationRepository.notificationSeen(id);
-    // }
-
     public void deleteNotification(Long id) {
         notificationRepository.deleteById(id);
     }

@@ -33,7 +33,6 @@ public class Review {
     @Column(name = "user_id")
     private Long userId;
 
-    // @Column(name = "product_id")
     @Setter
     @JsonIgnore
     @ManyToOne(optional = false, fetch = FetchType.LAZY)

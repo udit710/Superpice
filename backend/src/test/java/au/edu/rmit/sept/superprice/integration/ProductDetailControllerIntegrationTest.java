@@ -1,8 +1,6 @@
 package au.edu.rmit.sept.superprice.integration;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -21,10 +19,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import au.edu.rmit.sept.superprice.SuperPriceApplication;
-import au.edu.rmit.sept.superprice.model.Address.AddressType;
-import au.edu.rmit.sept.superprice.web.UserController;
-import au.edu.rmit.sept.superprice.model.Address;
-import au.edu.rmit.sept.superprice.model.User;
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = SuperPriceApplication.class)

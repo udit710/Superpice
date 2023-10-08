@@ -7,7 +7,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,34 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import au.edu.rmit.sept.superprice.model.CartItem;
 import au.edu.rmit.sept.superprice.repository.CartItemRepository;
 import au.edu.rmit.sept.superprice.service.CartItemService;
-import au.edu.rmit.sept.superprice.web.CartItemController;
 import au.edu.rmit.sept.superprice.model.ProductDetails;
 import au.edu.rmit.sept.superprice.model.User;
-
-// public class CartItem{
-
-//     @Id
-//     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     @Column(name = "cart_item_id")
-//     private Long id;
-
-//     @Column(name = "product_id")
-//     private Long productId;
-
-//     // @JsonIgnore
-//     @ManyToOne
-//     @JoinColumn(name = "product_details_id", referencedColumnName = "product_details_id")
-//     private ProductDetails productDetailsId;
-
-//     // @JsonIgnore
-//     @ManyToOne
-//     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-//     private User userId;
-
-//     @Column(name = "quantity")
-//     private int quantity;
-    
-// }
 
 @SpringBootTest
 public class CartItemServiceTest {
@@ -103,6 +76,5 @@ public class CartItemServiceTest {
         verify(this.cartItemRepository, times(1))
             .save(cartItem);
     }
-
-
+    
 }
