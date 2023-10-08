@@ -23,20 +23,6 @@ export default class Navbar extends Component {
                     <li className="nav-item">
                       <a data-testid='app-home-link' className="nav-link active" aria-current="page" href="/#">Home</a>
                     </li>
-                    
-                    <li className="nav-item dropdown">
-                      <a className="nav-link dropdown-toggle" href="/#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Category
-                      </a>
-                      <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="/#">Action</a></li>
-                        <li><hr className="dropdown-divider"/></li>
-                        {/**WARNING: REMOVE LINK FROM HERE ---Added By Rashik */}
-                        <li><a href="/checkout-page">Checkout-Page</a></li>
-                        <li><hr className="dropdown-divider"/></li>
-                        <li><a className="dropdown-item" href="/#">Something else here</a></li>
-                      </ul>
-                    </li>
 
                     <li className="nav-item">
                       <a data-testid='app-offers-link' className="nav-link" href="/current-offers">Current Sales</a>
