@@ -55,6 +55,7 @@ const CheckoutPage = () => {
       axios.put(`${process.env.REACT_APP_API_URL}/api/productDetail/${item.productDetailsId.id}/update-quantity?newQuantity=${item.productDetailsId.available - item.quantity}`)
       .then((response)=>{
         //  axios.delete(`${process.env.REACT_APP_API_URL}/api/cartItems/${item.id}`)
+        addNotif();
       })
       .catch((error)=>{
         console.error("Error updating product details:", error);
@@ -74,6 +75,15 @@ const CheckoutPage = () => {
     navigate("/");
     console.log("NAVIGATED: to homepage")
   };
+
+  function addNotif() {
+    const notif = {
+      user: currUser,
+      message: `Your order of $${total} has been confirmed.`,
+      type: 'ORDER',
+    }
+    axios.post(`${process.env.REACT_APP_API_URL}/api/notifications`, notif);
+  }
 
 
   //handle payment method change
