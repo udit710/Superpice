@@ -86,6 +86,28 @@ export default function SignUp(){
     </div>
   )
 
+
+  function addWelcomeNotif() {
+    
+    axios.get(`${process.env.REACT_APP_API_URL}/api/users/email/` + email)
+    .then(res => {
+
+        const notification = {
+          user: res.data,
+          message: 'Welcome to the site! Enjoy our offers!',
+          type: 'OFFERS',
+        }
+
+        axios.post(`${process.env.REACT_APP_API_URL}/api/notifications`, notification)
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => console.error('Error creating welcome notification:', error));
+      })
+      .catch(error => console.error('Error fetching user ID:', error));
+
+  }
+
   function postSignUp(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     
@@ -113,6 +135,7 @@ export default function SignUp(){
     axios.post(`${process.env.REACT_APP_API_URL}/api/auth/sign-up`, inputs)
     .then(res => {
       
+      addWelcomeNotif();
       if (url !== null && url !== '') window.location.href = `/login?next=${url}`
       else window.location.href = `/login`;
     })
