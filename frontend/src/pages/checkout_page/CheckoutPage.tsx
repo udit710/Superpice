@@ -11,6 +11,7 @@ import { Button, Table } from 'react-bootstrap';
 import { user } from '../../interfaces/user.interface';
 import { Product_Details } from '../../interfaces/product_details.interface';
 import { useNavigate } from 'react-router';
+import { object } from 'prop-types';
 
 
 const CheckoutPage = () => {
@@ -19,10 +20,18 @@ const CheckoutPage = () => {
   const [cartItems, setCartItems] = useState([] as Cart_Item[]); //to store the list of cartItems
   let paymentMethod: PaymentMethod; //CHECK if it is used??
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<PaymentMethod | null>(null);
-  const [user_address, set_user_address] = useState<Address | null>(null);
+  const [user_address, set_user_address] = useState(null as Address | null);
   const [prodcuts, setProducts] = useState(null as Product[] | null);
   const [display, setDisp] = useState(null as any);
   const navigate = useNavigate();
+
+  // For Address input
+  const [address1, setAddress1] = useState(null as string | null);
+  const [address2, setAddress2] = useState(null as string | null);
+  const [city, setCity] = useState(null as string | null);
+  const [state, setState] = useState(null as string | null);
+  const [country, setCountry] = useState(null as string | null);
+  const [postcode, setPostcode] = useState(null as string | null);
 
   //handle order submition
   const handleSubmit = async (event: any) => {
@@ -85,7 +94,7 @@ const CheckoutPage = () => {
   async function fetchData(){
     
     // fetch user address
-    await axios.get<Address>(`${process.env.REACT_APP_API_URL}/api/address/${currUser?.userId}`)
+    await axios.get<Address>(`${process.env.REACT_APP_API_URL}/api/address/${currUser?.addressId}`)
     .then((response)=>{
       set_user_address(response.data);
     })
@@ -160,6 +169,28 @@ const CheckoutPage = () => {
     console.log(pros);
   };
 
+  function saveAddress(e: React.FormEvent) {
+    e.preventDefault();
+
+    const object = {
+      addressLine1: address1,
+      addressLine2: address2,
+      city: city,
+      state: state,
+      postalCode: postcode,
+      country: country,
+      addressType: AddressType.USER
+    }
+
+    axios.put(`${process.env.REACT_APP_API_URL}/api/users/address/${currUser?.userId}`, object)
+    .then(res => {
+      window.location.reload();
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  }
+
   return (
     <>
     <h1>CheckoutPage</h1>
@@ -168,14 +199,65 @@ const CheckoutPage = () => {
 
         {/* Address */}
         <div className='address_container'>
-          <h3>Delivery Address</h3>
-          {/* Check how to use conditional rendering here */}
-          <div style={{ whiteSpace: 'pre-line' }}>
-            {`${user_address?.addressLine1},
-              ${user_address?.addressLine2},
-              ${user_address?.city}, ${user_address?.country},
-              ${user_address?.postalCode}`}
+          <div className='add-address-container'>
+            <h3>Delivery Address</h3>
+            <div>
+              <button type="button" id='review-button' className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#address">Add New Address</button>
+              <div className="modal fade" id="address" tabIndex={-1} aria-labelledby="reviewLabel" aria-hidden="true">
+                  <div className="modal-dialog modal-dialog-centered">
+                      <div className="modal-content">
+                      <div className="modal-header">
+                          <h1 className="modal-title fs-5" id="address-modal-title">Add New Address</h1>
+                          <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div className="modal-body">
+                          <form id='address-form' onSubmit={saveAddress}>
+                              <label id='Add1-lable' className="form-label" htmlFor='Add1-text' >Address Line 1</label>
+                              <input className="form-control" type='text' name='comment' id='Add1-text'  placeholder='Address line 1' required onChange={e => {setAddress1(e.target.value)}} />
+                              <br/>
+                              <label id='Add2-lable' className="form-label" htmlFor='Add2-text'>Address Line 2</label>
+                              <input className="form-control" type='text' name='comment' id='Add2-text'  placeholder='Address line 2' onChange={e => {setAddress2(e.target.value)}} />
+                              <br/>
+                              <label id='city-lable' className="form-label" htmlFor='city-text'>City</label>
+                              <input className="form-control" type='text' name='comment' id='city-text'  placeholder='City' required onChange={e => {setCity(e.target.value)}} />
+                              <br/>
+                              <label id='post-code-lable' className="form-label" htmlFor='post-code-text'>Post Code</label>
+                              <input className="form-control" type='text' name='comment' id='post-code-text'  placeholder='Post Code' required onChange={e => {setPostcode(e.target.value)}} />
+                              <br/>
+                              <label id='state-lable' className="form-label" htmlFor='state-text'>State</label>
+                              <input className="form-control" type='text' name='comment' id='state-text'  placeholder='State' required onChange={e => {setState(e.target.value)}} />
+                              <br/>
+                              <label id='country-lable' className="form-label" htmlFor='country-text'>Country</label>
+                              <input className="form-control" type='text' name='comment' id='country-text'  placeholder='Country' required onChange={e => {setCountry(e.target.value)}} />
+                          </form>
+                      </div>
+                      <div className="modal-footer">
+                          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" className="btn btn-primary" form='address-form'>Save Address</button>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
           </div>
+          {/* Check how to use conditional rendering here */}
+          {user_address == null ? (
+            <h3>No Address Provided</h3>
+          ):
+          (
+            <div style={{ whiteSpace: 'pre-line' }}>
+              {(user_address?.addressLine2) ? 
+               `${user_address?.addressLine1},
+                ${user_address?.addressLine2},
+                ${user_address?.city}, ${user_address?.state},
+                ${user_address?.postalCode}
+                ${user_address?.country}` : 
+               `${user_address?.addressLine1},
+                ${user_address?.city}, ${user_address?.state},
+                ${user_address?.postalCode}
+                ${user_address?.country}`}
+            </div>
+          )}
         </div>
         <hr/>
 
