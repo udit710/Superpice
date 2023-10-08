@@ -99,7 +99,10 @@ export default function SignUp(){
         }
 
       })
+      .catch(error => console.error('Error fetching user ID:', error));
+
   }
+
   function postSignUp(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     
