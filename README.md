@@ -1,8 +1,23 @@
+# RMIT COSC2299 SEPT Major Project: SuperPrice
+
 # RMIT COSC2299 SEPT Major Project
 
-## SuperPrice - Price Matching and Delivery Application
+## ![SuperPrice Logo](./frontend/public/basket2-fill.svg) [SuperPrice - Price Matching and Delivery Application](http://superprice-env.eba-nd46x4ec.us-east-1.elasticbeanstalk.com)
 
 SuperPrice is a comprehensive application designed to revolutionize the shopping experience. By comparing prices, viewing product details, and exploring various offers, users can make informed decisions and save money. This repository contains both the frontend and backend components of the SuperPrice application.
+
+## Table of Contents
+
+- [Group Information](#group-information)
+- [Features](#features)
+- [Setup and Installation](#setup-and-installation)
+  - [Prerequisites](#prerequisites)
+  - [Backend Setup](#backend-setup)
+  - [Frontend Setup](#frontend-setup)
+- [Deployment](#deployment)
+  - [Docker](#docker)
+  - [Amazon ECR](#amazon-ecr)
+- [Contribution Videos](#contribution-videos)
 
 # Group Information
 
@@ -24,7 +39,7 @@ SuperPrice is a comprehensive application designed to revolutionize the shopping
 
 
 
-## Code Documentation - Release 0.2.0 - 17 September 2023
+## Code Documentation - Release 1.0.0 - 8 October 2023
 
 ### Features:
 
@@ -33,6 +48,21 @@ SuperPrice is a comprehensive application designed to revolutionize the shopping
 - **Offer Exploration**: Showcases various offers and discounts available in different stores.
 - **User Reviews**: Users can read reviews for products.
 - **Search Functionality**: Enables users to search for specific products or categories.
+- **User Accounts**: Allows users to create and manage their personal accounts, including profile settings and order history.
+- **Cart Management**: Users can add products to their cart, view cart contents, and proceed to checkout.
+- **Notification System**: Notifies users about price drops, new offers, and stock availability.
+- **Multiple Payment Options**: Supports various payment methods including credit cards, digital wallets, and cash on delivery.
+- **Secure Checkout**: Implements advanced security measures to ensure safe and secure transactions.
+
+## Setup and Installation
+
+### Prerequisites
+
+- Java (Version 17.0 or higher)
+- Node.js and npm
+- Apache Maven
+- IDE (e.g., Visual Studio Code, IntelliJ IDEA)
+- Docker (for containerization)
 
 ## Run Instructions
 
@@ -42,13 +72,17 @@ SuperPrice is a comprehensive application designed to revolutionize the shopping
    ```bash
    cd backend
    ```
-   
+
 2. Create a `.env` file following the template in `.env.development` file
 
 3. Package and run the backend application:
    ```bash
-   ./mvnw package && java -jar target/superprice-0.0.1-SNAPSHOT.jar
+   ./mvnw package && java -jar target/superprice-1.0.0-SNAPSHOT.jar
    ```
+
+For detailed instructions on setting up and running the backend, refer to the backend README:
+
+[Backend README](./backend/README.md)
 
 ### Frontend:
 
@@ -70,29 +104,43 @@ SuperPrice is a comprehensive application designed to revolutionize the shopping
 4. Access the application:
    Open your browser and navigate to `http://localhost:3000` to access the SuperPrice application. The frontend will communicate with the backend to fetch and display data from the database.
 
-## Initial Setup
-
-### Environment Setup:
-
-Ensure you have the following tools and technologies installed on your system:
-
-- **Java**: Version 17.0 or higher.
-- **Node and npm**: For frontend development and dependency management.
-- **Apache Maven**: For backend dependency management and building.
-- **IDE or Editor**: Such as Visual Studio Code, IntelliJ IDEA, or Eclipse.
-- **Other Tools**: As the project progresses, you might need additional tools like Docker for containerization.
-
-### Backend Setup:
-
-For detailed instructions on setting up and running the backend, refer to the backend README:
-
-[Backend README](./backend/README.md)
-
-### Frontend Setup:
-
 For detailed instructions on setting up and running the frontend, refer to the frontend README:
 
 [Frontend README](./frontend/README.md)
+
+## Deployment
+
+### Docker
+
+1. Build the Docker image:
+   ```bash
+   docker-compose build
+   ```
+
+2. Run the Docker container:
+   ```bash
+   docker-compose up
+   ```
+
+### Amazon ECR
+
+1. Authenticate Docker to ECR:
+   ```bash
+   aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 490946549162.dkr.ecr.us-east-1.amazonaws.com
+   ```
+
+2. Build, tag, and push the Docker image:
+   ```bash
+   docker build -t backend:latest ./backend/Dockerfile
+   docker tag backend:latest 490946549162.dkr.ecr.us-east-1.amazonaws.com/backend:latest
+   docker push 490946549162.dkr.ecr.us-east-1.amazonaws.com/backend:latest
+   ```
+
+   ```bash
+   docker build -t frontend:latest ./frontend/Dockerfile
+   docker tag frontend:latest 490946549162.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
+   docker push 490946549162.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
+   ```
 
 
 ## Individual contribution videos for Milestone 2
