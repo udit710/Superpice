@@ -1,5 +1,11 @@
 Abhijeet Kumar - 20%
 
+- Docker backend setup [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/170]
+- Docker frontend setup [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/160]
+- Migrate to mysql in docker compose [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/169] [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/170]
+- ECR setup with docker images [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/228]
+- Help with Notification api [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/98] [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/28]
+
 Vidyut Venkatesan - 20%
 
 - User Authentification and Session Management [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/174] [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/201] [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/200] [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/199] [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/204]
@@ -11,7 +17,19 @@ Vidyut Venkatesan - 20%
 
 Ibrahim Al-Ashhab - 20%
 
+- Notification API [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/98]
+- Notification frontend integration [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/28]
+- sign up page frontend [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/105]
+- log in page frontend [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/105]
+- spring burn down chart
+- sprint retro
+
 Rashik Raj - 20%
+
+- Checkout page frontend [https://github.com/cosc2299-sept-2023/team-project-group-p02-07/issues/177]
+- Checkout page integration with backend
+- Few Backend apis
+- Homepage UI update
 
 Udit Pradeep Malshe - 20%
 
