@@ -20,10 +20,10 @@ public class ProductDetailService {
     public ProductDetails updateQuantity(Long id, Integer newQuantity) {
         // Retrieve the ProductDetails by ID
         ProductDetails productDetails = productDetailRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("ProductDetails not found with id: " + id));
+                .orElse(null);
 
         //Created the updated quantity value
-        int tempQuantity = productDetails.getAvailable() - newQuantity;
+        // int tempQuantity = productDetails.getAvailable() - newQuantity;
 
         // Update the quantity
         productDetails.setAvailable(newQuantity);
