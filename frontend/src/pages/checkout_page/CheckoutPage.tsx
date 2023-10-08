@@ -315,7 +315,20 @@ const CheckoutPage = () => {
         <div>
           <h3>Order Summary</h3>
           <h4>Total: ${total.toFixed(2)}</h4>
-          <Button variant="primary" onClick={handleSubmit}>Purchase</Button>
+          <Button variant="primary" onClick={handleSubmit} disabled={user_address === null || selectedPaymentMethod === null}>Purchase</Button>
+          {user_address === null ? (
+            <p className='text-danger fw-semibold'>Add Address to continue purchase.</p>
+          ):
+          (
+            <div>
+              {selectedPaymentMethod === null ? (
+                <p className='text-danger fw-semibold'>Select payment method.</p>
+              ):
+              (
+                <div/>
+              )}
+            </div>
+          )}
         </div>
         <hr/>
       </div>
