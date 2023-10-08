@@ -17,6 +17,9 @@ SuperPrice is a comprehensive application designed to revolutionize the shopping
 - [Deployment](#deployment)
   - [Docker](#docker)
   - [Amazon ECR](#amazon-ecr)
+- [Architecture Overview](#architecture-overview)
+  - [Key Components](#key-components)
+  - [Architecture Diagram](#architecture-diagram)
 - [Contribution Videos](#contribution-videos)
 
 # Group Information
@@ -142,6 +145,84 @@ For detailed instructions on setting up and running the frontend, refer to the f
    docker push 490946549162.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
    ```
 
+## Architecture Overview
+
+SuperPrice, as a comprehensive shopping comparison application, leverages a modern technology stack to ensure scalability, security, and a seamless user experience. The architecture is designed to be modular, scalable, and cloud-native, ensuring that the application can handle a large number of users and can be easily extended in the future.
+
+## Key Components:
+
+### **Docker**:
+Docker is used to containerize both the frontend and backend components of the application. This ensures that the application runs consistently across different environments, from local development machines to production servers. Docker containers encapsulate the application and its dependencies, making deployment and scaling more straightforward.
+
+### **Spring Boot**:
+The backend of SuperPrice is built using Spring Boot, a robust framework for creating stand-alone, production-grade applications. Spring Boot simplifies the process of building production-ready applications by providing essential functionalities like security, data access, and web development out-of-the-box.
+
+### **React**:
+The frontend is developed using React, a popular JavaScript library for building user interfaces. React allows for the creation of reusable UI components, ensuring a dynamic and responsive user experience.
+
+### **JSON Web Tokens (JWT)**:
+For authentication and authorization, SuperPrice uses JWT. When a user logs in, they receive a token, which they must send with their subsequent requests. This token is verified at the backend to ensure the user is authenticated and has the necessary permissions.
+
+### **AWS ECR**:
+Amazon Elastic Container Registry (ECR) is used to store Docker container images. It's a fully managed docker container registry that makes it easy for developers to store, manage, and deploy Docker container images.
+
+### **AWS Beanstalk**:
+AWS Elastic Beanstalk is a Platform-as-a-Service (PaaS) used to deploy, manage, and scale the SuperPrice application. It abstracts infrastructure management tasks such as provisioning, scaling, and application health monitoring.
+
+### **AWS Elastic IP**:
+To ensure that the application has a static IP address, AWS Elastic IP is used. This static IP is beneficial for DNS configurations and for whitelisting IP addresses in third-party services.
+
+## Architecture Diagram:
+
+```
++-------------------+     +-------------------+     +-------------------+
+|                   |     |                   |     |                   |
+|      User's       |     |       React       |     |    Spring Boot    |
+|     Browser       +----->   Frontend (web)  +----->      Backend      |
+|                   |     |   (Port: 3000)    |     |   (API - Port:    |
+|                   |     |                   |     |    8080)          |
++---------+---------+     +---------+---------+     +---------+---------+
+          |                       |                       |
+          |                       |                       |
+          |                       |                       |
++---------v---------+     +-------v-------+       +-------v-------+
+|                   |     |               |       |               |
+|    AWS Elastic    |     |    AWS ECR    |       |    AWS ECR    |
+|       IP          |     | (frontend     |       | (backend      |
+|                   |     |  image)       |       |  image)       |
++---------+---------+     +-------+-------+       +-------+-------+
+          |                       |                       |
+          |                       |                       |
+          |                       |                       |
++---------v---------+     +-------v-------+       +-------v-------+
+|                   |     |               |       |               |
+|    AWS Beanstalk  |     |   Docker      |       |   Docker      |
+|  (Frontend Host)  |     |  (Frontend    |       |  (Backend     |
+|                   |     |   Container)  |       |   Container)  |
++---------+---------+     +-------+-------+       +-------+-------+
+          |                       |                       |
+          |                       |                       |
+          |                       |                       |
++---------v---------+     +-------v-------+       +-------v-------+
+|                   |     |               |       |               |
+|    MySQL DB       |     |   Adminer     |       |    AWS RDS    |
+|   (Database       |     |  (DB Admin    |       |  (Database    |
+|   Container)      |     |   Interface)  |       |   Service)    |
+|                   |     |               |       |               |
++-------------------+     +---------------+       +---------------+
+```
+
+In this architecture:
+
+- Users interact with the React frontend through their browsers.
+- The React frontend communicates with the Spring Boot backend.
+- Both the frontend and backend are containerized using Docker and their images are stored in AWS ECR.
+- The backend connects to a MySQL database, which is also containerized.
+- Adminer is used as a database administration interface.
+- AWS Beanstalk is used to host the frontend, while AWS RDS could be used to host the database in a production environment.
+- AWS Elastic IP ensures a consistent IP address for the application.
+
+This setup ensures a modular and scalable architecture, with each component isolated in its container, making it easy to scale and manage.
 
 ## Individual contribution videos for Milestone 2
 - Udit Pradeep Malshe - https://rmiteduau-my.sharepoint.com/:v:/r/personal/s3933905_student_rmit_edu_au/Documents/Udit%20Pradeep%20Malshe%20-%20s3933905%20-%20COSC2299-23s2%20PTC1.mp4?csf=1&web=1&e=1EhdyK&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19
