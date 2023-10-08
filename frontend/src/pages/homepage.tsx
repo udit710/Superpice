@@ -22,7 +22,7 @@ export default function Homepage(){
 
   return (
     <div className='home-header'>
-      {showPopUp === 'true' && <div style={{width: '200px', height:'100px', backgroundColor: 'Green'}}><h1>Order Submitted</h1></div>}
+      {showPopUp === 'true' && <div className=' alert alert-success order-submited'><h2>Order Submitted</h2></div>}
       <h1>SUPERPRICE</h1>
       <h5>Your place for shopping smart</h5>
       <OfferList data-testid='offerlist' />

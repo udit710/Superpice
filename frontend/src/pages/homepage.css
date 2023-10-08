@@ -2,3 +2,7 @@
     align-items: center;
     padding: 5%;
 }
+
+.order-submited {
+    position: absolute;
+}

@@ -79,7 +79,7 @@ const CheckoutPage = () => {
   function addNotif() {
     const notif = {
       user: currUser,
-      message: `Your order of $${total} has been confirmed.`,
+      message: `Your order of $${total.toFixed(2)} has been confirmed.`,
       type: 'ORDER',
     }
     axios.post(`${process.env.REACT_APP_API_URL}/api/notifications`, notif);
