@@ -1,6 +1,7 @@
 package au.edu.rmit.sept.superprice.Services;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -46,4 +47,13 @@ public class ProductDetailServiceTest {
         verify(this.productDetailRepository, times(1))
         .save(productDetails);
     }
+
+    @Test
+    void update_details_should_fail_when_item_not_exist() {
+        when(productDetailRepository.findById(11l))
+        .thenReturn(Optional.empty());
+
+        assertThrows(Exception.class, () -> {this.productDetailService.updateQuantity(11l, 5);});
+    }
+
 }
