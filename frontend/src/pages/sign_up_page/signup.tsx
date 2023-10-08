@@ -86,6 +86,20 @@ export default function SignUp(){
     </div>
   )
 
+
+  function addWelcomeNotif() {
+    
+    axios.get(`${process.env.REACT_APP_API_URL}/api/users/email/` + email)
+    .then(res => {
+
+        const notification = {
+          user: res.data,
+          message: 'Welcome to the site! Enjoy our offers!',
+          type: 'OFFERS',
+        }
+
+      })
+  }
   function postSignUp(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     
