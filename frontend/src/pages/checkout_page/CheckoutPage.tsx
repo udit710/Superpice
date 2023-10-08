@@ -138,6 +138,7 @@ const CheckoutPage = () => {
   }
 
   useEffect(()=>{
+    document.title = 'Checkout - SUPERPRICE';
     setupUser();
   },[]);
 

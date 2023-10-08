@@ -17,6 +17,7 @@ export default function OffersPage() {
 	const [minDiscountOption, setMinDiscountOption] = useState(DEFAULT_MIN_OPTION as number);
 	
 	useEffect(() => {
+		document.title = 'Current Offers - SUPERPRICE'
 		axios.get(`${process.env.REACT_APP_API_URL}/api/products/discounts`)
 		.then(res => {
 			setProducts(res.data);
