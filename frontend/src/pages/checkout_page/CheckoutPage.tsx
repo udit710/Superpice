@@ -116,7 +116,7 @@ const CheckoutPage = () => {
     await axios.get<Cart_Item[]>(`${process.env.REACT_APP_API_URL}/api/cartItems/userId/${currUser?.userId}`)
                 .then((response) => {setCartItems(response.data)})
                 .catch ((error)=>{
-                    console.error('Error from Fetching Cart Items by UserId:', error)
+                    console.error('Error from Fetching Cart Items by UserId:', error);
                 });
   }
 
@@ -148,6 +148,11 @@ const CheckoutPage = () => {
   }, [currUser]);
 
   useEffect(()=>{
+    if (cartItems === null || cartItems.length === 0) {
+      window.location.href = `/cart-page`;
+      return;
+    }
+
     if(currUser){
       getProds();
       calculateTotal();
@@ -180,7 +185,6 @@ const CheckoutPage = () => {
       return productResponse.data;
     }));
     setProducts(pros);
-    console.log(pros);
   };
 
   function saveAddress(e: React.FormEvent) {
