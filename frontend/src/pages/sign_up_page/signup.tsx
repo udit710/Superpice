@@ -135,6 +135,7 @@ export default function SignUp(){
     axios.post(`${process.env.REACT_APP_API_URL}/api/auth/sign-up`, inputs)
     .then(res => {
       
+      addWelcomeNotif();
       if (url !== null && url !== '') window.location.href = `/login?next=${url}`
       else window.location.href = `/login`;
     })
