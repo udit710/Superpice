@@ -98,6 +98,10 @@ export default function SignUp(){
           type: 'OFFERS',
         }
 
+        axios.post(`${process.env.REACT_APP_API_URL}/api/notifications`, notification)
+        .then(res => {
+          console.log(res.data);
+        })
       })
       .catch(error => console.error('Error fetching user ID:', error));
 
