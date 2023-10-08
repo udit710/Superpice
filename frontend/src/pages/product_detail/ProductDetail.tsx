@@ -147,11 +147,11 @@ export default class ProductDetail extends Component {
                                         <td id={detail.price.toFixed(2)}>${detail.price.toFixed(2)}</td>
                                         <td id={detail.available.toString()}>{detail.available}</td>
                                         <td><input onChange={e => {this.setState({ quantity: e.target.value })}}  id={index.toString()} type="number" className="form-control" defaultValue={1} min={1} max={detail.available} /></td>
-                                        {/* {this.state.isLogedIn ? ( */}
+                                        {detail.available > 0 ? (
                                             <td><button id={'add-cart-button' + index} className="btn btn-primary" onClick={() => this.addToCart(product, detail, index)}>Add to Cart</button></td>
-                                        {/* ) : (
-                                            <p><a href='/login'>Login</a> to add to cart</p>
-                                        )} */}
+                                        ) : (
+                                            <td><button id={'add-cart-button' + index} className="btn btn-secondary" disabled>Out of Stock</button></td>
+                                        )}
                                     </tr>
                                 ))}
                             </tbody>
