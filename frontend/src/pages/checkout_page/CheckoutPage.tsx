@@ -148,11 +148,6 @@ const CheckoutPage = () => {
   }, [currUser]);
 
   useEffect(()=>{
-    if (cartItems === null || cartItems.length === 0) {
-      window.location.href = `/cart-page`;
-      return;
-    }
-
     if(currUser){
       getProds();
       calculateTotal();
