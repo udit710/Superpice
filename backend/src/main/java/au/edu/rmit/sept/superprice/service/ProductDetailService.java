@@ -23,7 +23,7 @@ public class ProductDetailService {
                 .orElseThrow(() -> new RuntimeException("ProductDetails not found with id: " + id));
 
         //Created the updated quantity value
-        int tempQuantity = productDetails.getAvailable() - newQuantity;
+        // int tempQuantity = productDetails.getAvailable() - newQuantity;
 
         // Update the quantity
         productDetails.setAvailable(newQuantity);
