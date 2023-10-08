@@ -42,8 +42,5 @@ public class ReviewServiceImpl implements ReviewService{
     public List<Review> findByProductId(Long productId) {
         return reviewRepository.findByProductId(productId);
     }
-
-    // public Review findByUserId(Long userId) {
-    //     return reviewRepository.findByUserId(userId).orElse(null);
-    // }
+    
 }

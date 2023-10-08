@@ -90,38 +90,6 @@ public class ProductControllerTest {
             .deleteProduct(1l);
     }
 
-    // @Test
-    // void should_get_products_by_subcategoryId() {
-    //     when(this.productService.getProductsBySubCategoryId(1l))
-    //         .thenReturn(List.of(new Product()));
-        
-    //     assertEquals(1, this.productController.getProductsByProductCategoryId(1l).size());
-    // }
-
-    // @Test
-    // void should_get_empty_list_if_subcategoryId_not_exists() {
-    //     when(this.productService.getProductsBySubCategoryId(11l))
-    //         .thenReturn(new ArrayList<Product>());
-        
-    //     assertEquals(0, this.productController.getProductsByProductCategoryId(11l).size());
-    // }
-
-    // @Test
-    // void should_get_products_by_subcategoryName() {
-    //     when(this.productService.getProductsBySubCategoryName("test"))
-    //         .thenReturn(List.of(new Product()));
-        
-    //     assertEquals(1, this.productController.getProductsByProductCategoryName("test").size());
-    // }
-
-    // @Test
-    // void should_get_empty_list_if_subcategoryName_not_exists() {
-    //     when(this.productService.getProductsBySubCategoryName("test"))
-    //         .thenReturn(new ArrayList<Product>());
-        
-    //     assertEquals(0, this.productController.getProductsByProductCategoryName("test").size());
-    // }
-
     @Test
     void should_get_products_by_categoryId() {
         when(this.productService.getProductsByCategoryId(1l))

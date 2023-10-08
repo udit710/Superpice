@@ -13,8 +13,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Getter
 @Entity
 @NoArgsConstructor
@@ -30,12 +28,10 @@ public class CartItem{
     @Column(name = "product_id")
     private Long productId;
 
-    // @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_details_id", referencedColumnName = "product_details_id")
     private ProductDetails productDetailsId;
 
-    // @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User userId;

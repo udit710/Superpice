@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-// import java.util.Collection;
-
 @Getter
 @Entity
 @NoArgsConstructor
@@ -27,8 +25,5 @@ public class SubCategory {
     @ManyToOne(fetch=FetchType.LAZY, optional = true)
     @JoinColumn(name="category_id", nullable = true)
     private Category category;
-
-    // @OneToMany(mappedBy= "subCategory", cascade=CascadeType.ALL,  fetch = FetchType.LAZY)
-    // private Collection<Product> productIds;
 
 }

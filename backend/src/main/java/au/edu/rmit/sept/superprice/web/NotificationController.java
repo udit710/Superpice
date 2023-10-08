@@ -35,12 +35,6 @@ public class NotificationController {
         return notificationService.saveNotification(notification);
     }
 
-    // @PutMapping("/{id}")
-    // public Notification updateNotification(@PathVariable Long id, @RequestBody Notification notification) {
-    //    // Logic to update the notification based on the provided ID
-    //   return notificationService.updateNotification(id);
-    // }
-
     @DeleteMapping("/{id}")
     public void deleteNotification(@PathVariable Long id) {
         notificationService.deleteNotification(id);

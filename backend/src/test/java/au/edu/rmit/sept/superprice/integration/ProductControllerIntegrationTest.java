@@ -1,6 +1,5 @@
 package au.edu.rmit.sept.superprice.integration;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -85,11 +84,6 @@ public class ProductControllerIntegrationTest {
 
             .andExpect(jsonPath("$.productName", is("test")));
     }
-
-    // @Test
-    // void delete_product() throws Exception {
-    //     mvc.perform(delete("/api/products/1")).andExpect(status().isOk());
-    // }
 
     @Test
     void get_product_by_CategoryID_1() throws Exception {

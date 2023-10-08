@@ -7,8 +7,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.AdditionalAnswers.returnsFirstArg;
-import static org.mockito.ArgumentMatchers.any;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,14 +17,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import au.edu.rmit.sept.superprice.model.Product;
 import au.edu.rmit.sept.superprice.model.Review;
 import au.edu.rmit.sept.superprice.service.ReviewService;
-import au.edu.rmit.sept.superprice.web.ProductController;
 import au.edu.rmit.sept.superprice.web.ReviewController;
 
 @SpringBootTest
@@ -74,24 +69,6 @@ public class ReviewControllerTest {
         
         assertEquals(0, this.reviewController.getReviews(1l).size());
     }
-
-    // @Test
-    // void should_create_review() throws JsonMappingException, JsonProcessingException {
-    //     // String object = "{ \"comment\": \"test\"}";
-    //     // ObjectMapper mapper = new ObjectMapper();
-    //     // this.reviewController.updateReview(1l, mapper.readTree(object).deepCopy());
-    //     // // this.reviewController.createReview(null);
-
-    //     // verify(this.reviewService, times(1))
-    //     //     .save(null);
-    //     // String object = "{\"productId\":1, \"userId\":1, \"rating\":1, \"comment\":\"test\"}";
-    //     // ObjectMapper mapper = new ObjectMapper();
-    //     // ProductController productController = mock(ProductController.class);
-    //     // when(productController.getProductById(1l)).thenReturn(new Product());
-    //     // when(this.reviewService.save(any(Review.class))).thenReturn(new Review());
-
-    //     // assertNotNull(this.reviewController.createReview(mapper.readTree(object).deepCopy()));
-    // }
 
     @Test
     void should_return_review_by_id() {

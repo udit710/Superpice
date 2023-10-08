@@ -4,8 +4,6 @@ import au.edu.rmit.sept.superprice.model.CartItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import au.edu.rmit.sept.superprice.model.User;
-import au.edu.rmit.sept.superprice.model.ProductDetails;
 
 import java.util.List;
 
@@ -14,9 +12,6 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
 
     @Query(value = "SELECT * FROM cart_item", nativeQuery = true)
     List<CartItem> findAll();
-
-    // @Query("SELECT c FROM CartItem c WHERE c.cartItemId = ?1")
-    // CartItem findByCartItemId(Long cartItemId);
 
     @Query("SELECT c FROM CartItem c WHERE c.userId.userId = ?1")
     List<CartItem> findByUserId(Long userId);

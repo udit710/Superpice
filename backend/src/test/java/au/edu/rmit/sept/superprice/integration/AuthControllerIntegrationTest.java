@@ -155,7 +155,7 @@ public class AuthControllerIntegrationTest {
 
         // Login to get Token
         object = "{\"email\":\"test@test\", \"password\":\"test\"}";
-        ResponseEntity<LoginResponse> res = authController.login(mapper.readTree(object).deepCopy());
+        authController.login(mapper.readTree(object).deepCopy());
 
         mvc.perform(post("/api/auth/validate")
             .content("{\"token\":\"wrong\"}")

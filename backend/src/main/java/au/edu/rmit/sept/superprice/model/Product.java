@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
@@ -37,11 +36,6 @@ public class Product {
     @ManyToOne(fetch=FetchType.LAZY, optional = true)
     @JoinColumn(name="category_id", nullable = true)
     private Category category;
-
-    // @JsonIgnore
-    // @ManyToOne(fetch = FetchType.LAZY, optional = true)
-    // @JoinColumn(name = "sub_category_id", nullable = true)
-    // private SubCategory subCategory;
 
     @Column(name = "sub_category_id")
     private Long subCategoryId;

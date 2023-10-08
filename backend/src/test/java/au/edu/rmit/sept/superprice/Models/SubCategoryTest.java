@@ -36,9 +36,4 @@ public class SubCategoryTest {
         assertNotNull(this.subCategory.getCategory());
     }
 
-    // @Test
-    // void should_return_products() {
-    //     assertEquals(0, this.subCategory.getProductIds().size());
-    // }
-
 }

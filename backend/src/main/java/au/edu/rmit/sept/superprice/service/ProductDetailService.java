@@ -22,9 +22,6 @@ public class ProductDetailService {
         ProductDetails productDetails = productDetailRepository.findById(id)
                 .orElse(null);
 
-        //Created the updated quantity value
-        // int tempQuantity = productDetails.getAvailable() - newQuantity;
-
         // Update the quantity
         productDetails.setAvailable(newQuantity);
 
