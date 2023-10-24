@@ -20,7 +20,6 @@ SuperPrice is a comprehensive application designed to revolutionize the shopping
 - [Architecture Overview](#architecture-overview)
   - [Key Components](#key-components)
   - [Architecture Diagram](#architecture-diagram)
-- [Contribution Videos](#contribution-videos)
 
 # Group Information
 
@@ -32,15 +31,6 @@ SuperPrice is a comprehensive application designed to revolutionize the shopping
 * Ibrahim Al-Ashhab (s3953973)
 * Rashik Raj (s3931830)
 * Udit Pradeep Malshe (s3933905)
-
-## Records
-
-* Github repository: [github.com | team-project-group-p02-07](https://github.com/cosc2299-sept-2023/team-project-group-p02-07)
-* Github Project Board : [github.com | SEPT Feature Project](https://github.com/orgs/cosc2299-sept-2023/projects/143/views/1)
-* Microsoft Teams Link: [MS Teams Group 07](https://teams.microsoft.com/l/team/19%3aaS2iQd5DZbipNu4gNK8p9S6Sy6-Kj2rkewpV8f8ZAqA1%40thread.tacv2/conversations?groupId=eea8373d-4f5f-4c1c-a1a7-36843caccb9c&tenantId=d1323671-cdbe-4417-b4d4-bdb24b51316b)
-* Contribution video link : https://youtu.be/GzdNoQ0QKAQ
-
-
 
 ## Code Documentation - Release 1.0.0 - 8 October 2023
 
@@ -69,7 +59,7 @@ SuperPrice is a comprehensive application designed to revolutionize the shopping
 
 ## Run Instructions
 
-### Backend:
+### Backend-setup:
 
 1. Navigate to the backend directory:
    ```bash
@@ -87,7 +77,7 @@ For detailed instructions on setting up and running the backend, refer to the ba
 
 [Backend README](./backend/README.md)
 
-### Frontend:
+### Frontend-setup:
 
 1. Navigate to the frontend directory:
    ```bash
@@ -224,16 +214,3 @@ In this architecture:
 
 This setup ensures a modular and scalable architecture, with each component isolated in its container, making it easy to scale and manage.
 
-## Individual contribution videos for Milestone 2
-- Udit Pradeep Malshe - https://rmiteduau-my.sharepoint.com/:v:/r/personal/s3933905_student_rmit_edu_au/Documents/Udit%20Pradeep%20Malshe%20-%20s3933905%20-%20COSC2299-23s2%20PTC1.mp4?csf=1&web=1&e=1EhdyK&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19
-- Abhijeet Kumar - https://rmiteduau.sharepoint.com/:v:/s/SEPT-007/EX1TX5igVItAoSV0RE_xDy4B89hKDBeKThgR0ZNhZi9RnA?e=od0kXU
-- Vidyut Venkatesan - https://rmiteduau-my.sharepoint.com/:v:/g/personal/s3925040_student_rmit_edu_au/EW3XhVMMPBVLk7NGFc_x_LIBdtjIq8t0yfMOHDXEkztIfg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19&e=CcZR5p
-- Rashik Raj - https://rmiteduau-my.sharepoint.com/:v:/g/personal/s3931830_student_rmit_edu_au/ETdmMxKJO5BCq_RmJtOd0YIBPdrnXf4PoiNOhKheyMP3pw
-- Ibrahim Al-Ashhab - [SEPT Milestone 2 Ibrahim-20230917_215408-Meeting Recording.mp4](https://rmiteduau.sharepoint.com/sites/solomeetingteam/_layouts/15/stream.aspx?id=%2Fsites%2Fsolomeetingteam%2FShared%20Documents%2FGeneral%2FRecordings%2FSEPT%20Milestone%202%20Ibrahim%2D20230917%5F215408%2DMeeting%20Recording%2Emp4)https://rmiteduau.sharepoint.com/sites/solomeetingteam/_layouts/15/stream.aspx?id=%2Fsites%2Fsolomeetingteam%2FShared%20Documents%2FGeneral%2FRecordings%2FSEPT%20Milestone%202%20Ibrahim%2D20230917%5F215408%2DMeeting%20Recording%2Emp4
-
-## Individual contribution videos for Milestone 3
-- Udit Pradeep Malshe - https://rmiteduau-my.sharepoint.com/:v:/r/personal/s3933905_student_rmit_edu_au/Documents/GROUP-P02-07%20COSC2299-23s2%20Milestone%203.mp4?csf=1&web=1&e=bb9cEP&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19
-- Ibrahim Al-Ashhab - https://rmiteduau.sharepoint.com/sites/solomeetingteam/_layouts/15/stream.aspx?id=%2Fsites%2Fsolomeetingteam%2FShared%20Documents%2FGeneral%2FRecordings%2FGROUP%2DP2%2D07%20COSC2299%2D23s2%20Milestone%203%2Emp4
-- Rashik Raj - https://rmiteduau-my.sharepoint.com/:v:/r/personal/s3931830_student_rmit_edu_au/Documents/My%20Student%20Card%20Journey.mp4?csf=1&web=1&e=aCPB37&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19
-- Vidyut Venkatesan - https://rmiteduau-my.sharepoint.com/:v:/g/personal/s3925040_student_rmit_edu_au/EdTNHlwwRvVPsaTuwsaO408BHagcv2FS7qi9rKKuxHcB3A?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19&e=VFArRj
-- Abhijeet Kumar - https://rmiteduau-my.sharepoint.com/:v:/g/personal/s3905291_student_rmit_edu_au/Ebr47DXUwjRCkgghjMxz0WgBDJrT3KuT-YbomatRt-NwYw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19&e=PWB3dX
