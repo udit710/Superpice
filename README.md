@@ -1,8 +1,4 @@
-# RMIT COSC2299 SEPT Major Project: SuperPrice
-
-# RMIT COSC2299 SEPT Major Project
-
-## ![SuperPrice Logo](./frontend/public/basket2-fill.svg) [SuperPrice - Price Matching and Delivery Application](http://superprice-env.eba-nd46x4ec.us-east-1.elasticbeanstalk.com)
+# Project SuperPrice
 
 SuperPrice is a comprehensive application designed to revolutionize the shopping experience. By comparing prices, viewing product details, and exploring various offers, users can make informed decisions and save money. This repository contains both the frontend and backend components of the SuperPrice application.
 
